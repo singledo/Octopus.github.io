@@ -5,20 +5,20 @@
   
 
   
-  <title>FileSystem-LimitSize.md | 章军的博客</title>
+  <title>FS 文件大小限制 | 章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="文件系统中最大文件大小">
-<meta name="keywords" content="linux,file system">
+  <meta name="description" content="文件系统中最大文件大小1. windows 系统   FAT12 FAT16 FAT32 NTFS NTFS5.0     8M 2G 4G 64G 2T    2. linux 系统ext3文件系统限制    Block size Max file size Max filesystem size     1 KiB 16 GiB &amp;lt;2 TiB   2 KiB 256 GiB &amp;lt;4">
+<meta name="keywords" content="linux,windows,file system">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FileSystem-LimitSize.md">
-<meta property="og:url" content="http://octopuscloud.top/2019/02/25/FileSystem-LimitSize-md/index.html">
+<meta property="og:title" content="FS 文件大小限制">
+<meta property="og:url" content="http://octopuscloud.top/2019/03/02/FS-文件大小限制/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="文件系统中最大文件大小">
+<meta property="og:description" content="文件系统中最大文件大小1. windows 系统   FAT12 FAT16 FAT32 NTFS NTFS5.0     8M 2G 4G 64G 2T    2. linux 系统ext3文件系统限制    Block size Max file size Max filesystem size     1 KiB 16 GiB &amp;lt;2 TiB   2 KiB 256 GiB &amp;lt;4">
 <meta property="og:locale" content="China">
-<meta property="og:updated_time" content="2019-03-02T10:01:48.571Z">
+<meta property="og:updated_time" content="2019-03-02T10:11:04.360Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FileSystem-LimitSize.md">
-<meta name="twitter:description" content="文件系统中最大文件大小">
+<meta name="twitter:title" content="FS 文件大小限制">
+<meta name="twitter:description" content="文件系统中最大文件大小1. windows 系统   FAT12 FAT16 FAT32 NTFS NTFS5.0     8M 2G 4G 64G 2T    2. linux 系统ext3文件系统限制    Block size Max file size Max filesystem size     1 KiB 16 GiB &amp;lt;2 TiB   2 KiB 256 GiB &amp;lt;4">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -65,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-FileSystem-LimitSize-md" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-FS-文件大小限制" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/02/25/FileSystem-LimitSize-md/" class="article-date">
-  <time datetime="2019-02-25T07:34:19.000Z" itemprop="datePublished">2019-02-25</time>
+    <a href="/2019/03/02/FS-文件大小限制/" class="article-date">
+  <time datetime="2019-03-02T10:06:56.000Z" itemprop="datePublished">2019-03-02</time>
 </a>
     
   </div>
@@ -79,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      FileSystem-LimitSize.md
+      FS 文件大小限制
     </h1>
   
 
@@ -87,8 +87,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="文件系统中最大文件大小"><a href="#文件系统中最大文件大小" class="headerlink" title="文件系统中最大文件大小"></a>文件系统中最大文件大小</h1><a id="more"></a>
-<h2 id="1-windows-系统"><a href="#1-windows-系统" class="headerlink" title="1. windows 系统"></a>1. windows 系统</h2><table>
+        <a id="more"></a>
+<h1 id="文件系统中最大文件大小"><a href="#文件系统中最大文件大小" class="headerlink" title="文件系统中最大文件大小"></a>文件系统中最大文件大小</h1><h2 id="1-windows-系统"><a href="#1-windows-系统" class="headerlink" title="1. windows 系统"></a>1. windows 系统</h2><table>
 <thead>
 <tr>
 <th style="text-align:left">FAT12</th>
@@ -142,17 +142,19 @@
 </table>
 <p><strong>note</strong>:</p>
 <ol>
-<li>fdisk对于大于2t的硬盘是不能分区的.即使分区成功,写数据就会有问题.超过2t使用parted分区工具分区。</li>
-<li>ext4分别支持 1EB（1,048,576TB， 1EB=1024PB， 1PB=1024TB）的文件系统，以及 16TB 的单个文件。<br>ext4无限数量的子目录。 Ext3 目前只支持 32,000 个子目录，而 Ext4 支持无限数量的子目录</li>
+<li><p>fdisk对于大于2t的硬盘是不能分区的.即使分区成功,写数据就会有问题.超过2t使用parted分区工具分区。</p>
+</li>
+<li><p>ext4分别支持 1EB（1,048,576TB， 1EB=1024PB， 1PB=1024TB）的文件系统，以及 16TB 的单个文件。<br>ext4无限数量的子目录。 Ext3 目前只支持 32,000 个子目录，而 Ext4 支持无限数量的子目录</p>
+</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/02/25/FileSystem-LimitSize-md/" data-id="cjsrbhznr000075mwvdokn5uk" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/02/FS-文件大小限制/" data-id="cjsrbu8mp0000ximw42ebqggt" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/file-system/">file system</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/file-system/">file system</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows/">windows</a></li></ul>
 
     </footer>
   </div>
@@ -160,11 +162,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/02/25/SshKeyGenerate-md/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/03/02/ssh-key/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          SshKeyGenerate.md
+          ssh key
         
       </div>
     </a>
@@ -186,7 +188,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GIT/">GIT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rsa-key/">rsa key</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-key/">ssh key</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a></li></ul>
     </div>
   </div>
 
@@ -196,7 +198,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/GIT/" style="font-size: 10px;">GIT</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/rsa-key/" style="font-size: 10px;">rsa key</a>
+      <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/ssh-key/" style="font-size: 10px;">ssh key</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
     </div>
   </div>
 
@@ -205,7 +207,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -218,15 +220,11 @@
       <ul>
         
           <li>
-            <a href="/2019/03/02/git-操作-md/">git 操作.md</a>
+            <a href="/2019/03/02/ssh-key/">ssh key</a>
           </li>
         
           <li>
-            <a href="/2019/02/25/SshKeyGenerate-md/">SshKeyGenerate.md</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/25/FileSystem-LimitSize-md/">FileSystem-LimitSize.md</a>
+            <a href="/2019/03/02/FS-文件大小限制/">FS 文件大小限制</a>
           </li>
         
       </ul>
