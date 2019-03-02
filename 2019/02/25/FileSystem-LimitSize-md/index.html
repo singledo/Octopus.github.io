@@ -7,18 +7,18 @@
   
   <title>FileSystem-LimitSize.md | 章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="文件系统中最大文件大小1. windows 系统   FAT12 FAT16 FAT32 NTFS NTFS5.0     8M 2G 4G 64G 2T    2. linux 系统ext3文件系统限制Block size |  Max file size   | Max filesystem size ||:—|:—|:—|:—|:—||1 KiB      |    16 GiB">
+  <meta name="description" content="文件系统中最大文件大小1. windows 系统   FAT12 FAT16 FAT32 NTFS NTFS5.0     8M 2G 4G 64G 2T    2. linux 系统ext3文件系统限制    Block size Max file size Max filesystem size     1 KiB 16 GiB &amp;lt;2 TiB   2 KiB 256 GiB &amp;lt;4">
 <meta name="keywords" content="linux,file system">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FileSystem-LimitSize.md">
 <meta property="og:url" content="octopuscloud.top/2019/02/25/FileSystem-LimitSize-md/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="文件系统中最大文件大小1. windows 系统   FAT12 FAT16 FAT32 NTFS NTFS5.0     8M 2G 4G 64G 2T    2. linux 系统ext3文件系统限制Block size |  Max file size   | Max filesystem size ||:—|:—|:—|:—|:—||1 KiB      |    16 GiB">
+<meta property="og:description" content="文件系统中最大文件大小1. windows 系统   FAT12 FAT16 FAT32 NTFS NTFS5.0     8M 2G 4G 64G 2T    2. linux 系统ext3文件系统限制    Block size Max file size Max filesystem size     1 KiB 16 GiB &amp;lt;2 TiB   2 KiB 256 GiB &amp;lt;4">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-25T07:35:46.932Z">
+<meta property="og:updated_time" content="2019-03-02T05:59:17.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FileSystem-LimitSize.md">
-<meta name="twitter:description" content="文件系统中最大文件大小1. windows 系统   FAT12 FAT16 FAT32 NTFS NTFS5.0     8M 2G 4G 64G 2T    2. linux 系统ext3文件系统限制Block size |  Max file size   | Max filesystem size ||:—|:—|:—|:—|:—||1 KiB      |    16 GiB">
+<meta name="twitter:description" content="文件系统中最大文件大小1. windows 系统   FAT12 FAT16 FAT32 NTFS NTFS5.0     8M 2G 4G 64G 2T    2. linux 系统ext3文件系统限制    Block size Max file size Max filesystem size     1 KiB 16 GiB &amp;lt;2 TiB   2 KiB 256 GiB &amp;lt;4">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -107,7 +107,38 @@
 </tr>
 </tbody>
 </table>
-<h2 id="2-linux-系统"><a href="#2-linux-系统" class="headerlink" title="2. linux 系统"></a>2. linux 系统</h2><p>ext3文件系统限制<br>Block size |  Max file size   | Max filesystem size |<br>|:—|:—|:—|:—|:—|<br>|1 KiB      |    16 GiB        |      &lt;2 TiB         |<br>|2 KiB      |    256 GiB       |      &lt;4 TiB         |<br>|4 KiB      |    2 TiB         |      &lt;8 TiB         |<br>|8 KiB      |    2 TiB         |      &lt;16 TiB        |</p>
+<h2 id="2-linux-系统"><a href="#2-linux-系统" class="headerlink" title="2. linux 系统"></a>2. linux 系统</h2><p>ext3文件系统限制</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Block size</th>
+<th style="text-align:left">Max file size</th>
+<th style="text-align:left">Max filesystem size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1 KiB</td>
+<td style="text-align:left">16 GiB</td>
+<td style="text-align:left">&lt;2 TiB</td>
+</tr>
+<tr>
+<td style="text-align:left">2 KiB</td>
+<td style="text-align:left">256 GiB</td>
+<td style="text-align:left">&lt;4 TiB</td>
+</tr>
+<tr>
+<td style="text-align:left">4 KiB</td>
+<td style="text-align:left">2 TiB</td>
+<td style="text-align:left">&lt;8 TiB</td>
+</tr>
+<tr>
+<td style="text-align:left">8 KiB</td>
+<td style="text-align:left">2 TiB</td>
+<td style="text-align:left">&lt;16 TiB</td>
+</tr>
+</tbody>
+</table>
 <p><strong>note</strong>:</p>
 <ol>
 <li>fdisk对于大于2t的硬盘是不能分区的.即使分区成功,写数据就会有问题.超过2t使用parted分区工具分区。</li>
@@ -117,7 +148,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="octopuscloud.top/2019/02/25/FileSystem-LimitSize-md/" data-id="cjsk12re30000rjmwznyl1lh9" class="article-share-link">Share</a>
+      <a data-url="octopuscloud.top/2019/02/25/FileSystem-LimitSize-md/" data-id="cjsr2y2yl0000lgmwuu0bsku2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/file-system/">file system</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
@@ -128,11 +159,15 @@
     
 <nav id="article-nav">
   
-  
-    <a href="/2019/02/25/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2019/02/25/SshKeyGenerate-md/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SshKeyGenerate.md
+        
+      </div>
     </a>
+  
   
 </nav>
 
@@ -150,7 +185,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rsa-key/">rsa key</a></li></ul>
     </div>
   </div>
 
@@ -160,7 +195,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a>
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/rsa-key/" style="font-size: 10px;">rsa key</a>
     </div>
   </div>
 
@@ -182,11 +217,11 @@
       <ul>
         
           <li>
-            <a href="/2019/02/25/FileSystem-LimitSize-md/">FileSystem-LimitSize.md</a>
+            <a href="/2019/02/25/SshKeyGenerate-md/">SshKeyGenerate.md</a>
           </li>
         
           <li>
-            <a href="/2019/02/25/hello-world/">Hello World</a>
+            <a href="/2019/02/25/FileSystem-LimitSize-md/">FileSystem-LimitSize.md</a>
           </li>
         
       </ul>
