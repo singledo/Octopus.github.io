@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="章军的博客">
 <meta property="og:description" content="#　伪代码的约定 1. 代码中的**缩进**表示程序中的分程序块 . 2. 符号 ▷后面为注释 . 3. 符号 ←代表赋值　。 4. 如果变量仅作用于局部　，使用局部变量　。 5. 数组有 A[index] 来访问　。 6. 无特殊说明　，参数传递都是值传递　。 7. and 和　or 运算符都有短路功能　。 代码分析的基本概念 输入规模   与具体的问题有关，在数组的排序算法中，数据规模为数组的">
 <meta property="og:locale" content="China">
-<meta property="og:updated_time" content="2019-03-03T07:55:33.042Z">
+<meta property="og:updated_time" content="2019-03-10T03:55:14.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法导论-第二章">
 <meta name="twitter:description" content="#　伪代码的约定 1. 代码中的**缩进**表示程序中的分程序块 . 2. 符号 ▷后面为注释 . 3. 符号 ←代表赋值　。 4. 如果变量仅作用于局部　，使用局部变量　。 5. 数组有 A[index] 来访问　。 6. 无特殊说明　，参数传递都是值传递　。 7. and 和　or 运算符都有短路功能　。 代码分析的基本概念 输入规模   与具体的问题有关，在数组的排序算法中，数据规模为数组的">
@@ -122,7 +122,8 @@ for i ←2 to length[A]
         A[i] = A[i-1]
         i -= 1
     A[i] = key
-</code></pre><h2 id="合并法"><a href="#合并法" class="headerlink" title="合并法"></a>合并法</h2><pre><code>将需要排序的序列分为两个子序列(此处为递归的调用自身，直到子序列长度为1时结束)，合并两个排好顺序的子序列，
+</code></pre><p>算法实现 [InsertSort][2]</p>
+<h2 id="合并法"><a href="#合并法" class="headerlink" title="合并法"></a>合并法</h2><pre><code>将需要排序的序列分为两个子序列(此处为递归的调用自身，直到子序列长度为1时结束)，合并两个排好顺序的子序列，
 完成父序列的排序。
 运行时间为: θ(nlgn)
 
@@ -147,15 +148,15 @@ for i ←0 to r-l and ( left_len &lt;= m or right &lt;= r)
     else 
         new[i] ←A[left_len]
         left_len += 1
-</code></pre><hr>
-<ol>
+</code></pre><h2 id="算法实现-MergeSort-2"><a href="#算法实现-MergeSort-2" class="headerlink" title="算法实现 [MergeSort][2]"></a>算法实现 [MergeSort][2]</h2><ol>
 <li><a href="https://zh.wikipedia.org/zh-hk/Pascal_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80)" target="_blank" rel="noopener">https://zh.wikipedia.org/zh-hk/Pascal_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80)</a></li>
+<li><a href="https://github.com/singledo/SortCode" target="_blank" rel="noopener">https://github.com/singledo/SortCode</a></li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/03/算法导论-第二章/" data-id="cjssmfcmd000325mw1ya5dxnf" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/03/算法导论-第二章/" data-id="cjt2dx7480003yimwh9eyk376" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">note</a></li></ul>
