@@ -5,20 +5,20 @@
   
 
   
-  <title>vim 配置 | 章军的博客</title>
+  <title>第十一章-散列表 | 章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="vim 配置set listchars # 设置字符的显示替换字符">
-<meta name="keywords" content="linux,vim">
+  <meta name="description" content="散列表1. 散列表是普通数组概念的推广，可以对数组直接进行寻址，可以在 Ѳ(1)时间内访问数组的内任意的元素。 2. 散列表采用的数组的尺寸和要存储的关键字的数量成正比。 3. 散列的下标是关键字经过计算得出的。">
+<meta name="keywords" content="chapter 11,hash">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vim 配置">
-<meta property="og:url" content="http://octopuscloud.top/2019/03/02/vim-配置/index.html">
+<meta property="og:title" content="第十一章-散列表">
+<meta property="og:url" content="http://octopuscloud.top/2019/04/28/第十一章-散列表/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="vim 配置set listchars # 设置字符的显示替换字符">
+<meta property="og:description" content="散列表1. 散列表是普通数组概念的推广，可以对数组直接进行寻址，可以在 Ѳ(1)时间内访问数组的内任意的元素。 2. 散列表采用的数组的尺寸和要存储的关键字的数量成正比。 3. 散列的下标是关键字经过计算得出的。">
 <meta property="og:locale" content="China">
-<meta property="og:updated_time" content="2019-03-02T10:23:04.476Z">
+<meta property="og:updated_time" content="2019-04-28T08:13:09.666Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vim 配置">
-<meta name="twitter:description" content="vim 配置set listchars # 设置字符的显示替换字符">
+<meta name="twitter:title" content="第十一章-散列表">
+<meta name="twitter:description" content="散列表1. 散列表是普通数组概念的推广，可以对数组直接进行寻址，可以在 Ѳ(1)时间内访问数组的内任意的元素。 2. 散列表采用的数组的尺寸和要存储的关键字的数量成正比。 3. 散列的下标是关键字经过计算得出的。">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -65,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-vim-配置" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-第十一章-散列表" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/03/02/vim-配置/" class="article-date">
-  <time datetime="2019-03-02T10:20:44.000Z" itemprop="datePublished">2019-03-02</time>
+    <a href="/2019/04/28/第十一章-散列表/" class="article-date">
+  <time datetime="2019-04-28T07:21:13.000Z" itemprop="datePublished">2019-04-28</time>
 </a>
     
   </div>
@@ -79,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      vim 配置
+      第十一章-散列表
     </h1>
   
 
@@ -87,16 +87,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<h1 id="vim-配置"><a href="#vim-配置" class="headerlink" title="vim 配置"></a>vim 配置</h1><p>set listchars # 设置字符的显示替换字符</p>
+        <h1 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h1><pre><code>1. 散列表是普通数组概念的推广，可以对数组直接进行寻址，可以在 Ѳ(1)时间内访问数组的内任意的元素。
+2. 散列表采用的数组的尺寸和要存储的关键字的数量成正比。
+3. 散列的下标是关键字经过计算得出的。
+</code></pre><a id="more"></a>
+<h2 id="直接寻址"><a href="#直接寻址" class="headerlink" title="直接寻址"></a>直接寻址</h2><pre><code>用一个数组(或称直接寻址表) T[0...m-1]，其中数组中每个节点都为对应全域 U 中的一个关键字。
+槽k指向集合中一个关键字为k的元素。
 
+对于直接寻址的操作都较为简单，时间都为 Ѳ(1), 存储空间为 Ѳ(k)
+
+DIRECT-ADDRESS-SEARCH(T, K)
+    return T[k]
+
+DIRECT-ADDRESS-INSERT(T, x)
+    T[key[x]] ← x
+
+DIRECT-ADDRESS-DELETE(T, x)
+    T[key[x]] ← nil
+</code></pre><h2 id="散列表-1"><a href="#散列表-1" class="headerlink" title="散列表"></a>散列表</h2><ol>
+<li><p>利用散射函数 h 根据关键字 k 计算出槽的位置。函数 h 将关键字域 U 映射到散列表 T[0,…m-1]的槽位上。 减小需要处理的下标范围。</p>
+<p> h: U → {0,1,…,m-1}</p>
+</li>
+<li><p>碰撞: 两个不同的关键字通过 h 函数得出相同的下标。</p>
+<p> 碰撞的解决方法:</p>
+<ol>
+<li>链接法: 把散列到同一个槽的元素都放到一个链表中。</li>
+</ol>
+</li>
+</ol>
+<h2 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h2><pre><code>好的散列函数让每个关键字都等可能的散列到m个槽位的任何一个中去。
+一些有效的散列函数的:
+1. 将关键字解释为自然数: 将每个关键字解释为一个自然数。
+2. 除法散列法: h(k) = k mod m
+3. 乘法散列法: h(k) = ceil(m(kA mod 1))
+4. 全域散列: 在执行开始前，在一组设计好的散列函数中选择一个作为散列函数。
+</code></pre><h2 id="开放寻址法"><a href="#开放寻址法" class="headerlink" title="开放寻址法"></a>开放寻址法</h2><pre><code>开放寻址法中，所有的元素都存放在散列表中。每个表项都包含动态集合的一个元素，或者是 nil .
+在开放寻址法中，当要插入一个元素时，可以连续的检查散列表中的各项，直到找到一个空槽来存放待插入的关键字。
+</code></pre><p>`HASH-INSERT(T, k)<br>    i ← 0<br>    repeat j ← h(k,i)<br>        if T[j] = nil<br>            T[j] = k<br>            return k<br>        else<br>            i += 1<br>    util i = m</p>
+<pre><code>error &quot;overflower&quot;
+</code></pre><p>HASH-SEARCH(T, k)<br>    i ← 0<br>    repeat j ← h(j,i)<br>        if T[j] = k<br>            return j<br>        else<br>            i += 1<br>    util i = m<br>    return nil<br><code></code><br>    有三种技术常用来计算开放寻址的探查序列:</p>
+<pre><code>1. 线性探查: h(k, i) = (h&apos;(k) +i) mod m; i=0,1,2,...,m-1
+2. 二次探查: h(k, i) = (h&apos;(k) + C₁i + C₂i^2) mod m
+3. 双重探查: h(k, i) = (h₁(k) + ih₂(k)) mod m
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/02/vim-配置/" data-id="cjv0npqip0004q3mwj6i8a9gm" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/04/28/第十一章-散列表/" data-id="cjv0npqio0003q3mwgcm27l2q" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chapter-11/">chapter 11</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hash/">hash</a></li></ul>
 
     </footer>
   </div>
@@ -104,19 +144,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/03/03/算法导论-第二章/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          算法导论-第二章
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/03/02/ssh-key/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/04/21/第十章－基本的数据结构/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">ssh key</div>
+      <div class="article-nav-title">第十章－基本的数据结构</div>
     </a>
   
 </nav>
