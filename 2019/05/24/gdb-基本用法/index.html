@@ -7,18 +7,18 @@
   
   <title>gdb-基本用法 | 章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="开始调试　gdbcore dump 一般是在segmentation fault（段错误）的情况下产生的文件，需要通过ulimit来设置才会得到的。 - 调试的话输入： gdb filename core   filename就是产生core文件的可执行文件，core就是产生的dump文件 查看栈信息  当程序被停住了，你需要做的第一件事就是查看程序是在哪里停住的。当你的程序  调用了一个函数，函">
+  <meta name="description" content="开始调试　gdbcore dump 一般是在segmentation fault（段错误）的情况下产生的文件，需要通过ulimit来设置才会得到的。 - 调试的话输入： gdb filename core   filename就是产生core文件的可执行文件，core就是产生的dump文件">
 <meta name="keywords" content="Bolg">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gdb-基本用法">
 <meta property="og:url" content="http://octopuscloud.top/2019/05/24/gdb-基本用法/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="开始调试　gdbcore dump 一般是在segmentation fault（段错误）的情况下产生的文件，需要通过ulimit来设置才会得到的。 - 调试的话输入： gdb filename core   filename就是产生core文件的可执行文件，core就是产生的dump文件 查看栈信息  当程序被停住了，你需要做的第一件事就是查看程序是在哪里停住的。当你的程序  调用了一个函数，函">
+<meta property="og:description" content="开始调试　gdbcore dump 一般是在segmentation fault（段错误）的情况下产生的文件，需要通过ulimit来设置才会得到的。 - 调试的话输入： gdb filename core   filename就是产生core文件的可执行文件，core就是产生的dump文件">
 <meta property="og:locale" content="China">
-<meta property="og:updated_time" content="2019-05-25T14:18:02.493Z">
+<meta property="og:updated_time" content="2019-06-30T02:30:29.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gdb-基本用法">
-<meta name="twitter:description" content="开始调试　gdbcore dump 一般是在segmentation fault（段错误）的情况下产生的文件，需要通过ulimit来设置才会得到的。 - 调试的话输入： gdb filename core   filename就是产生core文件的可执行文件，core就是产生的dump文件 查看栈信息  当程序被停住了，你需要做的第一件事就是查看程序是在哪里停住的。当你的程序  调用了一个函数，函">
+<meta name="twitter:description" content="开始调试　gdbcore dump 一般是在segmentation fault（段错误）的情况下产生的文件，需要通过ulimit来设置才会得到的。 - 调试的话输入： gdb filename core   filename就是产生core文件的可执行文件，core就是产生的dump文件">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -90,7 +90,8 @@
         <h3 id="开始调试-gdb"><a href="#开始调试-gdb" class="headerlink" title="开始调试　gdb"></a>开始调试　gdb</h3><pre><code>core dump 一般是在segmentation fault（段错误）的情况下产生的文件，需要通过ulimit来设置才会得到的。
 - 调试的话输入： gdb filename core  
 filename就是产生core文件的可执行文件，core就是产生的dump文件
-</code></pre><h3 id="查看栈信息"><a href="#查看栈信息" class="headerlink" title="查看栈信息"></a>查看栈信息</h3><p>  当程序被停住了，你需要做的第一件事就是查看程序是在哪里停住的。当你的程序<br>  调用了一个函数，函数的地址，函数参数，函数内的局部变量都会被压入<br>  “栈”（Stack）中。你可以用GDB命令来查看当前的栈中的信息。<br>  下面是一些查看函数调用栈信息的GDB命令：</p>
+</code></pre><a id="more"></a>
+<h3 id="查看栈信息"><a href="#查看栈信息" class="headerlink" title="查看栈信息"></a>查看栈信息</h3><p>  当程序被停住了，你需要做的第一件事就是查看程序是在哪里停住的。当你的程序<br>  调用了一个函数，函数的地址，函数参数，函数内的局部变量都会被压入<br>  “栈”（Stack）中。你可以用GDB命令来查看当前的栈中的信息。<br>  下面是一些查看函数调用栈信息的GDB命令：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">backtrace</span><br><span class="line">bt</span><br><span class="line">打印当前的函数调用栈的所有信息。如：</span><br><span class="line">(gdb) bt</span><br><span class="line">#0 func (n=250) at tst.c:6</span><br><span class="line">#1 0x08048524 in main (argc=1, argv=0xbffff674) at tst.c:30</span><br><span class="line">#2 0x400409ed in __libc_start_main () from /lib/libc.so.6</span><br></pre></td></tr></table></figure>
 <p>  从上可以看出函数的调用栈信息：__libc_start_main –&gt; main()–&gt; func()</p>
 <p>  backtrace<br>  bt<br>  n是一个正整数，表示只打印栈顶上n层的栈信息。<br>  backtrace <-n><br>  bt <-n><br>  -n表一个负整数，表示只打印栈底下n层的栈信息。<br>  如果你要查看某一层的信息，你需要在切换当前的栈，一般来说，程序停止时，最顶<br>  层的栈就是当前栈，如果你要查看栈下面层的详细信息，首先要做的是切换当前栈。</-n></-n></p>
@@ -104,7 +105,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/05/24/gdb-基本用法/" data-id="cjxic66tl0003j7fzcas6b4ac" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/05/24/gdb-基本用法/" data-id="cjxic7lv80003phfz8b9xoj5a" class="article-share-link">Share</a>
       
       
     </footer>

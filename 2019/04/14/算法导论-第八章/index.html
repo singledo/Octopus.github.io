@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="章军的博客">
 <meta property="og:description" content="决策树模型比较排序算法能够抽象为决策树模型 。  - 决策树模型是一颗满二叉树。 - 焦聚与比较算法的比较过程 ，而忽略控制结构和数据移动 。 - 内节点表示比较 。叶子节点表示最后的排序 。  在决策树中 ，每个内节点表示一次比较(ai:aj) ; 左子树表示 ai ≤ aj 后的比较 。 右子树标示 ai &amp;gt; aj 后的比较 。 比较的 n 个元素有 n! 种排序 。这 n! 种排序都">
 <meta property="og:locale" content="China">
-<meta property="og:updated_time" content="2019-05-25T14:18:02.489Z">
+<meta property="og:updated_time" content="2019-06-30T02:31:22.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法导论-第八章">
 <meta name="twitter:description" content="决策树模型比较排序算法能够抽象为决策树模型 。  - 决策树模型是一颗满二叉树。 - 焦聚与比较算法的比较过程 ，而忽略控制结构和数据移动 。 - 内节点表示比较 。叶子节点表示最后的排序 。  在决策树中 ，每个内节点表示一次比较(ai:aj) ; 左子树表示 ai ≤ aj 后的比较 。 右子树标示 ai &amp;gt; aj 后的比较 。 比较的 n 个元素有 n! 种排序 。这 n! 种排序都">
@@ -96,7 +96,8 @@
 
 在决策树中 ，每个内节点表示一次比较(ai:aj) ; 左子树表示 ai ≤ aj 后的比较 。 右子树标示 ai &gt; aj 后的比较 。
 比较的 n 个元素有 n! 种排序 。这 n! 种排序都会出现在叶子节点上 。
-</code></pre><h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><pre><code>- 运行时间 Ѳ(n) ;
+</code></pre><!-- more -->
+<h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><pre><code>- 运行时间 Ѳ(n) ;
 - 稳定性 : 在输入数组具有相同值的元素在输出具有相同的次序 。
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">COUNTER-SOIRT(A,B,K)</span><br><span class="line"></span><br><span class="line">for i ← 0 to k</span><br><span class="line">	C[i] ← 0</span><br><span class="line"></span><br><span class="line">for i ← 0 to length(A)</span><br><span class="line">	do C[i] ← C[i] + 1</span><br><span class="line"></span><br><span class="line">for i ← 0 to k</span><br><span class="line">	do C[i] ← C[i] + C[i-1]</span><br><span class="line"></span><br><span class="line">for j ← length[A] downto 1</span><br><span class="line">	do B[C[A[j]]] ← A[j]</span><br><span class="line">		C[j] ← C[j] - 1</span><br></pre></td></tr></table></figure>
@@ -109,7 +110,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/04/14/算法导论-第八章/" data-id="cjxic66u8000lj7fzxz1a4jc1" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/04/14/算法导论-第八章/" data-id="cjxic7lvp000kphfzkwdhfh74" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eight-chapter/">eight chapter</a></li></ul>
