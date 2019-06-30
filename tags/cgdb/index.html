@@ -5,20 +5,19 @@
   
 
   
-  <title>I2C - 协议 | 章军的博客</title>
+  <title>Tag: cgdb | 章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I2C协议">
-<meta name="keywords" content="I2C,通信协议">
-<meta property="og:type" content="article">
-<meta property="og:title" content="I2C - 协议">
-<meta property="og:url" content="http://octopuscloud.top/2019/06/25/I2C-协议/index.html">
+  <meta name="description" content="Be Intering">
+<meta name="keywords" content="Bolg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="章军的博客">
+<meta property="og:url" content="http://octopuscloud.top/tags/cgdb/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="I2C协议">
+<meta property="og:description" content="Be Intering">
 <meta property="og:locale" content="China">
-<meta property="og:updated_time" content="2019-06-30T05:59:15.856Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="I2C - 协议">
-<meta name="twitter:description" content="I2C协议">
+<meta name="twitter:title" content="章军的博客">
+<meta name="twitter:description" content="Be Intering">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -65,78 +64,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-I2C-协议" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/25/I2C-协议/" class="article-date">
-  <time datetime="2019-06-25T08:21:40.000Z" itemprop="datePublished">2019-06-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/protocols/">protocols</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      I2C - 协议
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2019/05/24/gdb-基本用法/" class="archive-article-date">
+  <time datetime="2019-05-24T01:57:23.000Z" itemprop="datePublished">May 24</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/05/24/gdb-基本用法/">gdb-基本用法</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="I2C协议"><a href="#I2C协议" class="headerlink" title="I2C协议"></a>I2C协议</h1><a id="more"></a>
-<pre><code>1. 两条双向传输线 ，分别为 SCL(时钟线) , SDA (数据线)
-2. 在一条 I2C 通信通路中 ，一共能够存在 128(0~0x7f) 个设备 。且每个设备的地址不能相同 。
-3. I2C 在一次基本的数据传输中能够传递 8 bit 数据 。
-</code></pre><h2 id="I2C-的位传输"><a href="#I2C-的位传输" class="headerlink" title="I2C 的位传输"></a>I2C 的位传输</h2><pre><code>1. 数据传输 ： SCL 为高电平时 ，SDA 保持稳定 ，表示当前发生数据传输 ；SDA 发生电平跳变时 ，此时表示数据传输开始或者结束 。
-2. 数据改变 ： SCL 为低电平时 ，SDA 才能改变电平 。
-</code></pre><h2 id="I2C-的通信的开始和结束信号"><a href="#I2C-的通信的开始和结束信号" class="headerlink" title="I2C 的通信的开始和结束信号"></a>I2C 的通信的开始和结束信号</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">开始信号 ，SCL 为低电平时 ，SDA 由高转低 。                   结束信号，SCL 为低电平 ，SDA 由低转高</span><br><span class="line">SDA    ,,,,,,,,,                                              SDA              ,,,,,,,,,,</span><br><span class="line">                \,,,,,,,,,,                                          ,,,,,,,,,/</span><br><span class="line">SCL           ,,,,,,,,,                                                     ,,,,,,</span><br><span class="line">       ,,,,,,/                                                       ,,,,,,/</span><br></pre></td></tr></table></figure>
-<h2 id="I2C-传输过程"><a href="#I2C-传输过程" class="headerlink" title="I2C 传输过程"></a>I2C 传输过程</h2><pre><code>1. I2C 的数据传输的开始信号是在下面的数据第一段的 start 信号 (SCL 为高电平 ，SDA 信号线由高电平到低电平)
-2. 开始传输地址(一个 byte ) ，数据的高位会先传输出去 ，其中最高位用来表示读写 .
-3. 主设备发送地址完成后 ，主设备将 SDA 数据线拉高 ，响应从设备在接收到信息后 ，响应设备会将 SDA 数据线拉低 (ACK) 。
-4. 主设备接收到 ACK 信号后 ，开始发送数据 (8bit) ，从设备发送 ACK 。当主机设备需要发送的数据发送完成后 ，主机设备发送 END 信号(SCL 为高电平，SDA由低转高) 。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      |- start| 0(1b)   1(0b)   2(1b)   3(0b)   4(1b)   5(1b)   6(0b)   7(0b) |  NCK |              | end |</span><br><span class="line">SCL      ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,                  ,,,</span><br><span class="line">     ,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,          ,,,/   \</span><br><span class="line">                                                                                         . . . .     </span><br><span class="line">SDA  ,,,,,     ,,,,,,          ,,,,,,,          ,,,,,,,,,,,,,,        ,,,,,,,,                          ,,,,</span><br><span class="line">          \,,,/      \,,,,,,,,/       \,,,,,,,,/              \,,,,,,/        \,,,,,,,,           ,,,,,/</span><br></pre></td></tr></table></figure>
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/25/I2C-协议/" data-id="cjxijo7el0002ndfzyx3ted63" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/I2C/">I2C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/06/30/十二章-二叉搜索树/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          算法导论-第十二章 二叉查找树
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/06/09/十五章-动态规划/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">十五章-动态规划</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         

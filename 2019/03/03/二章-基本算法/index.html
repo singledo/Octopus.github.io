@@ -5,20 +5,20 @@
   
 
   
-  <title>I2C - 协议 | 章军的博客</title>
+  <title>算法导论-第二章 | 章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I2C协议">
-<meta name="keywords" content="I2C,通信协议">
+  <meta name="description" content="#　伪代码的约定">
+<meta name="keywords" content="pseudocode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="I2C - 协议">
-<meta property="og:url" content="http://octopuscloud.top/2019/06/25/I2C-协议/index.html">
+<meta property="og:title" content="算法导论-第二章">
+<meta property="og:url" content="http://octopuscloud.top/2019/03/03/二章-基本算法/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="I2C协议">
+<meta property="og:description" content="#　伪代码的约定">
 <meta property="og:locale" content="China">
 <meta property="og:updated_time" content="2019-06-30T05:59:15.856Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="I2C - 协议">
-<meta name="twitter:description" content="I2C协议">
+<meta name="twitter:title" content="算法导论-第二章">
+<meta name="twitter:description" content="#　伪代码的约定">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -65,14 +65,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-I2C-协议" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-二章-基本算法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/06/25/I2C-协议/" class="article-date">
-  <time datetime="2019-06-25T08:21:40.000Z" itemprop="datePublished">2019-06-25</time>
+    <a href="/2019/03/03/二章-基本算法/" class="article-date">
+  <time datetime="2019-03-03T06:50:05.000Z" itemprop="datePublished">2019-03-03</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/protocols/">protocols</a>
+    <a class="article-category-link" href="/categories/ReadNote/">ReadNote</a>
   </div>
 
   </div>
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      I2C - 协议
+      算法导论-第二章
     </h1>
   
 
@@ -91,26 +91,79 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="I2C协议"><a href="#I2C协议" class="headerlink" title="I2C协议"></a>I2C协议</h1><a id="more"></a>
-<pre><code>1. 两条双向传输线 ，分别为 SCL(时钟线) , SDA (数据线)
-2. 在一条 I2C 通信通路中 ，一共能够存在 128(0~0x7f) 个设备 。且每个设备的地址不能相同 。
-3. I2C 在一次基本的数据传输中能够传递 8 bit 数据 。
-</code></pre><h2 id="I2C-的位传输"><a href="#I2C-的位传输" class="headerlink" title="I2C 的位传输"></a>I2C 的位传输</h2><pre><code>1. 数据传输 ： SCL 为高电平时 ，SDA 保持稳定 ，表示当前发生数据传输 ；SDA 发生电平跳变时 ，此时表示数据传输开始或者结束 。
-2. 数据改变 ： SCL 为低电平时 ，SDA 才能改变电平 。
-</code></pre><h2 id="I2C-的通信的开始和结束信号"><a href="#I2C-的通信的开始和结束信号" class="headerlink" title="I2C 的通信的开始和结束信号"></a>I2C 的通信的开始和结束信号</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">开始信号 ，SCL 为低电平时 ，SDA 由高转低 。                   结束信号，SCL 为低电平 ，SDA 由低转高</span><br><span class="line">SDA    ,,,,,,,,,                                              SDA              ,,,,,,,,,,</span><br><span class="line">                \,,,,,,,,,,                                          ,,,,,,,,,/</span><br><span class="line">SCL           ,,,,,,,,,                                                     ,,,,,,</span><br><span class="line">       ,,,,,,/                                                       ,,,,,,/</span><br></pre></td></tr></table></figure>
-<h2 id="I2C-传输过程"><a href="#I2C-传输过程" class="headerlink" title="I2C 传输过程"></a>I2C 传输过程</h2><pre><code>1. I2C 的数据传输的开始信号是在下面的数据第一段的 start 信号 (SCL 为高电平 ，SDA 信号线由高电平到低电平)
-2. 开始传输地址(一个 byte ) ，数据的高位会先传输出去 ，其中最高位用来表示读写 .
-3. 主设备发送地址完成后 ，主设备将 SDA 数据线拉高 ，响应从设备在接收到信息后 ，响应设备会将 SDA 数据线拉低 (ACK) 。
-4. 主设备接收到 ACK 信号后 ，开始发送数据 (8bit) ，从设备发送 ACK 。当主机设备需要发送的数据发送完成后 ，主机设备发送 END 信号(SCL 为高电平，SDA由低转高) 。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      |- start| 0(1b)   1(0b)   2(1b)   3(0b)   4(1b)   5(1b)   6(0b)   7(0b) |  NCK |              | end |</span><br><span class="line">SCL      ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,                  ,,,</span><br><span class="line">     ,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,          ,,,/   \</span><br><span class="line">                                                                                         . . . .     </span><br><span class="line">SDA  ,,,,,     ,,,,,,          ,,,,,,,          ,,,,,,,,,,,,,,        ,,,,,,,,                          ,,,,</span><br><span class="line">          \,,,/      \,,,,,,,,/       \,,,,,,,,/              \,,,,,,/        \,,,,,,,,           ,,,,,/</span><br></pre></td></tr></table></figure>
-</code></pre>
+        <p>#　伪代码的约定<br><a id="more"></a></p>
+<pre><code>1. 代码中的**缩进**表示程序中的分程序块 .
+2. 符号 ▷后面为注释 .
+3. 符号 ←代表赋值　。
+4. 如果变量仅作用于局部　，使用局部变量　。
+5. 数组有 A[index] 来访问　。
+6. 无特殊说明　，参数传递都是值传递　。
+7. and 和　or 运算符都有短路功能　。
+</code></pre><h1 id="代码分析的基本概念"><a href="#代码分析的基本概念" class="headerlink" title="代码分析的基本概念"></a>代码分析的基本概念</h1><ul>
+<li><p>输入规模</p>
+<p>  与具体的问题有关，在数组的排序算法中，数据规模为数组的长度；算法的输入为图时，输入规模用定点数和边数来标示。</p>
+</li>
+<li><p>运行时间</p>
+<p>  在指定特定输入时，算法所执行的基本操作数。</p>
+<ol>
+<li>最坏运行时间<br> 对于输入规模为n的数组，最长的运行时间。最长的运行时间。</li>
+<li>平均运行事件<br> 对于输入规模为n的数组，运行时间的数学期望。</li>
+</ol>
+</li>
+<li><p>增长的量级</p>
+<p>  在输入规模为n的运行时间中，去最高次项作为增长的量级。</p>
+</li>
+</ul>
+<h1 id="两种排序算法"><a href="#两种排序算法" class="headerlink" title="两种排序算法"></a>两种排序算法</h1><h2 id="插入法"><a href="#插入法" class="headerlink" title="插入法"></a>插入法</h2><pre><code>插入法使用的时增量法，在已经排好顺序的子序列 A[1...j-1]中插入 A[j]，形成排好的子序列 A[1...j]。
+最坏运行时间为: θ(n^2).
+平均运行时间: θ(nlgn)
+
+InsertSort - A[1...n]
+for i ←2 to length[A]
+    key ←A[i]
+    j = i
+    while i &gt; 0 and A[i] &gt; key
+        A[i] = A[i-1]
+        i -= 1
+    A[i] = key
+</code></pre><p>算法实现 [InsertSort][2]</p>
+<h2 id="合并法"><a href="#合并法" class="headerlink" title="合并法"></a>合并法</h2><pre><code>将需要排序的序列分为两个子序列(此处为递归的调用自身，直到子序列长度为1时结束)，合并两个排好顺序的子序列，
+完成父序列的排序。
+运行时间为: θ(nlgn)
+
+l ←0
+m ←n/2
+r ←length[A]
+MegerSort - A[1...n], l, m, r
+if m - l ≥1
+    sub_m = l+(m-l)/2
+    MegerSort(l,sub_m,m)
+if r-m ≥1
+    sub_m = m+(r-m)/2
+    MegerSort(m,sub_m,r)
+create a new arry new[1,r-l]
+
+left_len ←l
+right_len ←m
+for i ←0 to r-l and ( left_len &lt;= m or right &lt;= r)
+    if A[left_len] &gt; A[right_len] 
+        new[i] ←A[right_len]
+        right_len += 1
+    else 
+        new[i] ←A[left_len]
+        left_len += 1
+</code></pre><h2 id="算法实现-MergeSort-2"><a href="#算法实现-MergeSort-2" class="headerlink" title="算法实现 [MergeSort][2]"></a>算法实现 [MergeSort][2]</h2><ol>
+<li><a href="https://zh.wikipedia.org/zh-hk/Pascal_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80)" target="_blank" rel="noopener">https://zh.wikipedia.org/zh-hk/Pascal_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80)</a></li>
+<li><a href="https://github.com/singledo/SortCode" target="_blank" rel="noopener">https://github.com/singledo/SortCode</a></li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/25/I2C-协议/" data-id="cjxijo7el0002ndfzyx3ted63" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/03/二章-基本算法/" data-id="cjxijo7f7000mndfzlr26l0ds" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/I2C/">I2C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pseudocode/">pseudocode</a></li></ul>
 
     </footer>
   </div>
@@ -118,19 +171,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/06/30/十二章-二叉搜索树/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/03/10/三章-标记符号/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          算法导论-第十二章 二叉查找树
+          算法导论-第三章
         
       </div>
     </a>
   
   
-    <a href="/2019/06/09/十五章-动态规划/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/03/02/vim-配置/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">十五章-动态规划</div>
+      <div class="article-nav-title">vim 配置</div>
     </a>
   
 </nav>
