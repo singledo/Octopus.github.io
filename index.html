@@ -66,6 +66,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-I2C-协议" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/25/I2C-协议/" class="article-date">
+  <time datetime="2019-06-25T08:21:40.000Z" itemprop="datePublished">2019-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/25/I2C-协议/">I2C - 协议</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="I2C协议"><a href="#I2C协议" class="headerlink" title="I2C协议"></a>I2C协议</h1><pre><code>1. 两条双向传输线 ，分别为 SCL(时钟线) , SDA (数据线)
+2. 在一条 I2C 通信通路中 ，一共能够存在 128(0~0x7f) 个设备 。且每个设备的地址不能相同 。
+3. I2C 在一次基本的数据传输中能够传递 8 bit 数据 。
+</code></pre><h2 id="I2C-的位传输"><a href="#I2C-的位传输" class="headerlink" title="I2C 的位传输"></a>I2C 的位传输</h2><pre><code>1. 数据传输 ： SCL 为高电平时 ，SDA 保持稳定 ，表示当前发生数据传输 ；SDA 发生电平跳变时 ，此时表示数据传输开始或者结束 。
+2. 数据改变 ： SCL 为低电平时 ，SDA 才能改变电平 。
+</code></pre><h2 id="I2C-的通信的开始和结束信号"><a href="#I2C-的通信的开始和结束信号" class="headerlink" title="I2C 的通信的开始和结束信号"></a>I2C 的通信的开始和结束信号</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">开始信号 ，SCL 为低电平时 ，SDA 由高转低 。                   结束信号，SCL 为低电平 ，SDA 由低转高</span><br><span class="line">SDA    ,,,,,,,,,                                              SDA              ,,,,,,,,,,</span><br><span class="line">                \,,,,,,,,,,                                          ,,,,,,,,,/</span><br><span class="line">SCL           ,,,,,,,,,                                                     ,,,,,,</span><br><span class="line">       ,,,,,,/                                                       ,,,,,,/</span><br></pre></td></tr></table></figure>
+<h2 id="I2C-传输过程"><a href="#I2C-传输过程" class="headerlink" title="I2C 传输过程"></a>I2C 传输过程</h2><pre><code>1. I2C 的数据传输的开始信号是在下面的数据第一段的 start 信号 (SCL 为高电平 ，SDA 信号线由高电平到低电平)
+2. 开始传输地址(一个 byte ) ，数据的高位会先传输出去 ，其中最高位用来表示读写 .
+3. 主设备发送地址完成后 ，主设备将 SDA 数据线拉高 ，响应从设备在接收到信息后 ，响应设备会将 SDA 数据线拉低 (ACK) 。
+4. 主设备接收到 ACK 信号后 ，开始发送数据 (8bit) ，从设备发送 ACK 。当主机设备需要发送的数据发送完成后 ，主机设备发送 END 信号(SCL 为高电平，SDA由低转高) 。
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      |- start| 0(1b)   1(0b)   2(1b)   3(0b)   4(1b)   5(1b)   6(0b)   7(0b) |  NCK |              | end |</span><br><span class="line">SCL      ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,                  ,,,</span><br><span class="line">     ,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,          ,,,/   \</span><br><span class="line">                                                                                         . . . .     </span><br><span class="line">SDA  ,,,,,     ,,,,,,          ,,,,,,,          ,,,,,,,,,,,,,,        ,,,,,,,,                          ,,,,</span><br><span class="line">          \,,,/      \,,,,,,,,/       \,,,,,,,,/              \,,,,,,/        \,,,,,,,,           ,,,,,/</span><br></pre></td></tr></table></figure>
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/06/25/I2C-协议/" data-id="cjxic1b6n0003b5fzmtyiq064" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/I2C/">I2C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-十五章-动态规划" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/09/十五章-动态规划/" class="article-date">
@@ -100,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/09/十五章-动态规划/" data-id="cjwoq0juc0005ypfzqcs6y55c" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/09/十五章-动态规划/" data-id="cjxic1b6x000ab5fzjgxifr3p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chapter-15/">chapter 15</a></li></ul>
@@ -179,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/02/第十三章-红黑树/" data-id="cjwoq0jud0007ypfz38hwtwvu" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/02/第十三章-红黑树/" data-id="cjxic1b6u0008b5fze40xo4yv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-strcut/">data strcut</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rb-tree/">rb tree</a></li></ul>
@@ -222,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/05/25/算法导论-十二章/" data-id="cjwoq0jui000dypfzjrlrfn91" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/05/25/算法导论-十二章/" data-id="cjxic1b71000db5fzfpzieb0u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-struct/">data struct</a></li></ul>
@@ -273,7 +322,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/05/24/gdb-基本用法/" data-id="cjwoq0ju90003ypfzk66e8ohr" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/05/24/gdb-基本用法/" data-id="cjxic1b6s0007b5fz2xd2fiax" class="article-share-link">Share</a>
       
       
     </footer>
@@ -317,7 +366,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/04/28/第十一章-散列表/" data-id="cjwoq0jue0008ypfziao1ospm" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/04/28/第十一章-散列表/" data-id="cjxic1b6q0005b5fz73omsev0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chapter-11/">chapter 11</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hash/">hash</a></li></ul>
@@ -360,7 +409,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/04/21/第十章－基本的数据结构/" data-id="cjwoq0juf000aypfz9fr5ho3v" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/04/21/第十章－基本的数据结构/" data-id="cjxic1b6z000bb5fzi97llmh0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-struct/">data struct</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ten-chapter/">ten chapter</a></li></ul>
@@ -416,7 +465,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/04/14/算法导论-第八章/" data-id="cjwoq0jup000mypfz7ztrjwzp" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/04/14/算法导论-第八章/" data-id="cjxic1b7b000mb5fzx8jvbsla" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eight-chapter/">eight chapter</a></li></ul>
@@ -459,7 +508,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/30/算法导论-第七章-快速排序/" data-id="cjwoq0jul000fypfzi0067cjt" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/30/算法导论-第七章-快速排序/" data-id="cjxic1b74000fb5fz4knm222v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/seven-chapter/">seven chapter</a></li></ul>
@@ -509,78 +558,10 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/24/算法导论-第六章-堆排序/" data-id="cjwoq0jun000kypfz5ylw4miv" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/24/算法导论-第六章-堆排序/" data-id="cjxic1b7c000ob5fznz1cqhr6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sixth-chapter/">sixth chapter</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-算法导论-第三章" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/10/算法导论-第三章/" class="article-date">
-  <time datetime="2019-03-10T04:05:05.000Z" itemprop="datePublished">2019-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/10/算法导论-第三章/">算法导论-第三章</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>є : ie<br>Ω: W<em><br>ω: w</em><br>Ѳ : F3<br>Σ: S*<br>≤: =&lt;<br>≥: =&gt;</p>
-<h2 id="1-渐近记号"><a href="#1-渐近记号" class="headerlink" title="1. 渐近记号"></a>1. 渐近记号</h2><ul>
-<li><p>θ记号<br>  存在 c1, c2, n0, 满足 0 ≤c1<em>g(n) ≤f(n) ≤c2</em>g(n).<br>  f(n) є Ѳ(g(n));<br>  f(n) 属于集合 Ѳ(g(n));</p>
-</li>
-<li><p>O, o 记号<br>  当一个函数只有上确界用 O(g(n)) 表示。<br>  当一个函数的上确界不是渐近确紧的用 o(g(n)) 表示.</p>
-</li>
-<li><p>Ω,ω记号<br>  当一个函数只有下确界，用 Ω(g(n)) 表示。<br>  当一个函数只有下确界且不是渐近确紧的，用 ω(g(n)) 表示。</p>
-</li>
-</ul>
-<h2 id="2-标准记号和常用函数"><a href="#2-标准记号和常用函数" class="headerlink" title="2. 标准记号和常用函数"></a>2. 标准记号和常用函数</h2><ul>
-<li><p>单调性</p>
-<p>  单调递增: m ≥n, f(m) ≥f(n); 单调递减: m ≥n, f(m) ≤f(n);</p>
-</li>
-<li><p>上取整和下取整</p>
-</li>
-<li><p>取模运算</p>
-</li>
-<li><p>指数式</p>
-</li>
-<li><p>对数</p>
-</li>
-<li><p>阶乘</p>
-</li>
-<li><p>函数迭代</p>
-</li>
-<li><p>多重对数函数</p>
-</li>
-<li><p>斐波那契数</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/10/算法导论-第三章/" data-id="cjwoq0jug000bypfzh6vhh67o" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/third-chapter/">third chapter</a></li></ul>
 
     </footer>
   </div>
@@ -607,7 +588,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-11/">chapter 11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-15/">chapter 15</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-strcut/">data strcut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-struct/">data struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eight-chapter/">eight chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rb-tree/">rb tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/seven-chapter/">seven chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sixth-chapter/">sixth chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-key/">ssh key</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ten-chapter/">ten chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/third-chapter/">third chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C/">I2C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-11/">chapter 11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-15/">chapter 15</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-strcut/">data strcut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-struct/">data struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eight-chapter/">eight chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rb-tree/">rb tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/seven-chapter/">seven chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sixth-chapter/">sixth chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-key/">ssh key</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ten-chapter/">ten chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/third-chapter/">third chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
     </div>
   </div>
 
@@ -617,7 +598,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/arithmetic/" style="font-size: 20px;">arithmetic</a> <a href="/tags/arthmetic/" style="font-size: 15px;">arthmetic</a> <a href="/tags/chapter-11/" style="font-size: 10px;">chapter 11</a> <a href="/tags/chapter-15/" style="font-size: 10px;">chapter 15</a> <a href="/tags/data-strcut/" style="font-size: 10px;">data strcut</a> <a href="/tags/data-struct/" style="font-size: 15px;">data struct</a> <a href="/tags/eight-chapter/" style="font-size: 10px;">eight chapter</a> <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/note/" style="font-size: 10px;">note</a> <a href="/tags/rb-tree/" style="font-size: 10px;">rb tree</a> <a href="/tags/seven-chapter/" style="font-size: 10px;">seven chapter</a> <a href="/tags/sixth-chapter/" style="font-size: 10px;">sixth chapter</a> <a href="/tags/ssh-key/" style="font-size: 10px;">ssh key</a> <a href="/tags/ten-chapter/" style="font-size: 10px;">ten chapter</a> <a href="/tags/third-chapter/" style="font-size: 10px;">third chapter</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
+      <a href="/tags/I2C/" style="font-size: 10px;">I2C</a> <a href="/tags/arithmetic/" style="font-size: 20px;">arithmetic</a> <a href="/tags/arthmetic/" style="font-size: 15px;">arthmetic</a> <a href="/tags/chapter-11/" style="font-size: 10px;">chapter 11</a> <a href="/tags/chapter-15/" style="font-size: 10px;">chapter 15</a> <a href="/tags/data-strcut/" style="font-size: 10px;">data strcut</a> <a href="/tags/data-struct/" style="font-size: 15px;">data struct</a> <a href="/tags/eight-chapter/" style="font-size: 10px;">eight chapter</a> <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/note/" style="font-size: 10px;">note</a> <a href="/tags/rb-tree/" style="font-size: 10px;">rb tree</a> <a href="/tags/seven-chapter/" style="font-size: 10px;">seven chapter</a> <a href="/tags/sixth-chapter/" style="font-size: 10px;">sixth chapter</a> <a href="/tags/ssh-key/" style="font-size: 10px;">ssh key</a> <a href="/tags/ten-chapter/" style="font-size: 10px;">ten chapter</a> <a href="/tags/third-chapter/" style="font-size: 10px;">third chapter</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/通信协议/" style="font-size: 10px;">通信协议</a>
     </div>
   </div>
 
@@ -639,6 +620,10 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       <ul>
         
           <li>
+            <a href="/2019/06/25/I2C-协议/">I2C - 协议</a>
+          </li>
+        
+          <li>
             <a href="/2019/06/09/十五章-动态规划/">十五章-动态规划</a>
           </li>
         
@@ -652,10 +637,6 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
         
           <li>
             <a href="/2019/05/24/gdb-基本用法/">gdb-基本用法</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/28/第十一章-散列表/">第十一章-散列表</a>
           </li>
         
       </ul>
