@@ -5,20 +5,19 @@
   
 
   
-  <title>ssh key | 章军的博客</title>
+  <title>Tag: sort | 章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="生成 RSA key">
-<meta name="keywords" content="ssh key">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ssh key">
-<meta property="og:url" content="http://octopuscloud.top/2019/03/02/ssh-key/index.html">
+  <meta name="description" content="Be Intering">
+<meta name="keywords" content="Bolg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="章军的博客">
+<meta property="og:url" content="http://octopuscloud.top/tags/sort/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="生成 RSA key">
+<meta property="og:description" content="Be Intering">
 <meta property="og:locale" content="China">
-<meta property="og:updated_time" content="2019-06-30T02:38:15.469Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ssh key">
-<meta name="twitter:description" content="生成 RSA key">
+<meta name="twitter:title" content="章军的博客">
+<meta name="twitter:description" content="Be Intering">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -65,69 +64,78 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-ssh-key" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/02/ssh-key/" class="article-date">
-  <time datetime="2019-03-02T10:07:29.000Z" itemprop="datePublished">2019-03-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      ssh key
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2019/04/14/八章-排序/" class="archive-article-date">
+  <time datetime="2019-04-14T06:13:54.000Z" itemprop="datePublished">Apr 14</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/04/14/八章-排序/">算法导论-第八章</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="生成-RSA-key"><a href="#生成-RSA-key" class="headerlink" title="生成 RSA key"></a>生成 RSA key</h2><a id="more"></a>
-<p>执行下面的命令，Enter</p>
-<p>$ rsa@octopus:~$ ssh-keygen -t rsa<br>  Generating public/private rsa key pair.<br>  Enter file in which to save the key (/home/rsa/.ssh/id_rsa):<br>    <strong>此处按下 Enter </strong><br>Created directory ‘/home/rsa/.ssh’.<br>Enter passphrase (empty for no passphrase):<br>    <strong>此处按下 Enter </strong><br>Enter same passphrase again:<br>Your identification has been saved in /home/rsa/.ssh/id_rsa.<br>Your public key has been saved in /home/rsa/.ssh/id_rsa.pub.<br>The key fingerprint is:<br>SHA256:xxxxxxxxxxxxxxxxx<br>The key’s randomart image is:<br>    xxxxxxxx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">命令执行完成后，在选择的路径下会生成 .ssh 这个文件夹，文件夹下面有 id_rsa ( 私钥 ) , id_rsa.pub 公钥 。</span><br><span class="line"></span><br><span class="line">## 将公钥信息注册到服务器上，使用 ssh-copy-id 命令</span><br></pre></td></tr></table></figure></p>
-<p>$  ssh-copy-id -i ~/.ssh/id_rsa.pub <a href="mailto:pi@192.168.31.82" target="_blank" rel="noopener">pi@192.168.31.82</a><br>usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: “.ssh/id_rsa.pub”<br>The authenticity of host ‘192.168.31.82 (192.168.31.82)’ can’t be established.<br>ECDSA key fingerprint is SHA256:eLMcnKdwqOAluHd8mcInpfQWefiluEgqH102hoqNAuU.<br>Are you sure you want to continue connecting (yes/no)? yes<br>/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed<br>/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed – if you are prompted now it is to install the new keys<br><a href="mailto:pi@192.168.31.82" target="_blank" rel="noopener">pi@192.168.31.82</a>‘s password:<br>    <strong>此处输入密码，以后就不用输入密码了</strong></p>
-<p>Number of key(s) added: 1<br>Now try logging into the machine, with:   “ssh <a href="mailto:&#39;pi@192.168.31.82" target="_blank" rel="noopener">&#39;pi@192.168.31.82</a>‘“<br>and check to make sure that only the key(s) you wanted were added.</p>
-<p><code>`</code></p>
-<h2 id="ssh-登录远端设备"><a href="#ssh-登录远端设备" class="headerlink" title="ssh 登录远端设备"></a>ssh 登录远端设备</h2><pre><code>`$ ssh pi@192.168.31.82`
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/02/ssh-key/" data-id="cjxic95vw0004rwfz0wyi1dfj" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh-key/">ssh key</a></li></ul>
-
-    </footer>
+    </header>
   </div>
+</article>
   
     
-<nav id="article-nav">
+    
+    <article class="archive-article archive-type-ppost">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2019/03/30/七章-快速排序/" class="archive-article-date">
+  <time datetime="2019-03-30T08:37:34.000Z" itemprop="datePublished">Mar 30</time>
+</a>
+      
   
-    <a href="/2019/03/02/vim-配置/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          vim 配置
-        
-      </div>
-    </a>
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/03/30/七章-快速排序/">算法导论-第七章[快速排序]</a>
+    </h1>
   
-  
-    <a href="/2019/03/02/FS-文件大小限制/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">FS 文件大小限制</div>
-    </a>
-  
-</nav>
 
-  
+    </header>
+  </div>
 </article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2019/03/24/六章-堆排序/" class="archive-article-date">
+  <time datetime="2019-03-24T06:34:02.000Z" itemprop="datePublished">Mar 24</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/03/24/六章-堆排序/">算法导论-第六章(堆排序)</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         

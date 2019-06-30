@@ -66,12 +66,16 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-算法导论-第三章" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-三章-标记符号" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/03/10/算法导论-第三章/" class="article-date">
+    <a href="/2019/03/10/三章-标记符号/" class="article-date">
   <time datetime="2019-03-10T04:05:05.000Z" itemprop="datePublished">2019-03-10</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ReadNote/">ReadNote</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -80,7 +84,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/10/算法导论-第三章/">算法导论-第三章</a>
+      <a class="article-title" href="/2019/03/10/三章-标记符号/">算法导论-第三章</a>
     </h1>
   
 
@@ -88,44 +92,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>є : ie<br>Ω: W<em><br>ω: w</em><br>Ѳ : F3<br>Σ: S*<br>≤: =&lt;<br>≥: =&gt;</p>
-<h2 id="1-渐近记号"><a href="#1-渐近记号" class="headerlink" title="1. 渐近记号"></a>1. 渐近记号</h2><ul>
-<li><p>θ记号<br>  存在 c1, c2, n0, 满足 0 ≤c1<em>g(n) ≤f(n) ≤c2</em>g(n).<br>  f(n) є Ѳ(g(n));<br>  f(n) 属于集合 Ѳ(g(n));</p>
-</li>
-<li><p>O, o 记号<br>  当一个函数只有上确界用 O(g(n)) 表示。<br>  当一个函数的上确界不是渐近确紧的用 o(g(n)) 表示.</p>
-</li>
-<li><p>Ω,ω记号<br>  当一个函数只有下确界，用 Ω(g(n)) 表示。<br>  当一个函数只有下确界且不是渐近确紧的，用 ω(g(n)) 表示。</p>
-</li>
-</ul>
-<h2 id="2-标准记号和常用函数"><a href="#2-标准记号和常用函数" class="headerlink" title="2. 标准记号和常用函数"></a>2. 标准记号和常用函数</h2><ul>
-<li><p>单调性</p>
-<p>  单调递增: m ≥n, f(m) ≥f(n); 单调递减: m ≥n, f(m) ≤f(n);</p>
-</li>
-<li><p>上取整和下取整</p>
-</li>
-<li><p>取模运算</p>
-</li>
-<li><p>指数式</p>
-</li>
-<li><p>对数</p>
-</li>
-<li><p>阶乘</p>
-</li>
-<li><p>函数迭代</p>
-</li>
-<li><p>多重对数函数</p>
-</li>
-<li><p>斐波那契数</p>
-</li>
-</ul>
-
+        <h2 id="1-渐近记号"><a href="#1-渐近记号" class="headerlink" title="1. 渐近记号"></a>1. 渐近记号</h2>
+        
+          <p class="article-more-link">
+            <a href="/2019/03/10/三章-标记符号/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/10/算法导论-第三章/" data-id="cjxic7lvn000iphfzflz354m0" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/10/三章-标记符号/" data-id="cjxij7ffj0001ajfz0t6ea58e" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/third-chapter/">third chapter</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/symbol/">symbol</a></li></ul>
 
     </footer>
   </div>
@@ -140,6 +119,10 @@
   <time datetime="2019-03-03T06:50:05.000Z" itemprop="datePublished">2019-03-03</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ReadNote/">ReadNote</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -156,79 +139,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#　伪代码的约定</p>
-<pre><code>1. 代码中的**缩进**表示程序中的分程序块 .
-2. 符号 ▷后面为注释 .
-3. 符号 ←代表赋值　。
-4. 如果变量仅作用于局部　，使用局部变量　。
-5. 数组有 A[index] 来访问　。
-6. 无特殊说明　，参数传递都是值传递　。
-7. and 和　or 运算符都有短路功能　。
-</code></pre><h1 id="代码分析的基本概念"><a href="#代码分析的基本概念" class="headerlink" title="代码分析的基本概念"></a>代码分析的基本概念</h1><ul>
-<li><p>输入规模</p>
-<p>  与具体的问题有关，在数组的排序算法中，数据规模为数组的长度；算法的输入为图时，输入规模用定点数和边数来标示。</p>
-</li>
-<li><p>运行时间</p>
-<p>  在指定特定输入时，算法所执行的基本操作数。</p>
-<ol>
-<li>最坏运行时间<br> 对于输入规模为n的数组，最长的运行时间。最长的运行时间。</li>
-<li>平均运行事件<br> 对于输入规模为n的数组，运行时间的数学期望。</li>
-</ol>
-</li>
-<li><p>增长的量级</p>
-<p>  在输入规模为n的运行时间中，去最高次项作为增长的量级。</p>
-</li>
-</ul>
-<h1 id="两种排序算法"><a href="#两种排序算法" class="headerlink" title="两种排序算法"></a>两种排序算法</h1><h2 id="插入法"><a href="#插入法" class="headerlink" title="插入法"></a>插入法</h2><pre><code>插入法使用的时增量法，在已经排好顺序的子序列 A[1...j-1]中插入 A[j]，形成排好的子序列 A[1...j]。
-最坏运行时间为: θ(n^2).
-平均运行时间: θ(nlgn)
-
-InsertSort - A[1...n]
-for i ←2 to length[A]
-    key ←A[i]
-    j = i
-    while i &gt; 0 and A[i] &gt; key
-        A[i] = A[i-1]
-        i -= 1
-    A[i] = key
-</code></pre><p>算法实现 [InsertSort][2]</p>
-<h2 id="合并法"><a href="#合并法" class="headerlink" title="合并法"></a>合并法</h2><pre><code>将需要排序的序列分为两个子序列(此处为递归的调用自身，直到子序列长度为1时结束)，合并两个排好顺序的子序列，
-完成父序列的排序。
-运行时间为: θ(nlgn)
-
-l ←0
-m ←n/2
-r ←length[A]
-MegerSort - A[1...n], l, m, r
-if m - l ≥1
-    sub_m = l+(m-l)/2
-    MegerSort(l,sub_m,m)
-if r-m ≥1
-    sub_m = m+(r-m)/2
-    MegerSort(m,sub_m,r)
-create a new arry new[1,r-l]
-
-left_len ←l
-right_len ←m
-for i ←0 to r-l and ( left_len &lt;= m or right &lt;= r)
-    if A[left_len] &gt; A[right_len] 
-        new[i] ←A[right_len]
-        right_len += 1
-    else 
-        new[i] ←A[left_len]
-        left_len += 1
-</code></pre><h2 id="算法实现-MergeSort-2"><a href="#算法实现-MergeSort-2" class="headerlink" title="算法实现 [MergeSort][2]"></a>算法实现 [MergeSort][2]</h2><ol>
-<li><a href="https://zh.wikipedia.org/zh-hk/Pascal_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80)" target="_blank" rel="noopener">https://zh.wikipedia.org/zh-hk/Pascal_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80)</a></li>
-<li><a href="https://github.com/singledo/SortCode" target="_blank" rel="noopener">https://github.com/singledo/SortCode</a></li>
-</ol>
-
+        <p>#　伪代码的约定<br>
+        
+          </p><p class="article-more-link">
+            <a href="/2019/03/03/算法导论-第二章/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/03/算法导论-第二章/" data-id="cjxic7lvq000lphfz111qztqe" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/03/算法导论-第二章/" data-id="cjxic95wd000krwfzmiqbly51" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">note</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pseudocode/">pseudocode</a></li></ul>
 
     </footer>
   </div>
@@ -243,6 +166,10 @@ for i ←0 to r-l and ( left_len &lt;= m or right &lt;= r)
   <time datetime="2019-03-02T10:20:44.000Z" itemprop="datePublished">2019-03-02</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -259,16 +186,19 @@ for i ←0 to r-l and ( left_len &lt;= m or right &lt;= r)
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<h1 id="vim-配置"><a href="#vim-配置" class="headerlink" title="vim 配置"></a>vim 配置</h1><p>set listchars # 设置字符的显示替换字符</p>
-
+        <h1 id="vim-配置"><a href="#vim-配置" class="headerlink" title="vim 配置"></a>vim 配置</h1>
+        
+          <p class="article-more-link">
+            <a href="/2019/03/02/vim-配置/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/02/vim-配置/" data-id="cjxic7lvb0005phfznypsrve2" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/02/vim-配置/" data-id="cjxic95vx0005rwfzspdgeago" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/editer/">editer</a></li></ul>
 
     </footer>
   </div>
@@ -299,7 +229,7 @@ for i ←0 to r-l and ( left_len &lt;= m or right &lt;= r)
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="生成-RSA-key"><a href="#生成-RSA-key" class="headerlink" title="生成 RSA key"></a>生成 RSA key</h2><p>执行下面的命令，Enter</p>
+        <h2 id="生成-RSA-key"><a href="#生成-RSA-key" class="headerlink" title="生成 RSA key"></a>生成 RSA key</h2>
         
           <p class="article-more-link">
             <a href="/2019/03/02/ssh-key/#more">Read More</a>
@@ -308,7 +238,7 @@ for i ←0 to r-l and ( left_len &lt;= m or right &lt;= r)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/02/ssh-key/" data-id="cjxic7lva0004phfze2a99048" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/02/ssh-key/" data-id="cjxic95vw0004rwfz0wyi1dfj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh-key/">ssh key</a></li></ul>
@@ -326,6 +256,10 @@ for i ←0 to r-l and ( left_len &lt;= m or right &lt;= r)
   <time datetime="2019-03-02T10:06:56.000Z" itemprop="datePublished">2019-03-02</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -342,74 +276,19 @@ for i ←0 to r-l and ( left_len &lt;= m or right &lt;= r)
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<h1 id="文件系统中最大文件大小"><a href="#文件系统中最大文件大小" class="headerlink" title="文件系统中最大文件大小"></a>文件系统中最大文件大小</h1><h2 id="1-windows-系统"><a href="#1-windows-系统" class="headerlink" title="1. windows 系统"></a>1. windows 系统</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">FAT12</th>
-<th style="text-align:left">FAT16</th>
-<th style="text-align:left">FAT32</th>
-<th style="text-align:left">NTFS</th>
-<th style="text-align:left">NTFS5.0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">8M</td>
-<td style="text-align:left">2G</td>
-<td style="text-align:left">4G</td>
-<td style="text-align:left">64G</td>
-<td style="text-align:left">2T</td>
-</tr>
-</tbody>
-</table>
-<h2 id="2-linux-系统"><a href="#2-linux-系统" class="headerlink" title="2. linux 系统"></a>2. linux 系统</h2><p>ext3文件系统限制</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Block size</th>
-<th style="text-align:left">Max file size</th>
-<th style="text-align:left">Max filesystem size</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">1 KiB</td>
-<td style="text-align:left">16 GiB</td>
-<td style="text-align:left">&lt;2 TiB</td>
-</tr>
-<tr>
-<td style="text-align:left">2 KiB</td>
-<td style="text-align:left">256 GiB</td>
-<td style="text-align:left">&lt;4 TiB</td>
-</tr>
-<tr>
-<td style="text-align:left">4 KiB</td>
-<td style="text-align:left">2 TiB</td>
-<td style="text-align:left">&lt;8 TiB</td>
-</tr>
-<tr>
-<td style="text-align:left">8 KiB</td>
-<td style="text-align:left">2 TiB</td>
-<td style="text-align:left">&lt;16 TiB</td>
-</tr>
-</tbody>
-</table>
-<p><strong>note</strong>:</p>
-<ol>
-<li><p>fdisk对于大于2t的硬盘是不能分区的.即使分区成功,写数据就会有问题.超过2t使用parted分区工具分区。</p>
-</li>
-<li><p>ext4分别支持 1EB（1,048,576TB， 1EB=1024PB， 1PB=1024TB）的文件系统，以及 16TB 的单个文件。<br>ext4无限数量的子目录。 Ext3 目前只支持 32,000 个子目录，而 Ext4 支持无限数量的子目录</p>
-</li>
-</ol>
-
+        <h1 id="文件系统中最大文件大小"><a href="#文件系统中最大文件大小" class="headerlink" title="文件系统中最大文件大小"></a>文件系统中最大文件大小</h1>
+        
+          <p class="article-more-link">
+            <a href="/2019/03/02/FS-文件大小限制/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/02/FS-文件大小限制/" data-id="cjxic7lux0000phfzbf1r4eyr" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/02/FS-文件大小限制/" data-id="cjxic95vk0000rwfzbjkhaqua" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/file-system/">file system</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windows/">windows</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/file-system/">file system</a></li></ul>
 
     </footer>
   </div>
@@ -430,13 +309,20 @@ for i ←0 to r-l and ( left_len &lt;= m or right &lt;= r)
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ReadNote/">ReadNote</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/protocols/">protocols</a></li></ul>
+    </div>
+  </div>
+
 
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C/">I2C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-11/">chapter 11</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-15/">chapter 15</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-strcut/">data strcut</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-struct/">data struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eight-chapter/">eight chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rb-tree/">rb tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/seven-chapter/">seven chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sixth-chapter/">sixth chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-key/">ssh key</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ten-chapter/">ten chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/third-chapter/">third chapter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C/">I2C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-15/">chapter 15</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-struct/">data struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/editer/">editer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gdb-debug/">gdb debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pseudocode/">pseudocode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rb-tree/">rb tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-key/">ssh key</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/symbol/">symbol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
     </div>
   </div>
 
@@ -446,7 +332,7 @@ for i ←0 to r-l and ( left_len &lt;= m or right &lt;= r)
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/I2C/" style="font-size: 10px;">I2C</a> <a href="/tags/arithmetic/" style="font-size: 20px;">arithmetic</a> <a href="/tags/arthmetic/" style="font-size: 15px;">arthmetic</a> <a href="/tags/chapter-11/" style="font-size: 10px;">chapter 11</a> <a href="/tags/chapter-15/" style="font-size: 10px;">chapter 15</a> <a href="/tags/data-strcut/" style="font-size: 10px;">data strcut</a> <a href="/tags/data-struct/" style="font-size: 15px;">data struct</a> <a href="/tags/eight-chapter/" style="font-size: 10px;">eight chapter</a> <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/note/" style="font-size: 10px;">note</a> <a href="/tags/rb-tree/" style="font-size: 10px;">rb tree</a> <a href="/tags/seven-chapter/" style="font-size: 10px;">seven chapter</a> <a href="/tags/sixth-chapter/" style="font-size: 10px;">sixth chapter</a> <a href="/tags/ssh-key/" style="font-size: 10px;">ssh key</a> <a href="/tags/ten-chapter/" style="font-size: 10px;">ten chapter</a> <a href="/tags/third-chapter/" style="font-size: 10px;">third chapter</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/通信协议/" style="font-size: 10px;">通信协议</a>
+      <a href="/tags/I2C/" style="font-size: 10px;">I2C</a> <a href="/tags/arthmetic/" style="font-size: 10px;">arthmetic</a> <a href="/tags/chapter-15/" style="font-size: 10px;">chapter 15</a> <a href="/tags/data-struct/" style="font-size: 15px;">data struct</a> <a href="/tags/editer/" style="font-size: 10px;">editer</a> <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/gdb-debug/" style="font-size: 10px;">gdb debug</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/pseudocode/" style="font-size: 10px;">pseudocode</a> <a href="/tags/rb-tree/" style="font-size: 10px;">rb tree</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ssh-key/" style="font-size: 10px;">ssh key</a> <a href="/tags/symbol/" style="font-size: 10px;">symbol</a> <a href="/tags/通信协议/" style="font-size: 10px;">通信协议</a>
     </div>
   </div>
 
@@ -468,6 +354,10 @@ for i ←0 to r-l and ( left_len &lt;= m or right &lt;= r)
       <ul>
         
           <li>
+            <a href="/2019/06/30/十二章-二叉搜索树/">算法导论-第十二章 二叉查找树</a>
+          </li>
+        
+          <li>
             <a href="/2019/06/25/I2C-协议/">I2C - 协议</a>
           </li>
         
@@ -476,11 +366,7 @@ for i ←0 to r-l and ( left_len &lt;= m or right &lt;= r)
           </li>
         
           <li>
-            <a href="/2019/06/02/第十三章-红黑树/">第十三章-红黑树</a>
-          </li>
-        
-          <li>
-            <a href="/2019/05/25/算法导论-十二章/">算法导论-第十二章 二叉查找树</a>
+            <a href="/2019/06/02/十三章-红黑树/">第十三章-红黑树</a>
           </li>
         
           <li>
