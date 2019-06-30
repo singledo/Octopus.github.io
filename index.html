@@ -91,19 +91,16 @@
         <h1 id="I2C协议"><a href="#I2C协议" class="headerlink" title="I2C协议"></a>I2C协议</h1><pre><code>1. 两条双向传输线 ，分别为 SCL(时钟线) , SDA (数据线)
 2. 在一条 I2C 通信通路中 ，一共能够存在 128(0~0x7f) 个设备 。且每个设备的地址不能相同 。
 3. I2C 在一次基本的数据传输中能够传递 8 bit 数据 。
-</code></pre><h2 id="I2C-的位传输"><a href="#I2C-的位传输" class="headerlink" title="I2C 的位传输"></a>I2C 的位传输</h2><pre><code>1. 数据传输 ： SCL 为高电平时 ，SDA 保持稳定 ，表示当前发生数据传输 ；SDA 发生电平跳变时 ，此时表示数据传输开始或者结束 。
-2. 数据改变 ： SCL 为低电平时 ，SDA 才能改变电平 。
-</code></pre><h2 id="I2C-的通信的开始和结束信号"><a href="#I2C-的通信的开始和结束信号" class="headerlink" title="I2C 的通信的开始和结束信号"></a>I2C 的通信的开始和结束信号</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">开始信号 ，SCL 为低电平时 ，SDA 由高转低 。                   结束信号，SCL 为低电平 ，SDA 由低转高</span><br><span class="line">SDA    ,,,,,,,,,                                              SDA              ,,,,,,,,,,</span><br><span class="line">                \,,,,,,,,,,                                          ,,,,,,,,,/</span><br><span class="line">SCL           ,,,,,,,,,                                                     ,,,,,,</span><br><span class="line">       ,,,,,,/                                                       ,,,,,,/</span><br></pre></td></tr></table></figure>
-<h2 id="I2C-传输过程"><a href="#I2C-传输过程" class="headerlink" title="I2C 传输过程"></a>I2C 传输过程</h2><pre><code>1. I2C 的数据传输的开始信号是在下面的数据第一段的 start 信号 (SCL 为高电平 ，SDA 信号线由高电平到低电平)
-2. 开始传输地址(一个 byte ) ，数据的高位会先传输出去 ，其中最高位用来表示读写 .
-3. 主设备发送地址完成后 ，主设备将 SDA 数据线拉高 ，响应从设备在接收到信息后 ，响应设备会将 SDA 数据线拉低 (ACK) 。
-4. 主设备接收到 ACK 信号后 ，开始发送数据 (8bit) ，从设备发送 ACK 。当主机设备需要发送的数据发送完成后 ，主机设备发送 END 信号(SCL 为高电平，SDA由低转高) 。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      |- start| 0(1b)   1(0b)   2(1b)   3(0b)   4(1b)   5(1b)   6(0b)   7(0b) |  NCK |              | end |</span><br><span class="line">SCL      ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,     ,,,                  ,,,</span><br><span class="line">     ,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,/   \,,,          ,,,/   \</span><br><span class="line">                                                                                         . . . .     </span><br><span class="line">SDA  ,,,,,     ,,,,,,          ,,,,,,,          ,,,,,,,,,,,,,,        ,,,,,,,,                          ,,,,</span><br><span class="line">          \,,,/      \,,,,,,,,/       \,,,,,,,,/              \,,,,,,/        \,,,,,,,,           ,,,,,/</span><br></pre></td></tr></table></figure>
 </code></pre>
+        
+          <p class="article-more-link">
+            <a href="/2019/06/25/I2C-协议/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/25/I2C-协议/" data-id="cjxic1b6n0003b5fzmtyiq064" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/25/I2C-协议/" data-id="cjxic66th0001j7fz8khvpqun" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/I2C/">I2C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
@@ -149,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/09/十五章-动态规划/" data-id="cjxic1b6x000ab5fzjgxifr3p" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/09/十五章-动态规划/" data-id="cjxic66tr0007j7fzry3faqoq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chapter-15/">chapter 15</a></li></ul>
@@ -228,7 +225,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/02/第十三章-红黑树/" data-id="cjxic1b6u0008b5fze40xo4yv" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/02/第十三章-红黑树/" data-id="cjxic66tu000aj7fz654exjai" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-strcut/">data strcut</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rb-tree/">rb tree</a></li></ul>
@@ -271,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/05/25/算法导论-十二章/" data-id="cjxic1b71000db5fzfpzieb0u" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/05/25/算法导论-十二章/" data-id="cjxic66tx000dj7fzfrfg4vuf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-struct/">data struct</a></li></ul>
@@ -322,7 +319,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/05/24/gdb-基本用法/" data-id="cjxic1b6s0007b5fz2xd2fiax" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/05/24/gdb-基本用法/" data-id="cjxic66tl0003j7fzcas6b4ac" class="article-share-link">Share</a>
       
       
     </footer>
@@ -366,7 +363,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/04/28/第十一章-散列表/" data-id="cjxic1b6q0005b5fz73omsev0" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/04/28/第十一章-散列表/" data-id="cjxic66tt0008j7fz6w0sokn6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chapter-11/">chapter 11</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hash/">hash</a></li></ul>
@@ -409,7 +406,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/04/21/第十章－基本的数据结构/" data-id="cjxic1b6z000bb5fzi97llmh0" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/04/21/第十章－基本的数据结构/" data-id="cjxic66tw000bj7fzdn2p1twi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-struct/">data struct</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ten-chapter/">ten chapter</a></li></ul>
@@ -465,7 +462,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/04/14/算法导论-第八章/" data-id="cjxic1b7b000mb5fzx8jvbsla" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/04/14/算法导论-第八章/" data-id="cjxic66u8000lj7fzxz1a4jc1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eight-chapter/">eight chapter</a></li></ul>
@@ -508,7 +505,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/30/算法导论-第七章-快速排序/" data-id="cjxic1b74000fb5fz4knm222v" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/30/算法导论-第七章-快速排序/" data-id="cjxic66u1000fj7fzsanmbj34" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/seven-chapter/">seven chapter</a></li></ul>
@@ -558,7 +555,7 @@ filename就是产生core文件的可执行文件，core就是产生的dump文件
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/24/算法导论-第六章-堆排序/" data-id="cjxic1b7c000ob5fznz1cqhr6" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/24/算法导论-第六章-堆排序/" data-id="cjxic66ua000oj7fzz4dfraho" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arithmetic/">arithmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sixth-chapter/">sixth chapter</a></li></ul>

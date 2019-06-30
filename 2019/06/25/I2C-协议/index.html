@@ -7,18 +7,18 @@
   
   <title>I2C - 协议 | 章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I2C协议1. 两条双向传输线 ，分别为 SCL(时钟线) , SDA (数据线) 2. 在一条 I2C 通信通路中 ，一共能够存在 128(0~0x7f) 个设备 。且每个设备的地址不能相同 。 3. I2C 在一次基本的数据传输中能够传递 8 bit 数据 。 I2C 的位传输1. 数据传输 ： SCL 为高电平时 ，SDA 保持稳定 ，表示当前发生数据传输 ；SDA 发生电平跳变时 ，此时表">
+  <meta name="description" content="I2C协议1. 两条双向传输线 ，分别为 SCL(时钟线) , SDA (数据线) 2. 在一条 I2C 通信通路中 ，一共能够存在 128(0~0x7f) 个设备 。且每个设备的地址不能相同 。 3. I2C 在一次基本的数据传输中能够传递 8 bit 数据 。">
 <meta name="keywords" content="I2C,通信协议">
 <meta property="og:type" content="article">
 <meta property="og:title" content="I2C - 协议">
 <meta property="og:url" content="http://octopuscloud.top/2019/06/25/I2C-协议/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="I2C协议1. 两条双向传输线 ，分别为 SCL(时钟线) , SDA (数据线) 2. 在一条 I2C 通信通路中 ，一共能够存在 128(0~0x7f) 个设备 。且每个设备的地址不能相同 。 3. I2C 在一次基本的数据传输中能够传递 8 bit 数据 。 I2C 的位传输1. 数据传输 ： SCL 为高电平时 ，SDA 保持稳定 ，表示当前发生数据传输 ；SDA 发生电平跳变时 ，此时表">
+<meta property="og:description" content="I2C协议1. 两条双向传输线 ，分别为 SCL(时钟线) , SDA (数据线) 2. 在一条 I2C 通信通路中 ，一共能够存在 128(0~0x7f) 个设备 。且每个设备的地址不能相同 。 3. I2C 在一次基本的数据传输中能够传递 8 bit 数据 。">
 <meta property="og:locale" content="China">
-<meta property="og:updated_time" content="2019-06-30T02:24:58.474Z">
+<meta property="og:updated_time" content="2019-06-30T02:29:23.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="I2C - 协议">
-<meta name="twitter:description" content="I2C协议1. 两条双向传输线 ，分别为 SCL(时钟线) , SDA (数据线) 2. 在一条 I2C 通信通路中 ，一共能够存在 128(0~0x7f) 个设备 。且每个设备的地址不能相同 。 3. I2C 在一次基本的数据传输中能够传递 8 bit 数据 。 I2C 的位传输1. 数据传输 ： SCL 为高电平时 ，SDA 保持稳定 ，表示当前发生数据传输 ；SDA 发生电平跳变时 ，此时表">
+<meta name="twitter:description" content="I2C协议1. 两条双向传输线 ，分别为 SCL(时钟线) , SDA (数据线) 2. 在一条 I2C 通信通路中 ，一共能够存在 128(0~0x7f) 个设备 。且每个设备的地址不能相同 。 3. I2C 在一次基本的数据传输中能够传递 8 bit 数据 。">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -90,7 +90,8 @@
         <h1 id="I2C协议"><a href="#I2C协议" class="headerlink" title="I2C协议"></a>I2C协议</h1><pre><code>1. 两条双向传输线 ，分别为 SCL(时钟线) , SDA (数据线)
 2. 在一条 I2C 通信通路中 ，一共能够存在 128(0~0x7f) 个设备 。且每个设备的地址不能相同 。
 3. I2C 在一次基本的数据传输中能够传递 8 bit 数据 。
-</code></pre><h2 id="I2C-的位传输"><a href="#I2C-的位传输" class="headerlink" title="I2C 的位传输"></a>I2C 的位传输</h2><pre><code>1. 数据传输 ： SCL 为高电平时 ，SDA 保持稳定 ，表示当前发生数据传输 ；SDA 发生电平跳变时 ，此时表示数据传输开始或者结束 。
+</code></pre><a id="more"></a>
+<h2 id="I2C-的位传输"><a href="#I2C-的位传输" class="headerlink" title="I2C 的位传输"></a>I2C 的位传输</h2><pre><code>1. 数据传输 ： SCL 为高电平时 ，SDA 保持稳定 ，表示当前发生数据传输 ；SDA 发生电平跳变时 ，此时表示数据传输开始或者结束 。
 2. 数据改变 ： SCL 为低电平时 ，SDA 才能改变电平 。
 </code></pre><h2 id="I2C-的通信的开始和结束信号"><a href="#I2C-的通信的开始和结束信号" class="headerlink" title="I2C 的通信的开始和结束信号"></a>I2C 的通信的开始和结束信号</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">开始信号 ，SCL 为低电平时 ，SDA 由高转低 。                   结束信号，SCL 为低电平 ，SDA 由低转高</span><br><span class="line">SDA    ,,,,,,,,,                                              SDA              ,,,,,,,,,,</span><br><span class="line">                \,,,,,,,,,,                                          ,,,,,,,,,/</span><br><span class="line">SCL           ,,,,,,,,,                                                     ,,,,,,</span><br><span class="line">       ,,,,,,/                                                       ,,,,,,/</span><br></pre></td></tr></table></figure>
 <h2 id="I2C-传输过程"><a href="#I2C-传输过程" class="headerlink" title="I2C 传输过程"></a>I2C 传输过程</h2><pre><code>1. I2C 的数据传输的开始信号是在下面的数据第一段的 start 信号 (SCL 为高电平 ，SDA 信号线由高电平到低电平)
@@ -102,7 +103,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/25/I2C-协议/" data-id="cjxic1b6n0003b5fzmtyiq064" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/25/I2C-协议/" data-id="cjxic66th0001j7fz8khvpqun" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/I2C/">I2C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
