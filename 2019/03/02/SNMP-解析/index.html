@@ -5,19 +5,31 @@
   
 
   
-  <title>章军的博客</title>
+  <title>SNMP 协议 | 章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Be Intering">
-<meta name="keywords" content="Bolg">
-<meta property="og:type" content="website">
-<meta property="og:title" content="章军的博客">
-<meta property="og:url" content="http://octopuscloud.top/page/2/index.html">
+  <meta name="description" content="写在前面：接触 SNMP 协议相关的告警已经有些年头了，一直没有搞清楚 SNMP 消息有哪些？实现原理是什么？如果你也在研究，请不吝赐教！    SNMP 介绍  SNMP(simple network management protocol) 是因特网架构委员会 IAB 定义的一个应用层协议。SNMP 广泛用于管理和监控网络设备，大多数专业的网络设备都有 SNMP agent 代理，这些代理被激">
+<meta name="keywords" content="SNMP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SNMP 协议">
+<meta property="og:url" content="http://octopuscloud.top/2019/03/02/SNMP-解析/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="Be Intering">
+<meta property="og:description" content="写在前面：接触 SNMP 协议相关的告警已经有些年头了，一直没有搞清楚 SNMP 消息有哪些？实现原理是什么？如果你也在研究，请不吝赐教！    SNMP 介绍  SNMP(simple network management protocol) 是因特网架构委员会 IAB 定义的一个应用层协议。SNMP 广泛用于管理和监控网络设备，大多数专业的网络设备都有 SNMP agent 代理，这些代理被激">
 <meta property="og:locale" content="China">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-dd3ed6d8276a7a58.gif">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-3eed36007953bbc6.gif">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-db101dc57f3ac74a.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-926490a594c732d4.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-739a11dfede6d6d8.jpeg">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-1f0950fc9bf2b050.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-138438379f6e2f40.jpg">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-a4527908bb01a371.gif">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-ba41af57e0fd6699.gif">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-7991c40b2b2f340f.gif">
+<meta property="og:updated_time" content="2019-07-06T06:56:17.067Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="章军的博客">
-<meta name="twitter:description" content="Be Intering">
+<meta name="twitter:title" content="SNMP 协议">
+<meta name="twitter:description" content="写在前面：接触 SNMP 协议相关的告警已经有些年头了，一直没有搞清楚 SNMP 消息有哪些？实现原理是什么？如果你也在研究，请不吝赐教！    SNMP 介绍  SNMP(simple network management protocol) 是因特网架构委员会 IAB 定义的一个应用层协议。SNMP 广泛用于管理和监控网络设备，大多数专业的网络设备都有 SNMP agent 代理，这些代理被激">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7749898-dd3ed6d8276a7a58.gif">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -64,197 +76,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-六章-堆排序" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/24/六章-堆排序/" class="article-date">
-  <time datetime="2019-03-24T06:34:02.000Z" itemprop="datePublished">2019-03-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ReadNote/">ReadNote</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/24/六章-堆排序/">算法导论-第六章(堆排序)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="堆的基本概念"><a href="#堆的基本概念" class="headerlink" title="堆的基本概念"></a>堆的基本概念</h1>
-        
-          <p class="article-more-link">
-            <a href="/2019/03/24/六章-堆排序/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/24/六章-堆排序/" data-id="cjxr6a5qh000tuyfztpcateem" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sort/">sort</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-三章-标记符号" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/10/三章-标记符号/" class="article-date">
-  <time datetime="2019-03-10T04:05:05.000Z" itemprop="datePublished">2019-03-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ReadNote/">ReadNote</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/10/三章-标记符号/">算法导论-第三章</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-渐近记号"><a href="#1-渐近记号" class="headerlink" title="1. 渐近记号"></a>1. 渐近记号</h2>
-        
-          <p class="article-more-link">
-            <a href="/2019/03/10/三章-标记符号/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/10/三章-标记符号/" data-id="cjxr6a5qa000huyfzdunlpoja" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/symbol/">symbol</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-二章-基本算法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/03/二章-基本算法/" class="article-date">
-  <time datetime="2019-03-03T06:50:05.000Z" itemprop="datePublished">2019-03-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ReadNote/">ReadNote</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/03/二章-基本算法/">算法导论-第二章</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#　伪代码的约定<br>
-        
-          </p><p class="article-more-link">
-            <a href="/2019/03/03/二章-基本算法/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/03/二章-基本算法/" data-id="cjxr6a5qc000luyfzppedsv0k" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pseudocode/">pseudocode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-vim-配置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/02/vim-配置/" class="article-date">
-  <time datetime="2019-03-02T10:20:44.000Z" itemprop="datePublished">2019-03-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/02/vim-配置/">vim 配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="vim-配置"><a href="#vim-配置" class="headerlink" title="vim 配置"></a>vim 配置</h1>
-        
-          <p class="article-more-link">
-            <a href="/2019/03/02/vim-配置/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/02/vim-配置/" data-id="cjxr6a5q7000buyfzzx95x1fz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/editer/">editer</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SNMP-解析" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-SNMP-解析" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/02/SNMP-解析/" class="article-date">
   <time datetime="2019-03-02T10:20:44.000Z" itemprop="datePublished">2019-03-02</time>
@@ -271,8 +93,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/02/SNMP-解析/">SNMP 协议</a>
+    <h1 class="article-title" itemprop="name">
+      SNMP 协议
     </h1>
   
 
@@ -372,106 +194,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-ssh-key" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/02/ssh-key/" class="article-date">
-  <time datetime="2019-03-02T10:07:29.000Z" itemprop="datePublished">2019-03-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2019/03/02/vim-配置/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          vim 配置
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/02/ssh-key/">ssh key</a>
-    </h1>
   
+    <a href="/2019/03/02/ssh-key/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ssh key</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="生成-RSA-key"><a href="#生成-RSA-key" class="headerlink" title="生成 RSA key"></a>生成 RSA key</h2>
-        
-          <p class="article-more-link">
-            <a href="/2019/03/02/ssh-key/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/02/ssh-key/" data-id="cjxr6a5q30006uyfzvyplhxgw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh-key/">ssh key</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-FS-文件大小限制" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/02/FS-文件大小限制/" class="article-date">
-  <time datetime="2019-03-02T10:06:56.000Z" itemprop="datePublished">2019-03-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/02/FS-文件大小限制/">FS 文件大小限制</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="文件系统中最大文件大小"><a href="#文件系统中最大文件大小" class="headerlink" title="文件系统中最大文件大小"></a>文件系统中最大文件大小</h1>
-        
-          <p class="article-more-link">
-            <a href="/2019/03/02/FS-文件大小限制/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/02/FS-文件大小限制/" data-id="cjxr6a5ps0000uyfz6scv74qw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/file-system/">file system</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
 
 </section>
         
