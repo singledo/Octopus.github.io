@@ -7,13 +7,13 @@
   
   <title>SNMP 协议 | 章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写在前面：接触 SNMP 协议相关的告警已经有些年头了，一直没有搞清楚 SNMP 消息有哪些？实现原理是什么？如果你也在研究，请不吝赐教！    SNMP 介绍  SNMP(simple network management protocol) 是因特网架构委员会 IAB 定义的一个应用层协议。SNMP 广泛用于管理和监控网络设备，大多数专业的网络设备都有 SNMP agent 代理，这些代理被激">
+  <meta name="description" content="写在前面：接触 SNMP 协议相关的告警已经有些年头了，一直没有搞清楚 SNMP 消息有哪些？实现原理是什么？如果你也在研究，请不吝赐教！    SNMP 介绍">
 <meta name="keywords" content="SNMP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SNMP 协议">
 <meta property="og:url" content="http://octopuscloud.top/2019/03/02/SNMP-解析/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="写在前面：接触 SNMP 协议相关的告警已经有些年头了，一直没有搞清楚 SNMP 消息有哪些？实现原理是什么？如果你也在研究，请不吝赐教！    SNMP 介绍  SNMP(simple network management protocol) 是因特网架构委员会 IAB 定义的一个应用层协议。SNMP 广泛用于管理和监控网络设备，大多数专业的网络设备都有 SNMP agent 代理，这些代理被激">
+<meta property="og:description" content="写在前面：接触 SNMP 协议相关的告警已经有些年头了，一直没有搞清楚 SNMP 消息有哪些？实现原理是什么？如果你也在研究，请不吝赐教！    SNMP 介绍">
 <meta property="og:locale" content="China">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-dd3ed6d8276a7a58.gif">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-3eed36007953bbc6.gif">
@@ -25,10 +25,10 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-a4527908bb01a371.gif">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-ba41af57e0fd6699.gif">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-7991c40b2b2f340f.gif">
-<meta property="og:updated_time" content="2019-07-06T06:56:17.067Z">
+<meta property="og:updated_time" content="2019-07-06T07:09:01.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SNMP 协议">
-<meta name="twitter:description" content="写在前面：接触 SNMP 协议相关的告警已经有些年头了，一直没有搞清楚 SNMP 消息有哪些？实现原理是什么？如果你也在研究，请不吝赐教！    SNMP 介绍  SNMP(simple network management protocol) 是因特网架构委员会 IAB 定义的一个应用层协议。SNMP 广泛用于管理和监控网络设备，大多数专业的网络设备都有 SNMP agent 代理，这些代理被激">
+<meta name="twitter:description" content="写在前面：接触 SNMP 协议相关的告警已经有些年头了，一直没有搞清楚 SNMP 消息有哪些？实现原理是什么？如果你也在研究，请不吝赐教！    SNMP 介绍">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7749898-dd3ed6d8276a7a58.gif">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
@@ -106,6 +106,7 @@
 <blockquote>
 <p><strong>SNMP 介绍</strong></p>
 </blockquote>
+<a id="more"></a>
 <p>SNMP(simple network management protocol) 是因特网架构委员会 IAB 定义的一个应用层协议。SNMP 广泛用于管理和监控网络设备，大多数专业的网络设备都有 SNMP agent 代理，这些代理被激活和配置后用于和 SNMP 管理 NMS(network management system) 网络管理系统通信。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/7749898-dd3ed6d8276a7a58.gif" alt> SNMP 代理和 SNMP 管理</p>
 <p>SNMP 作为 TCP/IP 协议一部分，SNMP 消息被封装为 UDP(user datagram protocol) 并在 IP 协议中封装和传输，传输过程如下：</p>
@@ -161,32 +162,16 @@
 <p><img src="http://upload-images.jianshu.io/upload_images/7749898-ba41af57e0fd6699.gif" alt> SNMP 上报流程</p>
 <p>SNMP inform 流程，结合 SNMP 请求和响应：a. SNMP agent 检测到设备上有资源消息产生，根据资源消息，到 mib 中找到对应 oid，通过 4)inform 上报，封装为 UDP 协议消息上报给 SNMP 管理。b. SNMP 管理收到上报信息后查询和 agent 一样的 mib 库，通过 oid 找到资源消息，然后响应给 SNMP agent 消息 acknowledgement 以确认收到消息，否则可以再次发送 inform 消息。这是比 trap 实现相比的优势。SNMP 管理之间发送 inform 消息也是相同的流程。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/7749898-7991c40b2b2f340f.gif" alt> SNMP 通知流程</p>
-<blockquote>
-<p><strong>SNMP 协议之安全</strong></p>
-</blockquote>
-<p>V1,V2 均采用明文传送，V3 采用加密传送，即 SNMPV1,V2 用抓包工具能在数据包中直接看到团体名。</p>
-<p>v1 只使用一种安全策略，团体名 (和密码相似)。Agent 能够被设置回答哪些团体名(SNMP 管理) 的查询，很容易让人截取得到团体名或密码。</p>
-<p>v2 增加了不少额外的安全。首先所有的包信息除了目的地址，其他都被加密 (含团体名和源 IP 地址)。Agent 能够解开加密包获取团体名和源 IP 地址使请求有效。</p>
-<p>v2 在安全策略演变时存在多个变种, 实际存在多个消息格式。各个 v2 变种之间的 PDU 有相同的格式，而总的消息格式又不同。</p>
-<p>v3 提供三重的安全机制：最高层是认证和私密，中间层提供认证而没有私密，底层没有任何的认证机制和私密。</p>
-<p>v3 在前面的版本上增加了安全能力和远程配置能力，v3 为消息安全和 VACM（View-based Access Control Model）引入了 USM（User-based Security Model），该结构支持同时使用不同的安全机制，接入控制，消息处理模型。有三个可能的安全级别: noAuthNoPriv, authNoPriv, 和 authPriv。noAuthNoPriv 级别指明了没有认证或私密性被执行。authNoPriv 级别指明了认证被执行但没有私密性被执行。authPriv 级别指明了认证和私密性都被执行。auth— 认证 支持 MD5 or SHA;priv— 加密 支持 DES or RSA;</p>
-<p>通用的 v3 消息格式遵循相同的消息封装格式包含一个头和一个被封装 PDU。 头部区域，被分成两个部分，一部分处理安全，和另外一部份与安全无关的部分。与安全无关部分在所有的 SNMPv3 中是相同的，而使用安全相关部分被设计成各种的 SNMPv3 安全模型，被 SNMP 内的安全模型处理。</p>
-<p><strong>了解完理论，又到了要实践的时候了！</strong></p>
-<h3 id="it-is-SNMP-show-time"><a href="#it-is-SNMP-show-time" class="headerlink" title="it is SNMP show time!!"></a>it is SNMP show time!!</h3><p>下期预播：SNMP 相关工具！</p>
-<p>有心的朋友，可能看到 SNMP 报文内容怎么没有介绍! 这部分会在实践后再进行介绍！</p>
-<p>参考资料：  </p>
-<p><a href="https://link.jianshu.com?t=https%3A%2F%2Fwww.manageengine.com%2Fnetwork-monitoring%2Fwhat-is-snmp.html" target="_blank" rel="noopener">SNMP tutorial 教程</a></p>
+<p>参考资料：<br><a href="https://link.jianshu.com?t=https%3A%2F%2Fwww.manageengine.com%2Fnetwork-monitoring%2Fwhat-is-snmp.html" target="_blank" rel="noopener">SNMP tutorial 教程</a></p>
 <p><a href="https://link.jianshu.com?t=http%3A%2F%2Fblog.51cto.com%2Ffreeloda%2F1306743" target="_blank" rel="noopener">SNMP 原理</a></p>
 <p><a href="https://link.jianshu.com?t=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FSimple_Network_Management_Protocol%3Ffrom" target="_blank" rel="noopener">SNMP wikipedia</a></p>
-<hr>
-<ol>
-<li><a href="https://www.jianshu.com/p/6a9e83aa41c0" target="_blank" rel="noopener">https://www.jianshu.com/p/6a9e83aa41c0</a></li>
-</ol>
+<p>转载于 <a href="https://www.jianshu.com/p/6a9e83aa41c0" target="_blank" rel="noopener">robot_test_boy</a></p>
+<h3 id="一帧-SNMP-数据的请求数据帧的解析"><a href="#一帧-SNMP-数据的请求数据帧的解析" class="headerlink" title="一帧 SNMP 数据的请求数据帧的解析"></a>一帧 SNMP 数据的请求数据帧的解析</h3><hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/02/SNMP-解析/" data-id="cjxr6a5q10004uyfz3i5vvc8z" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/02/SNMP-解析/" data-id="cjxsnfi430004wqfzl1rs49yg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SNMP/">SNMP</a></li></ul>
@@ -225,7 +210,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/RFC-protocol/">RFC protocol</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReadNote/">ReadNote</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/protocols/">protocols</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/RFC/">RFC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RFC-protocol/">RFC protocol</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReadNote/">ReadNote</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/protocols/">protocols</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li></ul>
     </div>
   </div>
 
@@ -235,7 +220,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C/">I2C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SNMP/">SNMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgdb/">cgdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-15/">chapter 15</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-struct/">data struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/editer/">editer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gdb-debug/">gdb debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pseudocode/">pseudocode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rb-tree/">rb tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-key/">ssh key</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/symbol/">symbol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ethernet-II/">Ethernet II</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C/">I2C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RFC/">RFC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SNMP/">SNMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgdb/">cgdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-15/">chapter 15</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-struct/">data struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/editer/">editer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gdb-debug/">gdb debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pseudocode/">pseudocode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rb-tree/">rb tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-key/">ssh key</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/symbol/">symbol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
     </div>
   </div>
 
@@ -245,7 +230,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/I2C/" style="font-size: 10px;">I2C</a> <a href="/tags/SNMP/" style="font-size: 10px;">SNMP</a> <a href="/tags/arthmetic/" style="font-size: 10px;">arthmetic</a> <a href="/tags/cgdb/" style="font-size: 10px;">cgdb</a> <a href="/tags/chapter-15/" style="font-size: 10px;">chapter 15</a> <a href="/tags/data-struct/" style="font-size: 15px;">data struct</a> <a href="/tags/editer/" style="font-size: 10px;">editer</a> <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/gdb-debug/" style="font-size: 10px;">gdb debug</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/pseudocode/" style="font-size: 10px;">pseudocode</a> <a href="/tags/rb-tree/" style="font-size: 10px;">rb tree</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ssh-key/" style="font-size: 10px;">ssh key</a> <a href="/tags/symbol/" style="font-size: 10px;">symbol</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/通信协议/" style="font-size: 10px;">通信协议</a>
+      <a href="/tags/Ethernet-II/" style="font-size: 10px;">Ethernet II</a> <a href="/tags/I2C/" style="font-size: 10px;">I2C</a> <a href="/tags/RFC/" style="font-size: 10px;">RFC</a> <a href="/tags/SNMP/" style="font-size: 10px;">SNMP</a> <a href="/tags/arthmetic/" style="font-size: 10px;">arthmetic</a> <a href="/tags/cgdb/" style="font-size: 10px;">cgdb</a> <a href="/tags/chapter-15/" style="font-size: 10px;">chapter 15</a> <a href="/tags/data-struct/" style="font-size: 15px;">data struct</a> <a href="/tags/editer/" style="font-size: 10px;">editer</a> <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/gdb-debug/" style="font-size: 10px;">gdb debug</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/pseudocode/" style="font-size: 10px;">pseudocode</a> <a href="/tags/rb-tree/" style="font-size: 10px;">rb tree</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ssh-key/" style="font-size: 10px;">ssh key</a> <a href="/tags/symbol/" style="font-size: 10px;">symbol</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/通信协议/" style="font-size: 10px;">通信协议</a>
     </div>
   </div>
 
@@ -267,6 +252,10 @@
       <ul>
         
           <li>
+            <a href="/2019/07/07/以太网帧-格式/">以太网帧的类型及其区分</a>
+          </li>
+        
+          <li>
             <a href="/2019/07/01/ubuntu-工具/">ubuntu 工具</a>
           </li>
         
@@ -280,10 +269,6 @@
         
           <li>
             <a href="/2019/06/09/十五章-动态规划/">十五章-动态规划</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/02/十三章-红黑树/">第十三章-红黑树</a>
           </li>
         
       </ul>

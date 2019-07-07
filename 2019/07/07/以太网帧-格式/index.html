@@ -5,19 +5,20 @@
   
 
   
-  <title>Archives: 2019 | 章军的博客</title>
+  <title>以太网帧的类型及其区分 | 章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Be Intering">
-<meta name="keywords" content="Bolg">
-<meta property="og:type" content="website">
-<meta property="og:title" content="章军的博客">
-<meta property="og:url" content="http://octopuscloud.top/archives/2019/index.html">
+  <meta name="description" content="以太网帧的数据格式以太网网帧有四种类型 ，分别为 Ethernet I, Ethernet II, NoveIIEther, EtherSNAP 。">
+<meta name="keywords" content="Ethernet II,RFC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以太网帧的类型及其区分">
+<meta property="og:url" content="http://octopuscloud.top/2019/07/07/以太网帧-格式/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="Be Intering">
+<meta property="og:description" content="以太网帧的数据格式以太网网帧有四种类型 ，分别为 Ethernet I, Ethernet II, NoveIIEther, EtherSNAP 。">
 <meta property="og:locale" content="China">
+<meta property="og:updated_time" content="2019-07-07T07:44:00.003Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="章军的博客">
-<meta name="twitter:description" content="Be Intering">
+<meta name="twitter:title" content="以太网帧的类型及其区分">
+<meta name="twitter:description" content="以太网帧的数据格式以太网网帧有四种类型 ，分别为 Ethernet I, Ethernet II, NoveIIEther, EtherSNAP 。">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -64,216 +65,104 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/07/07/以太网帧-格式/" class="archive-article-date">
-  <time datetime="2019-07-07T06:47:10.000Z" itemprop="datePublished">Jul 7</time>
+        <section id="main"><article id="post-以太网帧-格式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/07/以太网帧-格式/" class="article-date">
+  <time datetime="2019-07-07T06:47:10.000Z" itemprop="datePublished">2019-07-07</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RFC/">RFC</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/07/以太网帧-格式/">以太网帧的类型及其区分</a>
+    <h1 class="article-title" itemprop="name">
+      以太网帧的类型及其区分
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/07/01/ubuntu-工具/" class="archive-article-date">
-  <time datetime="2019-07-01T01:59:49.000Z" itemprop="datePublished">Jul 1</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/01/ubuntu-工具/">ubuntu 工具</a>
-    </h1>
-  
+        <h1 id="以太网帧的数据格式"><a href="#以太网帧的数据格式" class="headerlink" title="以太网帧的数据格式"></a>以太网帧的数据格式</h1><pre><code>以太网网帧有四种类型 ，分别为 Ethernet I, Ethernet II, NoveIIEther, EtherSNAP 。  
+</code></pre><a id="more"></a>
+<h2 id="802-3-帧格式"><a href="#802-3-帧格式" class="headerlink" title="802.3 帧格式"></a>802.3 帧格式</h2><pre><code>| D-MAC  | S-MAC  | Len    | DSAP   | SSAP   | CNTL   | DATA         | CRC    |
+| 6-BYTE | 6-BYTE | 2-BYTE | 1-BYTE | 1-BYTE | 1-BYTE | 43~1497 BYTE | 4-BYTE |
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/06/30/十二章-二叉搜索树/" class="archive-article-date">
-  <time datetime="2019-06-30T05:59:15.856Z" itemprop="datePublished">Jun 30</time>
-</a>
+D-MAC: 目标 MAC 地址 。
+S-MAC: 源 MAC 地址 。
+Len : 数据段包含数据的长度 。长度小于 1500 。
+DSAP: destination service access point ，SAP 表示上层的帧协议 。
+SSAP: source destnation service acccess point 。
+CNTL: 控制字节
+DATA: 数据帧包含的真实数据 。
+CRC:  检验数据 。
+</code></pre><h2 id="Ethernet-II"><a href="#Ethernet-II" class="headerlink" title="Ethernet II"></a>Ethernet II</h2><pre><code>| D-MAC  | S-MAC  | TYPE    | DATA         | CRC    |
+| 6-BYTE | 6-BYTE | 2-BYTE  | 43~1497 BYTE | 4-BYTE |
+
+D-MAC: 目标 MAC 地址 。
+S-MAC: 源 MAC 地址 。
+TYPE:  帧的类型 。(大于0x0600)
+Ehternet II 的长度在 46~1500 之间 。
+</code></pre><h2 id="Nove-II-Ethernet"><a href="#Nove-II-Ethernet" class="headerlink" title="Nove II Ethernet"></a>Nove II Ethernet</h2><pre><code>| D-MAC  | S-MAC  | Len    |        |        | DATA         | CRC    |
+| 6-BYTE | 6-BYTE | 2-BYTE | 0xFFFF |  0xFFFF| 44~1498 BYTE | 4-BYTE |
+
+D-MAC: 目标 MAC 地址 。
+S-MAC: 源 MAC 地址 。
+Len:   数据的长度在 44~1498 之间 。
+0xFFFF, 0xFFFF, 这两个数据标示此帧数据为 NoveII Ethernet 类型 。
+</code></pre><h2 id="EhternetSNAP"><a href="#EhternetSNAP" class="headerlink" title="EhternetSNAP"></a>EhternetSNAP</h2><pre><code>| D-MAC    | S-MAC   | LEN    | DSAP   | SSAP   | CNTL   | Org Code | TYPE   | DATA   | CRC    |
+| 6-BYTE   | 6-BYTE  | 2-BYTE | 1-BYTE | 1-BYTE | 1-BYTE |   3-BYTE | 2-BYTE | 38-1492| 4-BYTE |
+
+D-MAC: 目标 MAC 地址 。
+S-MAC: 源 MAC 地址 。
+Len : 数据段包含数据的长度 。长度小于 1500 。
+DSAP: destination service access point ，SAP 表示上层的帧协议 。
+SSAP: source destnation service acccess point 。
+CNTL: 控制字节
+Org Code: 厂商 ID 
+TYPE: 和 Ethernet II 的 type 域相同 。
+</code></pre><h2 id="四种以太网帧的区分"><a href="#四种以太网帧的区分" class="headerlink" title="四种以太网帧的区分"></a>四种以太网帧的区分</h2><pre><code>1. 紧跟 S-MAC 后的两字节数据赋值给给一个短整型数据(short) TypeOrLen 。 如果 TypeOrLen 大于 0x0600 ，那么这和
+   两字节数据被识别为类型 ，那么此帧数据被认为是 Enternet II 以太网帧 。如果 TypeOrLen 小于 0x0600 ，那和这两
+   字节数据被识别为长度 。
+
+2. 检查 TypeOrLen 后面四个字节 ，将四个字节赋值给一个长整型数据(int) IsNoveII ，如果 IsNoveII 等于 0xFFFFFFFF ，
+   那么四个字节被识别为 NoveIIEnterh 帧类型的标示字节 ，此帧为 NoveIIEthernet 帧 。
+
+3. 如果 IsNoveII 不等于 0xFFFFFFFF ，那么我们检查 TypeOrLen 后面的 3~6 字节数据 ，如果这三个字节为 0 或者等于
+   源 MAC 地址的前三位 ，则这个数据被识别为 Org Code ，此帧数据被认为是 EthernetSNAP 。否则被认为是 802.3 
+</code></pre>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/30/十二章-二叉搜索树/">算法导论-第十二章 二叉查找树</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/06/25/I2C-协议/" class="archive-article-date">
-  <time datetime="2019-06-25T08:21:40.000Z" itemprop="datePublished">Jun 25</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/07/07/以太网帧-格式/" data-id="cjxsnfi4c000fwqfzid6uivkx" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/25/I2C-协议/">I2C - 协议</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/06/09/十五章-动态规划/" class="archive-article-date">
-  <time datetime="2019-06-09T08:11:19.000Z" itemprop="datePublished">Jun 9</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/09/十五章-动态规划/">十五章-动态规划</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ethernet-II/">Ethernet II</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RFC/">RFC</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/01/ubuntu-工具/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ubuntu 工具</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/06/02/十三章-红黑树/" class="archive-article-date">
-  <time datetime="2019-06-02T06:38:44.000Z" itemprop="datePublished">Jun 2</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/02/十三章-红黑树/">第十三章-红黑树</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/24/gdb-基本用法/" class="archive-article-date">
-  <time datetime="2019-05-24T01:57:23.000Z" itemprop="datePublished">May 24</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/24/gdb-基本用法/">gdb-基本用法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/28/十一章-散列表/" class="archive-article-date">
-  <time datetime="2019-04-28T07:21:13.000Z" itemprop="datePublished">Apr 28</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/28/十一章-散列表/">第十一章-散列表</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/21/十章－数据结构/" class="archive-article-date">
-  <time datetime="2019-04-21T05:15:37.000Z" itemprop="datePublished">Apr 21</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/21/十章－数据结构/">第十章－基本的数据结构</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/14/八章-排序/" class="archive-article-date">
-  <time datetime="2019-04-14T06:13:54.000Z" itemprop="datePublished">Apr 14</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/14/八章-排序/">算法导论-第八章</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         
