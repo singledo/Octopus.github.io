@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-a4527908bb01a371.gif">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-ba41af57e0fd6699.gif">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7749898-7991c40b2b2f340f.gif">
-<meta property="og:updated_time" content="2019-07-06T07:09:01.756Z">
+<meta property="og:updated_time" content="2019-07-20T05:34:41.530Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SNMP 协议">
 <meta name="twitter:description" content="写在前面：接触 SNMP 协议相关的告警已经有些年头了，一直没有搞清楚 SNMP 消息有哪些？实现原理是什么？如果你也在研究，请不吝赐教！    SNMP 介绍">
@@ -166,12 +166,94 @@
 <p><a href="https://link.jianshu.com?t=http%3A%2F%2Fblog.51cto.com%2Ffreeloda%2F1306743" target="_blank" rel="noopener">SNMP 原理</a></p>
 <p><a href="https://link.jianshu.com?t=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FSimple_Network_Management_Protocol%3Ffrom" target="_blank" rel="noopener">SNMP wikipedia</a></p>
 <p>转载于 <a href="https://www.jianshu.com/p/6a9e83aa41c0" target="_blank" rel="noopener">robot_test_boy</a></p>
-<h3 id="一帧-SNMP-数据的请求数据帧的解析"><a href="#一帧-SNMP-数据的请求数据帧的解析" class="headerlink" title="一帧 SNMP 数据的请求数据帧的解析"></a>一帧 SNMP 数据的请求数据帧的解析</h3><hr>
+<h3 id="一帧-SNMP-数据的请求数据帧的解析"><a href="#一帧-SNMP-数据的请求数据帧的解析" class="headerlink" title="一帧 SNMP 数据的请求数据帧的解析"></a>一帧 SNMP 数据的请求数据帧的解析</h3><pre><code>snmp 请求的帧数据如下:
+
+0000   00 01 02 03 04 05 1c 1b 0d 5b 98 9b 08 00 45 00   .........[....E.
+0010   00 4b 4a 93 00 00 40 11 00 00 c0 a8 0a cc c0 a8   .KJ...@...À¨.ÌÀ¨
+0020   0a 42 c4 eb 00 a1 00 37 96 a7 30 2d 02 01 01 04   .BÄë.¡.7.§0-....
+0030   06 50 55 42 4c 49 43 a0 20 02 02 1d 69 02 01 00   .PUBLIC  ...i...
+0040   02 01 00 30 14 30 12 06 0e 2b 06 01 04 01 81 e1   ...0.0...+.....á
+0050   42 02 16 12 01 03 00 05 00                        B........
+
+Ethernet II 报文格式:
+
+0000   00 01 02 03 04 05 1c 1b 0d 5b 98 9b 08 00         .........[....E.
+
+| D-MAC | S-MAC | Type |    Data   | CRC |
+| 6-B   | 6-B   | 2-B  |  43~1497  |     |
+
+D-MAC(Desination MAC): 00 01 02 03 04 05 , 0x00 ~ 0x05 。
+S-MAC(Source MAC):     1c 1b 0d 5d 98 9b , 0x06 ~ 0x0b 。
+Type: 帧类型,  08 00 0x0c ~ 0x0d (0x0800 代表 IP 帧) .
+Data: 数据域，IP 报文格式在此域中 。
+
+
+IP 报文是　Ethernet II 的一种，其中的 Type 为　0x0800 。IP 报文包含于 Data 中　。
+
+0000                                             45 00   .........[....E.
+0010   00 4b 4a 93 00 00 40 11 00 00 c0 a8 0a cc c0 a8   .KJ...@...À¨.ÌÀ¨
+0020   0a 42                                             .BÄë.¡.7.§0-....
+
+UDP 报文格式(for head)
+
+| ver&amp;len | diff server | T-len | ID  | Flag | TTL | protocol | Head Checksum | S-IP | D-IP | Data |
+| 1-B     | 1-B         | 2-B   | 2-B | 2-B  | 1-B | 1-B      | 2-B           | 6-B  | 6-B  |      |
+
+Ver&amp;len : 前面 4bit 表示version , 后面 4bit 表示头部长度 。
+differe service: 区分服务
+T-len: ip报文的总长度，包含报文头和报文数据段。
+ID: 唯一标示主机发送的分数据包 。通常每发送一段数据加一 。
+flag: R, DF, MF 三位。目前只有后两位有效，DF 表示不分片 ，MF为1 表示&quot;跟多的片&quot;，为0表示这是
+      最后一段。
+TTL: 存活时间 。
+protocol: TCP为6，UDP为17，ICMP 为1， IGMP 为2.
+head check sum: 首部校验和。
+S-IP: 源 IP .
+D-IP: 目标 IP.
+
+UDP 报文格式 (for data)
+
+0020         c4 eb 00 a1 00 37 96 a7                     .BÄë.¡.7.§0-....
+
+| S-Port | D-Port | Length | Check Sum | SNMP Filed |
+| 2-B    | 2-B    | 2-B    | 2-B       |            |
+
+S-Port: source port
+D-Port: destination port
+Lenght: the length of UDP data
+check sum : udp check sum
+SNMP filed: snmp 的数据域
+
+snmp 包含于 UDP 数据段
+
+0020                                 30 2d 02 01 01 04   .BÄë.¡.7.§0-....
+0030   06 50 55 42 4c 49 43 a0 20 02 02 1d 69 02 01 00   .PUBLIC  ...i...
+0040   02 01 00 30 14 30 12 06 0e 2b 06 01 04 01 81 e1   ...0.0...+.....á
+0050   42 02 16 12 01 03 00 05 00                        B........
+
+30 - 表示 snmp 报文
+2d - 消息长度为 0x2d
+02 01 - 表示 INTEGER 类型 
+| version | Type | commumtily len | communtiy | snmp data |
+| 1-B     | 1-B  | 1-B            |           |           |
+
+version: snmp 的版本，从 0　开始计数 
+Type: 参数类型
+communtiy len : communtiy 的长度
+communtiy: 共同体，这个需要和Agent上的communtuiy 相同 
+Lenght: snmp 长度
+
+snmp request data
+
+| type | len | Request Id | error status | error index | seq length | var len | 
+
+SNMP Get Next 请求的回复决定的，下一次的 Get Next 请求的 OID 号.
+</code></pre><hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/03/02/SNMP-解析/" data-id="cjxsnfi430004wqfzl1rs49yg" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/03/02/SNMP-解析/" data-id="cjyzhkrqc0006u1fzjnq767it" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SNMP/">SNMP</a></li></ul>
@@ -239,7 +321,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -252,6 +334,14 @@
       <ul>
         
           <li>
+            <a href="/2019/08/06/SegmentationFault-Debug/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/04/IPV6/">IPV6</a>
+          </li>
+        
+          <li>
             <a href="/2019/07/07/以太网帧-格式/">以太网帧的类型及其区分</a>
           </li>
         
@@ -261,14 +351,6 @@
         
           <li>
             <a href="/2019/06/30/十二章-二叉搜索树/">算法导论-第十二章 二叉查找树</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/25/I2C-协议/">I2C - 协议</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/09/十五章-动态规划/">十五章-动态规划</a>
           </li>
         
       </ul>

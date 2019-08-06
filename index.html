@@ -66,6 +66,140 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-SegmentationFault-Debug" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/06/SegmentationFault-Debug/" class="article-date">
+  <time datetime="2019-08-06T07:13:38.472Z" itemprop="datePublished">2019-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本文由 <a href="http://ksria.com/simpread/" target="_blank" rel="noopener">简悦 SimpRead</a> 转码， 原文地址 <a href="http://www.wtango.com/%E6%AE%B5%E9%94%99%E8%AF%AFsegmentation-fault%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">http://www.wtango.com/%E6%AE%B5%E9%94%99%E8%AF%AFsegmentation-fault%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/</a></p>
+</blockquote>
+<h4 id="1-什么是段错误"><a href="#1-什么是段错误" class="headerlink" title="1. 什么是段错误"></a>1. 什么是段错误<a href="#1-什么是段错误"></a></h4><p>可能每个程序员在 Linux 环境下使用 C/C++ 编程时都曾遇到过 “段错误”(Segmentation fault)，段错误是由于内存管理单元(负责支持虚拟内存的硬件) 的异常所导致，而该异常则通常是由于解除引用一个未初始化或非法的指针引起的。产生段错误的地方有可能在自己编写的代码中，也有可能出现在库函数中(传递一个非法指针给库函数)。令人很不爽的是，段错误除了只有一个简单的错误信息之外，没有任何额外的提示，并且有的段错误不是每次都会出现。</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/08/06/SegmentationFault-Debug/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/08/06/SegmentationFault-Debug/" data-id="cjyzhkrqb0005u1fzhcoecysl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-IPV6" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/04/IPV6/" class="article-date">
+  <time datetime="2019-08-04T03:47:01.000Z" itemprop="datePublished">2019-08-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/04/IPV6/">IPV6</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="IPv6-的概述"><a href="#IPv6-的概述" class="headerlink" title="IPv6 的概述"></a>IPv6 的概述</h1><pre><code>ipv6 采用 128 bit 的地址长度　。来代替现在地址资源即将枯竭的　ipv4 。
+</code></pre><h1 id="2-IPv6-地址"><a href="#2-IPv6-地址" class="headerlink" title="2 IPv6 地址"></a>2 IPv6 地址</h1><pre><code>ipv6 采用　128 bit 的地址长度 , 格式为 
+</code></pre><h2 id="2-1-IPv6-的地址类型"><a href="#2-1-IPv6-的地址类型" class="headerlink" title="2.1　IPv6 的地址类型"></a>2.1　IPv6 的地址类型</h2><pre><code>IPv6 地址分可以分为三类: 单播 (unicast) , 任播 (Anycast)　, 多播 (Multicast) .
+单播: 发送给指定的代表接口的单播地址 。
+任播: 发送给任播地址中距离最近的那个　。
+多播: 发送给多播地址代表的所有地址　。
+ipv6 中用多播来替代　ipv4 中的广播 。
+</code></pre><h2 id="2-2-IPv6-写法及其前缀格式"><a href="#2-2-IPv6-写法及其前缀格式" class="headerlink" title="2.2 IPv6 写法及其前缀格式"></a>2.2 IPv6 写法及其前缀格式</h2><pre><code>a. XX:XX:XX:XX:XX:XX:XX:XX , 其中 XX 代表这一个十六进制的数 , 例如 :
+    FEDC:BA98:7654:3210:FEDC:BA98:7654:3210 ,
+    1080:0:0:0:8:800:200C:417A
+
+b. 压缩 0 的写法 , 用 :: 代表多个　16 进制的 0 , 例如 :
+    压缩前 :
+    1080:0:0:0:8:800:200C:417A  a unicast address
+    FF01:0:0:0:0:0:0:101        a multicast address
+    0:0:0:0:0:0:0:1             the loopback address
+    0:0:0:0:0:0:0:0             the unspecified addresses
+
+    压缩后 :
+    1080::8:800:200C:417A       a unicast address
+    FF01::101                   a multicast address
+    ::1                         the loopback address
+    ::                          the unspecified addresses
+
+c. ipv6 和　ipv4 的压缩０的混合写法 , 例如:
+    压缩前 :
+    0:0:0:0:0:0:13.1.68.3
+    0:0:0:0:0:FFFF:129.144.52.38
+
+    压缩后 :
+    ::13.1.68.3
+    ::FFFF:129.144.52.38
+
+前缀格式为 ipv6 address/prefix, 例如:
+    12AB:0000:0000:CD30:0000:0000:0000:0000/60
+    12AB::CD30:0:0:0:0/60
+    12AB:0:0:CD30::/60
+</code></pre><h2 id="2-3-IPv6-的单播地址的格式"><a href="#2-3-IPv6-的单播地址的格式" class="headerlink" title="2.3 IPv6 的单播地址的格式"></a>2.3 IPv6 的单播地址的格式</h2><pre><code>IPv6 的用连续的位掩码来聚合 , 类似于 IPv4 的　CIDR . IPv6 的单播地址有多个格式 :
+1. global aggregatable global unicast address
+2. the NSAP address 
+3. the IPX hierarchical address
+4. the site-local address
+5. the link-local address
+6.  the IPv4-capable host address
+
+IPv6 的节点可以根据节点所扮演的角色来决定对 IPv6 地址的内部结构来进行理解 , 最低的限度下 , 可以认为 IPv6 地址没有内部结构 :
+|                         128 bits                                |
++-----------------------------------------------------------------+
+|                           node address                          |
++-----------------------------------------------------------------+
+
+接口标识码有 64 bit 长度来组成 IEEE-EUI64 格式 , 格式的前三个的八位字节如下图:
+
++----+----+----+----+----+----+
+|cccc|ccug|cccc|cccc|cccc|cccc|
++----+----+----+----+----+----+
+u: u=1, 表示全球范围, u=0, 表示本地范围 .
+g: g=1, 表示个人， u=0, 表示组织范围
+c:  company_id 
+
+ 0:0:0:0:0:0:0:0 为未指定地址,  0:0:0:0:0:0:0:1 回环地址. 
+</code></pre><h3 id="2-3-1-嵌入-IPv4-的-IPv6-的地址"><a href="#2-3-1-嵌入-IPv4-的-IPv6-的地址" class="headerlink" title="2.3.1 嵌入 IPv4 的 IPv6 的地址"></a>2.3.1 嵌入 IPv4 的 IPv6 的地址</h3><h1 id="3-ICMPv6"><a href="#3-ICMPv6" class="headerlink" title="3 ICMPv6"></a>3 ICMPv6</h1><p>###　Route Advertisement</p>
+<h3 id="Neighbour-Discover-Protocol"><a href="#Neighbour-Discover-Protocol" class="headerlink" title="Neighbour Discover Protocol"></a>Neighbour Discover Protocol</h3><hr>
+<p>1.<a href="https://tools.ietf.org/html/rfc2373" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc2373</a><br>2.<a href="https://tools.ietf.org/html/rfc2460#ref-ADDRARCH" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc2460#ref-ADDRARCH</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/08/04/IPV6/" data-id="cjyzhkrq90004u1fzpujoi11o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-以太网帧-格式" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/07/以太网帧-格式/" class="article-date">
@@ -102,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/07/07/以太网帧-格式/" data-id="cjxsnfi4c000fwqfzid6uivkx" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/07/07/以太网帧-格式/" data-id="cjyzhkrqt000vu1fzd0vtcgah" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ethernet-II/">Ethernet II</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RFC/">RFC</a></li></ul>
@@ -149,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/07/01/ubuntu-工具/" data-id="cjxsnfi49000awqfzkolkusg3" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/07/01/ubuntu-工具/" data-id="cjyzhkrqi000fu1fzsgfgbe8o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li></ul>
@@ -196,7 +330,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/30/十二章-二叉搜索树/" data-id="cjxsnfi4w0016wqfz0eivgerc" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/30/十二章-二叉搜索树/" data-id="cjyzhkrr8001cu1fz9ava4q9c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-struct/">data struct</a></li></ul>
@@ -243,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/25/I2C-协议/" data-id="cjxsnfi3y0001wqfz6rjvv8jx" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/25/I2C-协议/" data-id="cjyzhkrq40001u1fzzarfeuj8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/I2C/">I2C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
@@ -290,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/09/十五章-动态规划/" data-id="cjxsnfi4s0011wqfzqxytk2e4" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/09/十五章-动态规划/" data-id="cjyzhkrr30016u1fz0qieu7io" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chapter-15/">chapter 15</a></li></ul>
@@ -337,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/02/十三章-红黑树/" data-id="cjxsnfi4u0012wqfz0iimb5pd" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/02/十三章-红黑树/" data-id="cjyzhkrr50018u1fzz9j2w9ch" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rb-tree/">rb tree</a></li></ul>
@@ -384,7 +518,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/05/24/gdb-基本用法/" data-id="cjxsnfi470006wqfzz8mo4mo6" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/05/24/gdb-基本用法/" data-id="cjyzhkrqg000bu1fzzu4ll4kl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cgdb/">cgdb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gdb-debug/">gdb debug</a></li></ul>
@@ -434,100 +568,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/04/28/十一章-散列表/" data-id="cjxsnfi4q000xwqfzz5h97mev" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/04/28/十一章-散列表/" data-id="cjyzhkrr10012u1fztc3jzn4s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hash/">hash</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-十章－数据结构" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/21/十章－数据结构/" class="article-date">
-  <time datetime="2019-04-21T05:15:37.000Z" itemprop="datePublished">2019-04-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/21/十章－数据结构/">第十章－基本的数据结构</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="第十章-—-基本的数据结构"><a href="#第十章-—-基本的数据结构" class="headerlink" title="第十章 — 基本的数据结构"></a>第十章 — 基本的数据结构</h1><h2 id="动态集合的元素"><a href="#动态集合的元素" class="headerlink" title="动态集合的元素"></a>动态集合的元素</h2>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/21/十章－数据结构/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/04/21/十章－数据结构/" data-id="cjxsnfi510017wqfzdhtkyzh5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-struct/">data struct</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-八章-排序" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/14/八章-排序/" class="article-date">
-  <time datetime="2019-04-14T06:13:54.000Z" itemprop="datePublished">2019-04-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ReadNote/">ReadNote</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/八章-排序/">算法导论-第八章</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="决策树模型"><a href="#决策树模型" class="headerlink" title="决策树模型"></a>决策树模型</h2>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/14/八章-排序/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/04/14/八章-排序/" data-id="cjxsnfi4n000twqfzrodk0agg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sort/">sort</a></li></ul>
 
     </footer>
   </div>
@@ -580,7 +624,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -593,6 +637,14 @@
       <ul>
         
           <li>
+            <a href="/2019/08/06/SegmentationFault-Debug/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/04/IPV6/">IPV6</a>
+          </li>
+        
+          <li>
             <a href="/2019/07/07/以太网帧-格式/">以太网帧的类型及其区分</a>
           </li>
         
@@ -602,14 +654,6 @@
         
           <li>
             <a href="/2019/06/30/十二章-二叉搜索树/">算法导论-第十二章 二叉查找树</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/25/I2C-协议/">I2C - 协议</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/09/十五章-动态规划/">十五章-动态规划</a>
           </li>
         
       </ul>
