@@ -5,19 +5,20 @@
   
 
   
-  <title>Tag: I2C | 章军的博客</title>
+  <title>linux 修改库文件寻找默认路径 | 章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Be Intering">
-<meta name="keywords" content="Bolg">
-<meta property="og:type" content="website">
-<meta property="og:title" content="章军的博客">
-<meta property="og:url" content="http://octopuscloud.top/tags/I2C/index.html">
+  <meta name="description" content="linux 修改默认的库文件寻找路径在 /etc/ld.so.conf.d/ 创建一个文件 &amp;gt; sudo touch synergy.conf 在新建的 conf 文件中添加库文件路径&amp;gt; echo &amp;quot;so file path&amp;quot; &amp;gt; new.conf 重载路径&amp;gt; sudo ldconfig">
+<meta name="keywords" content="linux,defalt path for so file">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux 修改库文件寻找默认路径">
+<meta property="og:url" content="http://octopuscloud.top/2019/08/12/linux-修改库文件寻找默认路径/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="Be Intering">
+<meta property="og:description" content="linux 修改默认的库文件寻找路径在 /etc/ld.so.conf.d/ 创建一个文件 &amp;gt; sudo touch synergy.conf 在新建的 conf 文件中添加库文件路径&amp;gt; echo &amp;quot;so file path&amp;quot; &amp;gt; new.conf 重载路径&amp;gt; sudo ldconfig">
 <meta property="og:locale" content="China">
+<meta property="og:updated_time" content="2019-08-12T01:33:33.459Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="章军的博客">
-<meta name="twitter:description" content="Be Intering">
+<meta name="twitter:title" content="linux 修改库文件寻找默认路径">
+<meta name="twitter:description" content="linux 修改默认的库文件寻找路径在 /etc/ld.so.conf.d/ 创建一个文件 &amp;gt; sudo touch synergy.conf 在新建的 conf 文件中添加库文件路径&amp;gt; echo &amp;quot;so file path&amp;quot; &amp;gt; new.conf 重载路径&amp;gt; sudo ldconfig">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -64,40 +65,57 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/06/25/I2C-协议/" class="archive-article-date">
-  <time datetime="2019-06-25T08:21:40.000Z" itemprop="datePublished">Jun 25</time>
+        <section id="main"><article id="post-linux-修改库文件寻找默认路径" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/12/linux-修改库文件寻找默认路径/" class="article-date">
+  <time datetime="2019-08-12T01:16:54.000Z" itemprop="datePublished">2019-08-12</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/25/I2C-协议/">I2C - 协议</a>
+    <h1 class="article-title" itemprop="name">
+      linux 修改库文件寻找默认路径
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="linux-修改默认的库文件寻找路径"><a href="#linux-修改默认的库文件寻找路径" class="headerlink" title="linux 修改默认的库文件寻找路径"></a>linux 修改默认的库文件寻找路径</h1><pre><code>在 /etc/ld.so.conf.d/ 创建一个文件
+&gt; sudo touch synergy.conf
+</code></pre><h1 id="在新建的-conf-文件中添加库文件路径"><a href="#在新建的-conf-文件中添加库文件路径" class="headerlink" title="在新建的 conf 文件中添加库文件路径"></a>在新建的 conf 文件中添加库文件路径</h1><pre><code>&gt; echo &quot;so file path&quot; &gt; new.conf
+</code></pre><h1 id="重载路径"><a href="#重载路径" class="headerlink" title="重载路径"></a>重载路径</h1><pre><code>&gt; sudo ldconfig 
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/08/12/linux-修改库文件寻找默认路径/" data-id="cjz7q4doo000fwifz6wzfn6re" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/defalt-path-for-so-file/">defalt path for so file</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/12/deb-解压-修改-压缩/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">deb 解压,修改,压缩</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         

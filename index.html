@@ -66,6 +66,91 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-linux-修改库文件寻找默认路径" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/12/linux-修改库文件寻找默认路径/" class="article-date">
+  <time datetime="2019-08-12T01:16:54.000Z" itemprop="datePublished">2019-08-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/12/linux-修改库文件寻找默认路径/">linux 修改库文件寻找默认路径</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="linux-修改默认的库文件寻找路径"><a href="#linux-修改默认的库文件寻找路径" class="headerlink" title="linux 修改默认的库文件寻找路径"></a>linux 修改默认的库文件寻找路径</h1><pre><code>在 /etc/ld.so.conf.d/ 创建一个文件
+&gt; sudo touch synergy.conf
+</code></pre><h1 id="在新建的-conf-文件中添加库文件路径"><a href="#在新建的-conf-文件中添加库文件路径" class="headerlink" title="在新建的 conf 文件中添加库文件路径"></a>在新建的 conf 文件中添加库文件路径</h1><pre><code>&gt; echo &quot;so file path&quot; &gt; new.conf
+</code></pre><h1 id="重载路径"><a href="#重载路径" class="headerlink" title="重载路径"></a>重载路径</h1><pre><code>&gt; sudo ldconfig 
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/08/12/linux-修改库文件寻找默认路径/" data-id="cjz7q4doo000fwifz6wzfn6re" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/defalt-path-for-so-file/">defalt path for so file</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-deb-解压-修改-压缩" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/12/deb-解压-修改-压缩/" class="article-date">
+  <time datetime="2019-08-12T01:15:59.000Z" itemprop="datePublished">2019-08-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/12/deb-解压-修改-压缩/">deb 解压,修改,压缩</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="deb-文件的解压"><a href="#deb-文件的解压" class="headerlink" title="deb 文件的解压"></a>deb 文件的解压</h1><p>   deb 文件的解压<br>    &gt; sudo dpkg -x file.deb extract<br>    &gt; sudo dpkg -e file.deb extract/DEBIAN</p>
+<h1 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h1><p>   修改依赖文件<br>    &gt; vim extract/DEBIAN/control</p>
+<h1 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h1><p>   deb 文件的压缩<br>    &gt; sudo dpkg -b extract/build</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><pre><code>deb 文件的安装
+&gt; sudo dpkg -i file.deb
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/08/12/deb-解压-修改-压缩/" data-id="cjz7q4dos000hwifzv6y4fgmy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deb/">deb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-SegmentationFault-Debug" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/08/06/SegmentationFault-Debug/" class="article-date">
@@ -90,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/08/06/SegmentationFault-Debug/" data-id="cjyzhkrqb0005u1fzhcoecysl" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/08/06/SegmentationFault-Debug/" data-id="cjz7q4dog000awifzpmm0osm9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -124,73 +209,16 @@
       
         <h1 id="IPv6-的概述"><a href="#IPv6-的概述" class="headerlink" title="IPv6 的概述"></a>IPv6 的概述</h1><pre><code>ipv6 采用 128 bit 的地址长度　。来代替现在地址资源即将枯竭的　ipv4 。
 </code></pre><h1 id="2-IPv6-地址"><a href="#2-IPv6-地址" class="headerlink" title="2 IPv6 地址"></a>2 IPv6 地址</h1><pre><code>ipv6 采用　128 bit 的地址长度 , 格式为 
-</code></pre><h2 id="2-1-IPv6-的地址类型"><a href="#2-1-IPv6-的地址类型" class="headerlink" title="2.1　IPv6 的地址类型"></a>2.1　IPv6 的地址类型</h2><pre><code>IPv6 地址分可以分为三类: 单播 (unicast) , 任播 (Anycast)　, 多播 (Multicast) .
-单播: 发送给指定的代表接口的单播地址 。
-任播: 发送给任播地址中距离最近的那个　。
-多播: 发送给多播地址代表的所有地址　。
-ipv6 中用多播来替代　ipv4 中的广播 。
-</code></pre><h2 id="2-2-IPv6-写法及其前缀格式"><a href="#2-2-IPv6-写法及其前缀格式" class="headerlink" title="2.2 IPv6 写法及其前缀格式"></a>2.2 IPv6 写法及其前缀格式</h2><pre><code>a. XX:XX:XX:XX:XX:XX:XX:XX , 其中 XX 代表这一个十六进制的数 , 例如 :
-    FEDC:BA98:7654:3210:FEDC:BA98:7654:3210 ,
-    1080:0:0:0:8:800:200C:417A
-
-b. 压缩 0 的写法 , 用 :: 代表多个　16 进制的 0 , 例如 :
-    压缩前 :
-    1080:0:0:0:8:800:200C:417A  a unicast address
-    FF01:0:0:0:0:0:0:101        a multicast address
-    0:0:0:0:0:0:0:1             the loopback address
-    0:0:0:0:0:0:0:0             the unspecified addresses
-
-    压缩后 :
-    1080::8:800:200C:417A       a unicast address
-    FF01::101                   a multicast address
-    ::1                         the loopback address
-    ::                          the unspecified addresses
-
-c. ipv6 和　ipv4 的压缩０的混合写法 , 例如:
-    压缩前 :
-    0:0:0:0:0:0:13.1.68.3
-    0:0:0:0:0:FFFF:129.144.52.38
-
-    压缩后 :
-    ::13.1.68.3
-    ::FFFF:129.144.52.38
-
-前缀格式为 ipv6 address/prefix, 例如:
-    12AB:0000:0000:CD30:0000:0000:0000:0000/60
-    12AB::CD30:0:0:0:0/60
-    12AB:0:0:CD30::/60
-</code></pre><h2 id="2-3-IPv6-的单播地址的格式"><a href="#2-3-IPv6-的单播地址的格式" class="headerlink" title="2.3 IPv6 的单播地址的格式"></a>2.3 IPv6 的单播地址的格式</h2><pre><code>IPv6 的用连续的位掩码来聚合 , 类似于 IPv4 的　CIDR . IPv6 的单播地址有多个格式 :
-1. global aggregatable global unicast address
-2. the NSAP address 
-3. the IPX hierarchical address
-4. the site-local address
-5. the link-local address
-6.  the IPv4-capable host address
-
-IPv6 的节点可以根据节点所扮演的角色来决定对 IPv6 地址的内部结构来进行理解 , 最低的限度下 , 可以认为 IPv6 地址没有内部结构 :
-|                         128 bits                                |
-+-----------------------------------------------------------------+
-|                           node address                          |
-+-----------------------------------------------------------------+
-
-接口标识码有 64 bit 长度来组成 IEEE-EUI64 格式 , 格式的前三个的八位字节如下图:
-
-+----+----+----+----+----+----+
-|cccc|ccug|cccc|cccc|cccc|cccc|
-+----+----+----+----+----+----+
-u: u=1, 表示全球范围, u=0, 表示本地范围 .
-g: g=1, 表示个人， u=0, 表示组织范围
-c:  company_id 
-
- 0:0:0:0:0:0:0:0 为未指定地址,  0:0:0:0:0:0:0:1 回环地址. 
-</code></pre><h3 id="2-3-1-嵌入-IPv4-的-IPv6-的地址"><a href="#2-3-1-嵌入-IPv4-的-IPv6-的地址" class="headerlink" title="2.3.1 嵌入 IPv4 的 IPv6 的地址"></a>2.3.1 嵌入 IPv4 的 IPv6 的地址</h3><h1 id="3-ICMPv6"><a href="#3-ICMPv6" class="headerlink" title="3 ICMPv6"></a>3 ICMPv6</h1><p>###　Route Advertisement</p>
-<h3 id="Neighbour-Discover-Protocol"><a href="#Neighbour-Discover-Protocol" class="headerlink" title="Neighbour Discover Protocol"></a>Neighbour Discover Protocol</h3><hr>
-<p>1.<a href="https://tools.ietf.org/html/rfc2373" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc2373</a><br>2.<a href="https://tools.ietf.org/html/rfc2460#ref-ADDRARCH" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc2460#ref-ADDRARCH</a></p>
-
+</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/2019/08/04/IPV6/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/08/04/IPV6/" data-id="cjyzhkrq90004u1fzpujoi11o" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/08/04/IPV6/" data-id="cjz7q4do80006wifz8kr8h0wo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -236,7 +264,7 @@ c:  company_id
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/07/07/以太网帧-格式/" data-id="cjyzhkrqt000vu1fzd0vtcgah" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/07/07/以太网帧-格式/" data-id="cjz7q4dpl001cwifzaqfhmm8i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ethernet-II/">Ethernet II</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RFC/">RFC</a></li></ul>
@@ -283,7 +311,7 @@ c:  company_id
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/07/01/ubuntu-工具/" data-id="cjyzhkrqi000fu1fzsgfgbe8o" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/07/01/ubuntu-工具/" data-id="cjz7q4dp5000swifzn3zjqbmk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li></ul>
@@ -330,7 +358,7 @@ c:  company_id
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/30/十二章-二叉搜索树/" data-id="cjyzhkrr8001cu1fz9ava4q9c" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/30/十二章-二叉搜索树/" data-id="cjz7q4dq2001vwifz1zj2vpa5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-struct/">data struct</a></li></ul>
@@ -377,7 +405,7 @@ c:  company_id
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/25/I2C-协议/" data-id="cjyzhkrq40001u1fzzarfeuj8" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/25/I2C-协议/" data-id="cjz7q4dnu0002wifzlx045lxm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/I2C/">I2C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
@@ -424,7 +452,7 @@ c:  company_id
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/09/十五章-动态规划/" data-id="cjyzhkrr30016u1fz0qieu7io" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/09/十五章-动态规划/" data-id="cjz7q4dpz001rwifz30ew39tw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chapter-15/">chapter 15</a></li></ul>
@@ -471,107 +499,10 @@ c:  company_id
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/02/十三章-红黑树/" data-id="cjyzhkrr50018u1fzz9j2w9ch" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/06/02/十三章-红黑树/" data-id="cjz7q4dpv001pwifzwf4df5nr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rb-tree/">rb tree</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-gdb-基本用法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/24/gdb-基本用法/" class="article-date">
-  <time datetime="2019-05-24T01:57:23.000Z" itemprop="datePublished">2019-05-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/24/gdb-基本用法/">gdb-基本用法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="gdb-调试的必要设置"><a href="#gdb-调试的必要设置" class="headerlink" title="gdb 调试的必要设置"></a>gdb 调试的必要设置</h2>
-        
-          <p class="article-more-link">
-            <a href="/2019/05/24/gdb-基本用法/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/05/24/gdb-基本用法/" data-id="cjyzhkrqg000bu1fzzu4ll4kl" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cgdb/">cgdb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gdb-debug/">gdb debug</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-十一章-散列表" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/28/十一章-散列表/" class="article-date">
-  <time datetime="2019-04-28T07:21:13.000Z" itemprop="datePublished">2019-04-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ReadNote/">ReadNote</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/28/十一章-散列表/">第十一章-散列表</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h1><pre><code>1. 散列表是普通数组概念的推广，可以对数组直接进行寻址，可以在 Ѳ(1)时间内访问数组的内任意的元素。
-2. 散列表采用的数组的尺寸和要存储的关键字的数量成正比。
-3. 散列的下标是关键字经过计算得出的。
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/28/十一章-散列表/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/04/28/十一章-散列表/" data-id="cjyzhkrr10012u1fztc3jzn4s" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hash/">hash</a></li></ul>
 
     </footer>
   </div>
@@ -584,7 +515,7 @@ c:  company_id
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -605,7 +536,7 @@ c:  company_id
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ethernet-II/">Ethernet II</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C/">I2C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RFC/">RFC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SNMP/">SNMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgdb/">cgdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-15/">chapter 15</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-struct/">data struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/editer/">editer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gdb-debug/">gdb debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pseudocode/">pseudocode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rb-tree/">rb tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-key/">ssh key</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/symbol/">symbol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ethernet-II/">Ethernet II</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C/">I2C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RFC/">RFC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SNMP/">SNMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgdb/">cgdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-15/">chapter 15</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-struct/">data struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deb/">deb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defalt-path-for-so-file/">defalt path for so file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/editer/">editer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gdb-debug/">gdb debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pseudocode/">pseudocode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rb-tree/">rb tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-key/">ssh key</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/symbol/">symbol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
     </div>
   </div>
 
@@ -615,7 +546,7 @@ c:  company_id
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ethernet-II/" style="font-size: 10px;">Ethernet II</a> <a href="/tags/I2C/" style="font-size: 10px;">I2C</a> <a href="/tags/RFC/" style="font-size: 10px;">RFC</a> <a href="/tags/SNMP/" style="font-size: 10px;">SNMP</a> <a href="/tags/arthmetic/" style="font-size: 10px;">arthmetic</a> <a href="/tags/cgdb/" style="font-size: 10px;">cgdb</a> <a href="/tags/chapter-15/" style="font-size: 10px;">chapter 15</a> <a href="/tags/data-struct/" style="font-size: 15px;">data struct</a> <a href="/tags/editer/" style="font-size: 10px;">editer</a> <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/gdb-debug/" style="font-size: 10px;">gdb debug</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/pseudocode/" style="font-size: 10px;">pseudocode</a> <a href="/tags/rb-tree/" style="font-size: 10px;">rb tree</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ssh-key/" style="font-size: 10px;">ssh key</a> <a href="/tags/symbol/" style="font-size: 10px;">symbol</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/通信协议/" style="font-size: 10px;">通信协议</a>
+      <a href="/tags/Ethernet-II/" style="font-size: 10px;">Ethernet II</a> <a href="/tags/I2C/" style="font-size: 10px;">I2C</a> <a href="/tags/RFC/" style="font-size: 10px;">RFC</a> <a href="/tags/SNMP/" style="font-size: 10px;">SNMP</a> <a href="/tags/arthmetic/" style="font-size: 10px;">arthmetic</a> <a href="/tags/cgdb/" style="font-size: 10px;">cgdb</a> <a href="/tags/chapter-15/" style="font-size: 10px;">chapter 15</a> <a href="/tags/data-struct/" style="font-size: 15px;">data struct</a> <a href="/tags/deb/" style="font-size: 10px;">deb</a> <a href="/tags/defalt-path-for-so-file/" style="font-size: 10px;">defalt path for so file</a> <a href="/tags/editer/" style="font-size: 10px;">editer</a> <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/gdb-debug/" style="font-size: 10px;">gdb debug</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/pseudocode/" style="font-size: 10px;">pseudocode</a> <a href="/tags/rb-tree/" style="font-size: 10px;">rb tree</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ssh-key/" style="font-size: 10px;">ssh key</a> <a href="/tags/symbol/" style="font-size: 10px;">symbol</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/通信协议/" style="font-size: 10px;">通信协议</a>
     </div>
   </div>
 
@@ -637,6 +568,14 @@ c:  company_id
       <ul>
         
           <li>
+            <a href="/2019/08/12/linux-修改库文件寻找默认路径/">linux 修改库文件寻找默认路径</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/12/deb-解压-修改-压缩/">deb 解压,修改,压缩</a>
+          </li>
+        
+          <li>
             <a href="/2019/08/06/SegmentationFault-Debug/">(no title)</a>
           </li>
         
@@ -646,14 +585,6 @@ c:  company_id
         
           <li>
             <a href="/2019/07/07/以太网帧-格式/">以太网帧的类型及其区分</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/01/ubuntu-工具/">ubuntu 工具</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/30/十二章-二叉搜索树/">算法导论-第十二章 二叉查找树</a>
           </li>
         
       </ul>
