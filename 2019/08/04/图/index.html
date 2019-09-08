@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="章军的博客">
 <meta property="og:description" content="1. 图的表示方法图的数学表达式为 G=(V,E), 解释为图 G 中是一组由 |V| 个列表的数组　Adj 组成 , 其中的每一个列表对应着这个 V 中的一个节点 . 对于每一个 u ∈ V , 邻接表 Adj[u] 包含所有的满足条件 (u,v)  ∈ E 的顶点 u (Adj[u] 中包含图 G 中所有和顶点 u 相邻的顶点).   图可以分为有向图和无向图 , 主要的区别在于连接顶点的边是">
 <meta property="og:locale" content="China">
-<meta property="og:image" content="http://octopuscloud.top/2019/08/04/图/graph/Selection_001.png">
-<meta property="og:image" content="http://octopuscloud.top/2019/08/04/图/graph/Selection_002.png">
-<meta property="og:image" content="http://octopuscloud.top/2019/08/04/图/graph/Selection_003.png">
-<meta property="og:updated_time" content="2019-09-08T05:55:42.356Z">
+<meta property="og:image" content="http://octopuscloud.top/image/Selection_001.png">
+<meta property="og:image" content="http://octopuscloud.top/image/Selection_002.png">
+<meta property="og:image" content="http://octopuscloud.top/image/Selection_003.png">
+<meta property="og:updated_time" content="2019-09-08T06:27:52.397Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图">
 <meta name="twitter:description" content="1. 图的表示方法图的数学表达式为 G=(V,E), 解释为图 G 中是一组由 |V| 个列表的数组　Adj 组成 , 其中的每一个列表对应着这个 V 中的一个节点 . 对于每一个 u ∈ V , 邻接表 Adj[u] 包含所有的满足条件 (u,v)  ∈ E 的顶点 u (Adj[u] 中包含图 G 中所有和顶点 u 相邻的顶点).   图可以分为有向图和无向图 , 主要的区别在于连接顶点的边是">
-<meta name="twitter:image" content="http://octopuscloud.top/2019/08/04/图/graph/Selection_001.png">
+<meta name="twitter:image" content="http://octopuscloud.top/image/Selection_001.png">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -95,12 +95,12 @@
 ∈ E 的顶点 u (Adj[u] 中包含图 G 中所有和顶点 u 相邻的顶点). 
 
 图可以分为有向图和无向图 , 主要的区别在于连接顶点的边是否有方向的矢量特性:
-</code></pre><p><img src="./graph/Selection_001.png" alt="avatar" title="有向图和无向图"> </p>
+</code></pre><p><img src="/image/Selection_001.png" alt="avatar" title="有向图和无向图"> </p>
 <pre><code>表示图的方式方法有两种 , 分别为邻接表和邻接矩阵:
 a. 邻接表是由包含 |V| 个列表的数组组成，其中每个列表对应这图中的每个顶点，列表中存储着图中和当前顶点相邻的顶点 : 
-</code></pre><p><img src="./graph/Selection_002.png" alt="avatar" title="邻接表"> </p>
+</code></pre><p><img src="/image/Selection_002.png" alt="avatar" title="邻接表"> </p>
 <pre><code>b. 邻接矩阵是存储这顶点间的相邻关系, 如果 A[i,j] == 0, 表示顶点 i 和顶点 j 不相邻 , 如果 A[i,j] == 1, 表示顶点 i 和顶点 j 相邻
-</code></pre><p><img src="./graph/Selection_003.png" alt="avatar" title="邻接矩阵"> </p>
+</code></pre><p><img src="/image/Selection_003.png" alt="avatar" title="邻接矩阵"> </p>
 <pre><code>关于图的基本概念:
 a. 无向图中，所有的邻接表的长度之和为 2|E| , 有向图中，　所有邻接表的长度之和为 |E| .
 b. |E| &lt;&lt; |V|^2 ,　为稀疏图 . |E| ~= |V|^2 ,  表示稠密图 . 
@@ -136,14 +136,22 @@ c. 加权图: 顶点和顶点间的边不在为１，而是根据需求表示加
 
 3. 时间戳: 顶点 v 在第一次被发现第一次记录下第一个时间戳 d[v] , 在结束搜索时记录下第二个时间戳 f[u] . 用来推测 DFS 的进行情况 .
 
+4. DFS 的伪代码
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">DFS (G)</span><br><span class="line">for each vertex u ∈  V[G]   # 此处是初始化所有顶点的 color 和 π 域</span><br><span class="line">  color[u] ←  WHITE</span><br><span class="line">  π[u]     ←  NIL</span><br><span class="line"></span><br><span class="line">time ← 0                    # time 用来记录时间戳, 为全局变量</span><br><span class="line"></span><br><span class="line">for each vertex u ∈  V[G]   # 此处为每个顶点做 DFS </span><br><span class="line">  do if color[u] == WHITE</span><br><span class="line">    then DFS-VISIT(u)</span><br><span class="line"></span><br><span class="line">################################################################################</span><br><span class="line">DFS-VISIT (u)</span><br><span class="line">color[u] ← GRAY              # 顶点 u 第一次被搜索，将顶点 u 的 color 域置为灰色 (GRAY)</span><br><span class="line"></span><br><span class="line">time ← time + 1              # 记录下顶点 u 的开始的时间戳</span><br><span class="line">d[u] = time </span><br><span class="line"></span><br><span class="line">for each v ∈  adj[u]         # 遍历顶点 u 的邻接表 adj[u] ，如果顶点 v 的 color 域为</span><br><span class="line">  do if color[v] == WHITE    # WHITE , 则设置顶点 v 的先辈域 π[v] = u</span><br><span class="line">    then π[v] ← u</span><br><span class="line">      DFS-VISIT (v)</span><br><span class="line"></span><br><span class="line">color[u] ←  BLACK</span><br><span class="line">f[u] ← time ← time + 1      # 记录下顶点 u 的结束的时间戳</span><br></pre></td></tr></table></figure>
-</code></pre><h3 id="深度优先搜索树"><a href="#深度优先搜索树" class="headerlink" title="深度优先搜索树"></a>深度优先搜索树</h3><h3 id="深度优先搜索的性质"><a href="#深度优先搜索的性质" class="headerlink" title="深度优先搜索的性质"></a>深度优先搜索的性质</h3><hr>
+
+5. 图中边的分类
+  a. 树边: 顶点 v 在探索 (v,u) 是首次被发现的，那么 (v,u) 是一条树边
+  b. 反向边: 连接到顶点 u 到他某一祖先顶点 v 的那些边。
+  c. 正向边: 连接顶点 u 到某个后裔的顶点 v 的边 .
+  d. 交叉边: 一个顶点不是另外一个顶点的祖先
+</code></pre><hr>
 <p>δ:d<em><br>∈:(-<br>∋:)-<br>π:p</em></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/08/04/图/" data-id="ck0akdoqt001thufzrlcl72y7" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/08/04/图/" data-id="ck0aliono0023dufzbu2krgig" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Struct/">Data Struct</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图/">图</a></li></ul>
