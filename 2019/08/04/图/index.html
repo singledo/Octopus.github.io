@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>图 | 章军的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 图的表示方法图的数学表达式为 G=(V,E), 解释为图 G 中是一组由 |V| 个列表的数组　Adj 组成 , 其中的每一个列表对应着这个 V 中的一个节点 . 对于每一个 u ∈ V , 邻接表 Adj[u] 包含所有的满足条件 (u,v)  ∈ E 的顶点 u (Adj[u] 中包含图 G 中所有和顶点 u 相邻的顶点).   图可以分为有向图和无向图 , 主要的区别在于连接顶点的边是">
+<meta name="keywords" content="Data Struct,图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图">
+<meta property="og:url" content="http://octopuscloud.top/2019/08/04/图/index.html">
+<meta property="og:site_name" content="章军的博客">
+<meta property="og:description" content="1. 图的表示方法图的数学表达式为 G=(V,E), 解释为图 G 中是一组由 |V| 个列表的数组　Adj 组成 , 其中的每一个列表对应着这个 V 中的一个节点 . 对于每一个 u ∈ V , 邻接表 Adj[u] 包含所有的满足条件 (u,v)  ∈ E 的顶点 u (Adj[u] 中包含图 G 中所有和顶点 u 相邻的顶点).   图可以分为有向图和无向图 , 主要的区别在于连接顶点的边是">
+<meta property="og:locale" content="China">
+<meta property="og:image" content="http://octopuscloud.top/2019/08/04/图/graph/Selection_001.png">
+<meta property="og:image" content="http://octopuscloud.top/2019/08/04/图/graph/Selection_002.png">
+<meta property="og:image" content="http://octopuscloud.top/2019/08/04/图/graph/Selection_003.png">
+<meta property="og:updated_time" content="2019-09-08T05:55:42.356Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图">
+<meta name="twitter:description" content="1. 图的表示方法图的数学表达式为 G=(V,E), 解释为图 G 中是一组由 |V| 个列表的数组　Adj 组成 , 其中的每一个列表对应着这个 V 中的一个节点 . 对于每一个 u ∈ V , 邻接表 Adj[u] 包含所有的满足条件 (u,v)  ∈ E 的顶点 u (Adj[u] 中包含图 G 中所有和顶点 u 相邻的顶点).   图可以分为有向图和无向图 , 主要的区别在于连接顶点的边是">
+<meta name="twitter:image" content="http://octopuscloud.top/2019/08/04/图/graph/Selection_001.png">
+  
+    <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">章军的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://octopuscloud.top"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-图" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/04/图/" class="article-date">
+  <time datetime="2019-08-04T03:47:01.000Z" itemprop="datePublished">2019-08-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      图
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-图的表示方法"><a href="#1-图的表示方法" class="headerlink" title="1. 图的表示方法"></a>1. 图的表示方法</h1><pre><code>图的数学表达式为 G=(V,E), 解释为图 G 中是一组由 |V| 个列表的数组　Adj 组成 , 其中的每一个列表对应着这个 V 中的一个节点 . 对于每一个 u ∈ V , 邻接表 Adj[u] 包含所有的满足条件 (u,v) 
+∈ E 的顶点 u (Adj[u] 中包含图 G 中所有和顶点 u 相邻的顶点). 
+
+图可以分为有向图和无向图 , 主要的区别在于连接顶点的边是否有方向的矢量特性:
+</code></pre><p><img src="./graph/Selection_001.png" alt="avatar" title="有向图和无向图"> </p>
+<pre><code>表示图的方式方法有两种 , 分别为邻接表和邻接矩阵:
+a. 邻接表是由包含 |V| 个列表的数组组成，其中每个列表对应这图中的每个顶点，列表中存储着图中和当前顶点相邻的顶点 : 
+</code></pre><p><img src="./graph/Selection_002.png" alt="avatar" title="邻接表"> </p>
+<pre><code>b. 邻接矩阵是存储这顶点间的相邻关系, 如果 A[i,j] == 0, 表示顶点 i 和顶点 j 不相邻 , 如果 A[i,j] == 1, 表示顶点 i 和顶点 j 相邻
+</code></pre><p><img src="./graph/Selection_003.png" alt="avatar" title="邻接矩阵"> </p>
+<pre><code>关于图的基本概念:
+a. 无向图中，所有的邻接表的长度之和为 2|E| , 有向图中，　所有邻接表的长度之和为 |E| .
+b. |E| &lt;&lt; |V|^2 ,　为稀疏图 . |E| ~= |V|^2 ,  表示稠密图 . 
+c. 加权图: 顶点和顶点间的边不在为１，而是根据需求表示加权值.
+</code></pre><h2 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h2><pre><code>    广度优先搜索会始终将已发现和未发现之间的边界，沿着广度的方向向外扩展 . 意味着首先会发现距离给定原点 s 的距离为 k 的所有顶点 , 然后才会发现离 s 距离为 k+1 的其他顶点 . 在广度优先
+搜索的过程中 ， 距离给定原点 s 为 k 是距离 s 距离为 k+1 顶点的长辈节点， 祖辈关系组成广度优先树.
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">广度优先算法 - BFS                 # 算法中 π[u] 表示顶点 u 的父亲节点, color[u] 表示顶点 u 的颜色. d[u] 表示距离顶点 s 的距离</span><br><span class="line">BFS (G, s)  </span><br><span class="line">    for u in V[G]   </span><br><span class="line">        color[u] ← Withe    </span><br><span class="line">        d[u]     ← ∞        </span><br><span class="line">        π[u]     ← NIL           # 将图中所有顶点的 p[u] , color[u] , d[u] </span><br><span class="line"></span><br><span class="line">color[s] ← GRAY </span><br><span class="line">d[s] ← 0    </span><br><span class="line">π[s] ← NIL                       # 初始化顶点 s</span><br><span class="line"></span><br><span class="line">Q ← NIL </span><br><span class="line">ENQUEUE (Q, s)                   # 将顶点 s 插入队列 Q</span><br><span class="line"></span><br><span class="line">while Q != NIL                   # 结束条件为队列 Q 为空时，跳出循环</span><br><span class="line">    do u ← DEQUEUE (Q)           # 将队列 Q 出列一个顶点 u, 然后把顶点 u </span><br><span class="line">    for each v ∈ Adj[u]          # 的邻接表遍历，如果邻接数组中的顶点的颜色</span><br><span class="line">    </span><br><span class="line">        do if color[v] == White  # Withe , 设置顶点 u 为 u 邻接数组中顶点 (v)</span><br><span class="line">            then color[v] ← GRAY # 的父亲节点，则顶点 v 设置为 GRAY。并将顶点 v </span><br><span class="line">            d[v] ← d[u] + 1      # 入队列 Q</span><br><span class="line">            π[v] ← u</span><br><span class="line">            ENQUEUE (Q, v)</span><br><span class="line">    color[u] ← BLACK             # 设置顶点 u 为 BLACK</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="最短路劲"><a href="#最短路劲" class="headerlink" title="最短路劲"></a>最短路劲</h3><pre><code>  对于图 G=(V,E), 广度优先搜索算法可以得到从已知源顶点 s∈V 到每个可达顶点的距离. 顶点 s 到顶点 v 的最短距离 δ(s,v) 是从 s 到 v 的任何路劲中边数最少的路径
+如果 s 到 v 没有通路， 则 δ(s,v) = ∞ ;
+
+定理 1 : 设 G = (v, E) 是一个有向图或者无向图， s∈V 为 G 的任意一个顶点，对任意边 (u, v) ∈ V ,有
+        δ(s,v) ≤ δ(s, u) + 1
+定理 2 : 图 G = (V, E) 是一个无向图或有向图，假设算法 BFS 从 G 中某一个给定源顶点 s∈V开始执行。在终止执行时，　则有 
+        d[v] ≥ δ(s,v)
+定理 3 : 在图 G = (V ,E) 上执行 BFS 的过程中，队列 Q 中包含顶点 &lt;v₁, v₂ ..., vr&gt; , v₁为队列 Q 的头，vr 为队列 Q 的尾，则有
+        d[vr] ≤ d[v1] + 1 , 且 d[vi] ≤ d[vi+1]
+定理 4 : 在执行 BFS 过程中将顶点 vi 和 vj 插入了队列， 且 vi 先于 vj 入队，那么当 vj 入队时有, 
+        d[vi] ≤ d[vj]
+定理 5 : 在执行 BFS 从给定 G 中某一个顶点 s∈V 开始运行。那么在执行的过程中，BFS 可以发现源顶点 s 可以到达的每个顶点 v∈V开始运行。在
+        运行终止时，对所有 v∈V , 都有 d[v] = δ(s,v)
+
+广度优先搜索树是 BFS 在图 G 上运行后的 p 域组成。对于图 G = (V, E), 给定的源点 s, 可以更为形式地定义其前趋子图: Gπ = (Vπ, Eπ), 其中:
+    Vπ = {u∈V: π[u] != NIL} U {s}
+且
+    Eπ = {(π[v], v): v∈ Vπ - {s}}
+</code></pre><h2 id="深度优先搜索-DFS"><a href="#深度优先搜索-DFS" class="headerlink" title="深度优先搜索 (DFS)"></a>深度优先搜索 (DFS)</h2><pre><code>1. 深度优先搜索的过程: 给定图 G = (V,E), 从任一顶点 v 开始扫描 v 邻接表 adj[v], 顶点 u 属于 adj[v] 。则下一次扫描从顶点 u 开始 , 重复顶点 v 的搜索过程. 
+                       如果还存在为发现的顶点, 以这个顶点作为源点做 DFS.
+
+2. 深度优先森林: 在做 DFS 的过程中 , 扫描顶点 v 的邻接表 adj[v] , 顶点 u ∈ adj[v] 且是第一次被搜索. 则顶点 u 的先辈子域 π[u] = v . 由先辈子域 π[] 组成的
+                 树称为深度优先树。在 DFS 过程中会生成多颗深度优先树，多颗深度优先树组成深度优先森林。
+                G = (V, Eπ) , Eπ = ((π[v], v), v∈ V &amp; Vπ ~= NIL)
+
+3. 时间戳: 顶点 v 在第一次被发现第一次记录下第一个时间戳 d[v] , 在结束搜索时记录下第二个时间戳 f[u] . 用来推测 DFS 的进行情况 .
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">DFS (G)</span><br><span class="line">for each vertex u ∈  V[G]   # 此处是初始化所有顶点的 color 和 π 域</span><br><span class="line">  color[u] ←  WHITE</span><br><span class="line">  π[u]     ←  NIL</span><br><span class="line"></span><br><span class="line">time ← 0                    # time 用来记录时间戳, 为全局变量</span><br><span class="line"></span><br><span class="line">for each vertex u ∈  V[G]   # 此处为每个顶点做 DFS </span><br><span class="line">  do if color[u] == WHITE</span><br><span class="line">    then DFS-VISIT(u)</span><br><span class="line"></span><br><span class="line">################################################################################</span><br><span class="line">DFS-VISIT (u)</span><br><span class="line">color[u] ← GRAY              # 顶点 u 第一次被搜索，将顶点 u 的 color 域置为灰色 (GRAY)</span><br><span class="line"></span><br><span class="line">time ← time + 1              # 记录下顶点 u 的开始的时间戳</span><br><span class="line">d[u] = time </span><br><span class="line"></span><br><span class="line">for each v ∈  adj[u]         # 遍历顶点 u 的邻接表 adj[u] ，如果顶点 v 的 color 域为</span><br><span class="line">  do if color[v] == WHITE    # WHITE , 则设置顶点 v 的先辈域 π[v] = u</span><br><span class="line">    then π[v] ← u</span><br><span class="line">      DFS-VISIT (v)</span><br><span class="line"></span><br><span class="line">color[u] ←  BLACK</span><br><span class="line">f[u] ← time ← time + 1      # 记录下顶点 u 的结束的时间戳</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="深度优先搜索树"><a href="#深度优先搜索树" class="headerlink" title="深度优先搜索树"></a>深度优先搜索树</h3><h3 id="深度优先搜索的性质"><a href="#深度优先搜索的性质" class="headerlink" title="深度优先搜索的性质"></a>深度优先搜索的性质</h3><hr>
+<p>δ:d<em><br>∈:(-<br>∋:)-<br>π:p</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/08/04/图/" data-id="ck0akdoqt001thufzrlcl72y7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Struct/">Data Struct</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图/">图</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/04/IPV6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          IPV6
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/04/IPv6 Frame Format/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">IPV6 Frame Format</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/RFC/">RFC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RFC-protocol/">RFC protocol</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReadNote/">ReadNote</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/protocols/">protocols</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tools/">tools</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Struct/">Data Struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ethernet-II/">Ethernet II</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Frame-Format/">Frame Format</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C/">I2C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPv6/">IPv6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RFC/">RFC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SNMP/">SNMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgdb/">cgdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-15/">chapter 15</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-struct/">data struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deb/">deb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defalt-path-for-so-file/">defalt path for so file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/editer/">editer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gdb-debug/">gdb debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pointer-array/">pointer, array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pseudocode/">pseudocode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rb-tree/">rb tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-key/">ssh key</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/symbol/">symbol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图/">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Data-Struct/" style="font-size: 10px;">Data Struct</a> <a href="/tags/Ethernet-II/" style="font-size: 10px;">Ethernet II</a> <a href="/tags/Frame-Format/" style="font-size: 10px;">Frame Format</a> <a href="/tags/I2C/" style="font-size: 10px;">I2C</a> <a href="/tags/IPv6/" style="font-size: 10px;">IPv6</a> <a href="/tags/RFC/" style="font-size: 10px;">RFC</a> <a href="/tags/SNMP/" style="font-size: 10px;">SNMP</a> <a href="/tags/arthmetic/" style="font-size: 10px;">arthmetic</a> <a href="/tags/cgdb/" style="font-size: 10px;">cgdb</a> <a href="/tags/chapter-15/" style="font-size: 10px;">chapter 15</a> <a href="/tags/data-struct/" style="font-size: 15px;">data struct</a> <a href="/tags/deb/" style="font-size: 10px;">deb</a> <a href="/tags/defalt-path-for-so-file/" style="font-size: 10px;">defalt path for so file</a> <a href="/tags/editer/" style="font-size: 10px;">editer</a> <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/gdb-debug/" style="font-size: 10px;">gdb debug</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/pointer-array/" style="font-size: 10px;">pointer, array</a> <a href="/tags/pseudocode/" style="font-size: 10px;">pseudocode</a> <a href="/tags/rb-tree/" style="font-size: 10px;">rb tree</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ssh-key/" style="font-size: 10px;">ssh key</a> <a href="/tags/symbol/" style="font-size: 10px;">symbol</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/通信协议/" style="font-size: 10px;">通信协议</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/01/SegmentationFault-Debug/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/01/十二章-二叉搜索树/">算法导论-第十二章 二叉查找树</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/13/指针与数组/">指针与数组</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/12/linux-修改库文件寻找默认路径/">linux 修改库文件寻找默认路径</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/12/deb-解压-修改-压缩/">deb 解压,修改,压缩</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 zhangjun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
