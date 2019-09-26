@@ -5,20 +5,20 @@
   
 
   
-  <title>十五章-动态规划 | 章军的博客</title>
+  <title>章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第十五章 - 动态规划">
-<meta name="keywords" content="arthmetic,chapter 15">
+  <meta name="description" content="本文由 简悦 SimpRead 转码， 原文地址 http://www.wtango.com/%E6%AE%B5%E9%94%99%E8%AF%AFsegmentation-fault%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/  1. 什么">
+<meta name="keywords" content="Bolg">
 <meta property="og:type" content="article">
-<meta property="og:title" content="十五章-动态规划">
-<meta property="og:url" content="http://octopuscloud.top/2019/06/09/十五章-动态规划/index.html">
+<meta property="og:title" content="章军的博客">
+<meta property="og:url" content="http://octopuscloud.top/2019/09/11/SegmentationFault-Debug/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="第十五章 - 动态规划">
+<meta property="og:description" content="本文由 简悦 SimpRead 转码， 原文地址 http://www.wtango.com/%E6%AE%B5%E9%94%99%E8%AF%AFsegmentation-fault%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/  1. 什么">
 <meta property="og:locale" content="China">
-<meta property="og:updated_time" content="2019-09-11T04:27:11.784Z">
+<meta property="og:updated_time" content="2019-09-11T04:27:11.344Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="十五章-动态规划">
-<meta name="twitter:description" content="第十五章 - 动态规划">
+<meta name="twitter:title" content="章军的博客">
+<meta name="twitter:description" content="本文由 简悦 SimpRead 转码， 原文地址 http://www.wtango.com/%E6%AE%B5%E9%94%99%E8%AF%AFsegmentation-fault%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/  1. 什么">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -65,109 +65,67 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-十五章-动态规划" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-SegmentationFault-Debug" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/06/09/十五章-动态规划/" class="article-date">
-  <time datetime="2019-06-09T08:11:19.000Z" itemprop="datePublished">2019-06-09</time>
+    <a href="/2019/09/11/SegmentationFault-Debug/" class="article-date">
+  <time datetime="2019-09-11T04:27:11.344Z" itemprop="datePublished">2019-09-11</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ReadNote/">ReadNote</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      十五章-动态规划
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="第十五章-动态规划"><a href="#第十五章-动态规划" class="headerlink" title="第十五章 - 动态规划"></a>第十五章 - 动态规划</h1><a id="more"></a>
-<ol>
-<li>动态规划的适用情况<br>问题可以分割成若干子问题 ，而且子问题并非是独立的 ，各个子问题包含相同的子子问题 ，对于相同的子子问题只会求解一次 ，将其保存在一张表中 。</li>
-<li>动态规划算法设计<br>a. 描述最优解的结构 。<br>b. 递归定义最优解的值 。<br>c. 按自底向上的方式计算出最优解 。<br>d. 由计算结果构建出一个值 。</li>
-</ol>
-<h2 id="装配线的调度"><a href="#装配线的调度" class="headerlink" title="装配线的调度"></a>装配线的调度</h2><p>  两条装配线 S₁ ，S₂ ，每个转配线上有 n 个装配点 。<br>  S(i,j): 装配线1，装配点j.<br>  a(i,j): 装配线1, 装配点j花费时间。<br>  e(i):   进入装配线i花费时间<br>  x(i):   离开装配线i花费时间。<br>  t(i,j): 底盘从装配线 i 离开的时间 。</p>
-<p>  STEP 1 : 通过工厂最快路线的结构</p>
-<pre><code>通过 S₁ 装配线 j 装配点的最快路线 ，有两种可能 ：
-a. 通过装配点 S(1,j-1) 的最快路线 ，直接通过 S(1,j)
-b. 通过装配点 S(2, j-1) 的最快路线，由 S2 转到 S1 。
-
-镜像的考虑 ，当通过 S2 的装配点 j 有
-a. 通过装配点 S(2,j-1) 的最快路线 ，直接通过 S(2,j)
-b. 通过装配点 S(1, j-1) 的最快路线，由 S1 转到 S2 。
-</code></pre><p>  STEP 2 : 构建一个递归解</p>
-<pre><code>f* = min(f₁[n] + x₁, f₂[n] + x₂)
-
-f₁[j] = e₁ + a₁,₁ (j==1)
-f₁[j] = min( f₁[j-1] + a(1,j) , f₂[j-1] + t(2,j-1) + a(1,j) )  (j&gt;1)
-
-f₂[j] = e₂ + a₂,₁ (j==1)
-f₂[j] = min( f₂[j-1] + a(2,j), f₁[j-1]  + t(1,j-1) + a(2,j)) (j&gt;1)
-</code></pre><p>  STEP 3 : 计算出一个最快时间</p>
-<pre><code>FAST-WAY(a, t, e, x, n)
-  f₁[1] = e₁ + a(1,1)
-  f₂[1] = e₁ + a(1,1)
-  for j ← 2 to n 
-    if f₁[j-1] + a(i,j) ≤ f₂[j-1] + t(2,j-1) + a(1,j)
-        f₁[j] ← f₁[j] + a(i,j)
-        l₁[j] ← 1
-    else
-        f₁[j] ← f₂[j-1] + t(2,j-1) + a(i,j)
-        l₁[j] ← 2
-
-    if f₂[j-1] + a(2,j) ≤ f₁[j-1] + t(1,j-1) + a(2,j)
-        f₂[j] ← f₂[j-1] + a(2,j)
-        l₂[j] ← 2
-    else
-        f₂[j] ← f₁[j-1] + t(1,j-1) + a(2,j)
-
-  if f₁[n] + X₁ ≤ f₂[n] + x₂
-    f* ← f₁[n] + x₁
-    l* ← 1
-  else
-    f* ← f₂[n] + x₂
-    l* ← 2
-</code></pre><p>  STEP 4 : 构建通过工厂的最快路线</p>
-<pre><code>step 3 中的 l* 存储着最快路线
-</code></pre><h2 id="code-1"><a href="#code-1" class="headerlink" title="[code][1]"></a>[code][1]</h2><p>1:  <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:singledo/SortCode.git</p>
+        <blockquote>
+<p>本文由 <a href="http://ksria.com/simpread/" target="_blank" rel="noopener">简悦 SimpRead</a> 转码， 原文地址 <a href="http://www.wtango.com/%E6%AE%B5%E9%94%99%E8%AF%AFsegmentation-fault%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">http://www.wtango.com/%E6%AE%B5%E9%94%99%E8%AF%AFsegmentation-fault%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/</a></p>
+</blockquote>
+<h4 id="1-什么是段错误"><a href="#1-什么是段错误" class="headerlink" title="1. 什么是段错误"></a>1. 什么是段错误<a href="#1-什么是段错误"></a></h4><p>可能每个程序员在 Linux 环境下使用 C/C++ 编程时都曾遇到过 “段错误”(Segmentation fault)，段错误是由于内存管理单元(负责支持虚拟内存的硬件) 的异常所导致，而该异常则通常是由于解除引用一个未初始化或非法的指针引起的。产生段错误的地方有可能在自己编写的代码中，也有可能出现在库函数中(传递一个非法指针给库函数)。令人很不爽的是，段错误除了只有一个简单的错误信息之外，没有任何额外的提示，并且有的段错误不是每次都会出现。</p>
+<a id="more"></a>
+<h4 id="2-导致段错误的直接原因"><a href="#2-导致段错误的直接原因" class="headerlink" title="2. 导致段错误的直接原因"></a>2. 导致段错误的直接原因<a href="#2-导致段错误的直接原因"></a></h4><ul>
+<li>解除引用一个包含非法值</li>
+<li>解除引用一个空指针 (常常由函数返回，并未经检查就使用)</li>
+<li>在未得到正确的权限时进行访问。例如，试图往一个只读的文本段储存值就会引发段错误。</li>
+<li>用完了栈或者堆空间 (虚拟内存虽然巨大，但也有可能使用殆尽)</li>
+</ul>
+<h4 id="3-段错误调试方法"><a href="#3-段错误调试方法" class="headerlink" title="3. 段错误调试方法"></a>3. 段错误调试方法<a href="#3-段错误调试方法"></a></h4><h5 id="3-1-dmesg-nm"><a href="#3-1-dmesg-nm" class="headerlink" title="3.1 dmesg + nm"></a>3.1 dmesg + nm<a href="#31-dmesg--nm"></a></h5><p>dmesg 可以在应用程序 crash 时，显示内核中保存的相关信息。如下所示，通过 dmesg 命令可以查看发生段错误的程序名称、引起段错误发生的内存地址、指令指针地址、堆栈指针地址、错误代码、错误原因等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tango@Tango-PC:~/cfun$ dmesg </span><br><span class="line">[14253.910681] a.out[4927]: segfault at 0 ip 00000000004004f6 sp 00007fffebcf5260 error 6 in a.out[400000+1000]</span><br></pre></td></tr></table></figure>
+<p>然后使用 nm 查看其指针信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">0000000000400570 T __libc_csu_fini</span><br><span class="line">0000000000400500 T __libc_csu_init</span><br><span class="line">                 U __libc_start_main@@GLIBC_2.2.5</span><br><span class="line">00000000004004ed T main</span><br><span class="line">0000000000400460 t register_tm_clones</span><br><span class="line">0000000000400400 T _start</span><br><span class="line">0000000000601038 D __TMC_END__</span><br></pre></td></tr></table></figure>
+<p>段错误地址 4004f6 在 main 函数之后，在__libc_csu_init 之前，所以 “段错误” 应该是在 main 中产生的。</p>
+<h5 id="3-2-使用-fprintf"><a href="#3-2-使用-fprintf" class="headerlink" title="3.2 使用 fprintf"></a>3.2 使用 fprintf<a href="#32-使用fprintf"></a></h5><p>根据代码执行的情况，确定大致产生 “段错误” 的地方，使用 fprintf(stderr,””,…); 来确定具体产生的位置。切记调试信息要输出到错误输出，因为错误输出默认不缓存，标准输出是有缓存的，程序崩溃可能导致缓存数据没有输出，所以建议调试信息都输出到错误输出。</p>
+<h5 id="3-3-gdb"><a href="#3-3-gdb" class="headerlink" title="3.3 gdb"></a>3.3 gdb<a href="#33-gdb"></a></h5><p>编译程序时加上 - ggdb 选项，使用 gdb 调试。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gcc -ggdb foo.c</span><br><span class="line">gdb a.out</span><br><span class="line">(gdb) run</span><br><span class="line">Starting program: ./a.out </span><br><span class="line"></span><br><span class="line">Program received signal SIGSEGV, Segmentation fault.</span><br><span class="line">0x00000000004004f6 in main ()</span><br><span class="line">(gdb)</span><br></pre></td></tr></table></figure>
+<p>可以看到 “段错误” 实在 main 函数中产生的，那么可以在产生段错误的函数上打上断点，之后单步调试，便可以找出产生段错误的真正原因。</p>
+<h5 id="3-4-signal-SIGSEGV-handler"><a href="#3-4-signal-SIGSEGV-handler" class="headerlink" title="3.4 signal(SIGSEGV,handler)"></a>3.4 signal(SIGSEGV,handler)<a href="#34-signalsigsegvhandler"></a></h5><p>细心的网友可能发现了，产生段错误时会产生一个 SIGSEGV 信号。我们可以添加 SIGSEGV 的处理函数在程序发生段错误退出之前做一些事情，我们甚至可以使用 backtrace(3) 函数来保存当前栈内容.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">void dump(int signo)</span><br><span class="line">&#123;</span><br><span class="line">        fprintf(stderr,&quot;catch Segmentation fault!!!\n&quot;);</span><br><span class="line">#define SIZE 100</span><br><span class="line">        FILE *fh;</span><br><span class="line">        if(!(fh = fopen(&quot;/tmp/dbg_msg.log&quot;, &quot;w+&quot;)))</span><br><span class="line">                exit(0);</span><br><span class="line">        void *buffer[100];</span><br><span class="line">        int nptrs;</span><br><span class="line">        nptrs = backtrace(buffer,SIZE);</span><br><span class="line">        backtrace_symbols_fd(buffer, nptrs, fileno(fh));</span><br><span class="line">        fflush(fh);</span><br><span class="line">        exit(-1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main (void)</span><br><span class="line">&#123;</span><br><span class="line">        signal(SIGSEGV, &amp;dump);</span><br><span class="line">        *((int*)NULL) = 0;</span><br><span class="line"></span><br><span class="line">        return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/06/09/十五章-动态规划/" data-id="ck0faaoh3001tx0fzrvm5c5ku" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/09/11/SegmentationFault-Debug/" data-id="ck0faaogd000fx0fz5yffo0r6" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chapter-15/">chapter 15</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2019/06/25/I2C-协议/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/11/十二章-二叉搜索树/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          I2C - 协议
+          算法导论-第十二章 二叉查找树
         
       </div>
     </a>
   
   
-    <a href="/2019/06/02/十三章-红黑树/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/08/13/指针与数组/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">第十三章-红黑树</div>
+      <div class="article-nav-title">指针与数组</div>
     </a>
   
 </nav>
