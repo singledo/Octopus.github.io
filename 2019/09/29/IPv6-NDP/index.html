@@ -5,20 +5,20 @@
   
 
   
-  <title>IPV6 Frame Format | 章军的博客</title>
+  <title>IPv6 NDP | 章军的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="b - bitsB - bytes Ether II 数据格式| Dest Mac   | Sou Mac    |  type  | +------------+------------+--------+----------+ | 12 b       |    12 b    |  8 b   | payload  | +------------+------------+--------+">
-<meta name="keywords" content="IPv6,Frame Format">
+  <meta name="description" content="IPv6 的邻居发现协议邻居发现协议英文全称为 Neighbour Discover Portocol (NDP) , NDP 的主要作用是有四类: 1. 用来发现网络中的其他设备 . 2. 提供其他设备的 link-layer 地址 . 3. 寻找路由 . 4. 对于激活的节点维持可达信息 . 相当于 IPv4 中的 ARP + RDISC + ICMPv4 .">
+<meta name="keywords" content="IPv6,Neighbour Discover Protocol">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IPV6 Frame Format">
-<meta property="og:url" content="http://octopuscloud.top/2019/08/04/IPv6 Frame Format/index.html">
+<meta property="og:title" content="IPv6 NDP">
+<meta property="og:url" content="http://octopuscloud.top/2019/09/29/IPv6-NDP/index.html">
 <meta property="og:site_name" content="章军的博客">
-<meta property="og:description" content="b - bitsB - bytes Ether II 数据格式| Dest Mac   | Sou Mac    |  type  | +------------+------------+--------+----------+ | 12 b       |    12 b    |  8 b   | payload  | +------------+------------+--------+">
+<meta property="og:description" content="IPv6 的邻居发现协议邻居发现协议英文全称为 Neighbour Discover Portocol (NDP) , NDP 的主要作用是有四类: 1. 用来发现网络中的其他设备 . 2. 提供其他设备的 link-layer 地址 . 3. 寻找路由 . 4. 对于激活的节点维持可达信息 . 相当于 IPv4 中的 ARP + RDISC + ICMPv4 .">
 <meta property="og:locale" content="China">
-<meta property="og:updated_time" content="2019-09-11T04:27:11.276Z">
+<meta property="og:updated_time" content="2019-09-29T07:21:30.226Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IPV6 Frame Format">
-<meta name="twitter:description" content="b - bitsB - bytes Ether II 数据格式| Dest Mac   | Sou Mac    |  type  | +------------+------------+--------+----------+ | 12 b       |    12 b    |  8 b   | payload  | +------------+------------+--------+">
+<meta name="twitter:title" content="IPv6 NDP">
+<meta name="twitter:description" content="IPv6 的邻居发现协议邻居发现协议英文全称为 Neighbour Discover Portocol (NDP) , NDP 的主要作用是有四类: 1. 用来发现网络中的其他设备 . 2. 提供其他设备的 link-layer 地址 . 3. 寻找路由 . 4. 对于激活的节点维持可达信息 . 相当于 IPv4 中的 ARP + RDISC + ICMPv4 .">
   
     <link rel="alternate" href="/atom.xml" title="章军的博客" type="application/atom+xml">
   
@@ -65,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-IPv6 Frame Format" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-IPv6-NDP" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/08/04/IPv6 Frame Format/" class="article-date">
-  <time datetime="2019-08-04T03:47:01.000Z" itemprop="datePublished">2019-08-04</time>
+    <a href="/2019/09/29/IPv6-NDP/" class="article-date">
+  <time datetime="2019-09-29T05:37:02.000Z" itemprop="datePublished">2019-09-29</time>
 </a>
     
   </div>
@@ -79,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      IPV6 Frame Format
+      IPv6 NDP
     </h1>
   
 
@@ -87,12 +87,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>b - bits<br>B - bytes</p>
-<h1 id="Ether-II-数据格式"><a href="#Ether-II-数据格式" class="headerlink" title="Ether II 数据格式"></a>Ether II 数据格式</h1><pre><code>| Dest Mac   | Sou Mac    |  type  |
-+------------+------------+--------+----------+
-| 12 b       |    12 b    |  8 b   | payload  |
-+------------+------------+--------+----------+
-</code></pre><h1 id="IPv6-头格式"><a href="#IPv6-头格式" class="headerlink" title="IPv6 头格式"></a>IPv6 头格式</h1><pre><code>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        <h1 id="IPv6-的邻居发现协议"><a href="#IPv6-的邻居发现协议" class="headerlink" title="IPv6 的邻居发现协议"></a>IPv6 的邻居发现协议</h1><pre><code>邻居发现协议英文全称为 Neighbour Discover Portocol (NDP) , NDP 的主要作用是有四类:
+1. 用来发现网络中的其他设备 .
+2. 提供其他设备的 link-layer 地址 .
+3. 寻找路由 .
+4. 对于激活的节点维持可达信息 .
+相当于 IPv4 中的 ARP + RDISC + ICMPv4 . 
+</code></pre><a id="more"></a>
+<h2 id="NDP-信息"><a href="#NDP-信息" class="headerlink" title="NDP 信息"></a>NDP 信息</h2><pre><code>NDP 包类型一共有五种 , 分别为 邻居请求信息 , 邻居广播信息 , 路由请求信息 , 路由广播信息 , 重定向信息 . 整个包的格式如下 :
+
++ ---------------- + ---------------------- + ---------------- + ----------
++ EtherII Header   |       IPv6 Header      |  ICMPv6 HEader   | payload
++----------------- + ---------------------- + ---------------- + ---------
+
+EtherII Header:
+| D-MAC | S-MAC | 0X86DD | 
+
+IPv6 Header:
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |Version|    Traffic Class      |       Flow Label              |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |     Payload Length            | Next Header  | Hop Limit      |
@@ -113,35 +125,144 @@
 +                                                               +
 |                                                               |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</code></pre><h1 id="IPv6-扩展头格式"><a href="#IPv6-扩展头格式" class="headerlink" title="IPv6 扩展头格式"></a>IPv6 扩展头格式</h1><pre><code>+---------------+------------------------
-| IPv6 header   | TCP header + data     
-|               |
-| Next Header = |
-|      TCP      |
-+---------------+------------------------
 
+ICMPv6 Header:
+| Type | Code | Checksum | 
+</code></pre><h3 id="邻居请求信息-Neighbour-Slication-ND"><a href="#邻居请求信息-Neighbour-Slication-ND" class="headerlink" title="邻居请求信息 (Neighbour Slication/ND)"></a>邻居请求信息 (Neighbour Slication/ND)</h3><pre><code>由主机发送 NS 包给路由器 , 用来提示路由器快速的产生 RA 信息 .
 
-+---------------+----------------+------------------------
-| IPv6 header   | Routing header | TCP header + data 
-|               |                |
-| Next Header = | Next Header =  |
-|   Routing     |    TCP         |
-+---------------+----------------+------------------------
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Type          |   Code        |      Checksum                 |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                      Reserved                                 |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Options ...
++-+-+-+-+-+-+-+-+-+-+-+-
 
-+---------------+----------------+-----------------+-----------------
-| IPv6 header   | Routing header | Fragment header | fragment of TCP
-|               |                |                 | header + data 
-| Next Header = | Next Header =  | Next Header =   |
-|  Routing      |     Fragment   |  TCP            |
-+---------------+----------------+-----------------+-----------------
+Type = 133, Code = 0;
+Options:
+source link-layer address: 发送者的链接层地址 .
+</code></pre><h3 id="邻居广播信息-Neighbour-Advertisement-NA"><a href="#邻居广播信息-Neighbour-Advertisement-NA" class="headerlink" title="邻居广播信息 (Neighbour Advertisement/NA)"></a>邻居广播信息 (Neighbour Advertisement/NA)</h3><pre><code>路由器周期性的发送 NA 包，或者当路由器接收到 NS 包后会立即发送 NA 包 .
+
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Type          | Code          | Checksum                      |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Cur Hop Limit |M|O| Reserved  | Router Lifetime               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Reachable Time                                                |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Retrans Timer                                                 |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| Options ...
++-+-+-+-+-+-+-+-+-+-+-+-
+
+Type = 134, code = 0
+cur hop Limit: 0 意味着没有指定 . 默认值应该和 IPv6 头部中的 Hop Counter 
+               相同 .
+M: Managed address configuration 标识, 如果 bit = 0, 标识地址的获取是通过 DHCPv6 .
+O: Ohther configuration 标识, bit = 0, 表示其他配置来自于 DHCPv6 , 例如和 DNS 相关的信息 .
+Router lifetime: 单位为秒,只作用于默认路由. lifetime = 0 , 表示此条路由不是默认路由 . 
+Reachalble time: 单位毫秒，为 0 表示未指定.
+Retans Timer: 单位毫秒, 两次发送 NS 的间隔 .
+
+Option:
+source link-layer address: 发送 RA 节点的 link-layer 地址 .
+MTU: 
+Prefix Information:
+</code></pre><h3 id="路由请求信息-Router-Slication-RS"><a href="#路由请求信息-Router-Slication-RS" class="headerlink" title="路由请求信息 (Router Slication/RS)"></a>路由请求信息 (Router Slication/RS)</h3><pre><code>节点通过发送 RS 包来获取目标节点的 link-layer 地址并且将自身的 link-layer 地址发送给目标地址 . RS 包为多播包
+
+   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  | Type          |  Code         | Checksum                      |
+  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  | Reserved                                                      |
+  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  |                                                               |
+  +                                                               +
+  |                                                               |
+  + Target Address                                                +
+  |                                                               |
+  +                                                               +
+  |                                                               |
+  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  | Options ...
+  +-+-+-+-+-+-+-+-+-+-+-+-
+
+  Type = 135, Code = 0
+  Target Address: 请求的目标地址
+  Option:
+  source link-layer address: 
+</code></pre><h3 id="路由广播信息-Router-Advertisement"><a href="#路由广播信息-Router-Advertisement" class="headerlink" title="路由广播信息 (Router Advertisement)"></a>路由广播信息 (Router Advertisement)</h3><pre><code>  节点发送 NA 包回复 NS .
+
+  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ | Type          | Code          | Checksum                      |
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ |R|S|O| Reserved                                                |
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ |                                                               |
+ +                                                               +
+ |                                                               |
+ + Target Address                                                +
+ |                                                               |
+ +                                                               +
+ |                                                               |
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ | Options ...
+ +-+-+-+-+-+-+-+-+-+-+-+-
+
+ Type = 136, code = 0
+ R: Router Flag, bit = 1, 发送者是 Router.
+ S: Solication Flag, bit = 1, 表示发送是为了回复 RS.
+ O: Override flasg. bit = 1, 表示覆盖前面的缓存
+
+Target Address: 
+
+Optiions:
+Target link-layer address: 
+</code></pre><h3 id="重定向信息-Redirect"><a href="#重定向信息-Redirect" class="headerlink" title="重定向信息 (Redirect)"></a>重定向信息 (Redirect)</h3><pre><code>路由向主机发送重定向信息 , 以此来通知主机对于目标地址有更好的下一跳地址.
+
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   | Type          | Code          | Checksum                      |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   | Reserved                                                      |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   +                                                               +
+   |                                                               |
+   + Target Address                                                +
+   |                                                               |
+   +                                                               +
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   +                                                               +
+   |                                                               |
+   + Destination Address                                           +
+   |                                                               |
+   +                                                               +
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   | Options ...
+   +-+-+-+-+-+-+-+-+-+-+-+-
+
+   Type = 137, code = 0
+   Target Address: 更好的第一跳路由
+   Destination Adress: 重定向到 target 的目标地址
+
+   Options:
+   Target link-layer address:
+   Redirect Header:
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/08/04/IPv6 Frame Format/" data-id="ck14nod7k000aqhfz1gs51ia7" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/09/29/IPv6-NDP/" data-id="ck14nod7f0006qhfzgkxqbcnz" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Frame-Format/">Frame Format</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IPv6/">IPv6</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IPv6/">IPv6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Neighbour-Discover-Protocol/">Neighbour Discover Protocol</a></li></ul>
 
     </footer>
   </div>
@@ -149,19 +270,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/08/04/IPV6/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          IPV6
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/04/图/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/09/11/十二章-二叉搜索树/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">图</div>
+      <div class="article-nav-title">算法导论-第十二章 二叉查找树</div>
     </a>
   
 </nav>
