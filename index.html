@@ -66,6 +66,441 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-TMUX-使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/15/TMUX-使用/" class="article-date">
+  <time datetime="2019-12-15T12:47:17.000Z" itemprop="datePublished">2019-12-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/15/TMUX-使用/">TMUX-使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="TMUX-的安装以及简单配置"><a href="#TMUX-的安装以及简单配置" class="headerlink" title="TMUX 的安装以及简单配置"></a>TMUX 的安装以及简单配置</h1><h2 id="1-TMUX-的安装"><a href="#1-TMUX-的安装" class="headerlink" title="1. TMUX 的安装"></a>1. TMUX 的安装</h2><p>  ubuntu 系统在终端中执行下面命令:<br>    &gt; sudo apt install tmux</p>
+<p>  在 TMUX 安装完成后, 在当前用户的默认配置文件(.bashrc)最后中添加下面一句，保证每次开启新的终端后，都会进入到 tmux .<br>    &gt; tmux</p>
+<h2 id="TMUX-的自定义配置"><a href="#TMUX-的自定义配置" class="headerlink" title="TMUX 的自定义配置"></a>TMUX 的自定义配置</h2><pre><code>    用户的 TMUX 配置文件在 ~/.tmux.config, 全局的配置文件在 /etc/tmux.conf. tmux 按键规则是 &lt;prefix&gt; + &lt;key&gt; , 其中 prefix 叫做前缀，默认是 crrl + b, 
+key 是一些已经设置好的按键。按照指定的按键顺序按下后，tmux 会执行指定的动作。例如: &lt;c+b&gt; + ? 为查询按键对应的动作，下面是输出的一部分 。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">bind-key    -T copy-mode    C-Space           send-keys -X begin-selection                                                                                                                                  [169/169]</span><br><span class="line">bind-key    -T copy-mode    C-a               send-keys -X start-of-line</span><br><span class="line">bind-key    -T copy-mode    C-b               send-keys -X cursor-left</span><br><span class="line">bind-key    -T copy-mode    C-c               send-keys -X cancel</span><br><span class="line">bind-key    -T copy-mode    C-e               send-keys -X end-of-line</span><br><span class="line">bind-key    -T copy-mode    C-f               send-keys -X cursor-right</span><br><span class="line">bind-key    -T copy-mode    C-g               send-keys -X clear-selection</span><br><span class="line">bind-key    -T copy-mode    C-k               send-keys -X copy-end-of-line</span><br><span class="line">bind-key    -T copy-mode    C-n               send-keys -X cursor-down</span><br><span class="line">bind-key    -T copy-mode    C-p               send-keys -X cursor-up</span><br><span class="line">…</span><br></pre></td></tr></table></figure>
+
+首先看看我的配置文件:
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">set -g prefix C-z               # 此处是将默认的 C-b 替换为 C-z </span><br><span class="line">set -g base-index         1     # 窗口编号从 1 开始计数</span><br><span class="line">set -g display-panes-time 10000 # PREFIX-Q 显示编号的驻留时长，单位 ms</span><br><span class="line">set -g mouse              on    # 开启鼠标</span><br><span class="line">set -g pane-base-index    1     # 窗格编号从 1 开始计数</span><br><span class="line">set -g renumber-windows   on    # 关掉某个窗口后，编号重排</span><br><span class="line"></span><br><span class="line">setw -g allow-rename      off   # 禁止活动进程修改窗口名</span><br><span class="line">setw -g automatic-rename  off   # 禁止自动命名新窗口</span><br><span class="line">setw -g mode-keys         vi   # 进入复制模式的时候使用 vi 键位（默认是 EMACS）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">setenv -g TMUX_PLUGIN_MANAGER_PATH &apos;~/.tmux/plugins&apos;</span><br><span class="line"></span><br><span class="line">set -g @plugin &apos;seebi/tmux-colors-solarized&apos;</span><br><span class="line">set -g @plugin &apos;tmux-plugins/tmux-pain-control&apos;</span><br><span class="line">set -g @plugin &apos;tmux-plugins/tmux-prefix-highlight&apos;</span><br><span class="line">set -g @plugin &apos;tmux-plugins/tmux-resurrect&apos;</span><br><span class="line">set -g @plugin &apos;tmux-plugins/tmux-sensible&apos;</span><br><span class="line">set -g @plugin &apos;tmux-plugins/tmux-yank&apos;</span><br><span class="line">set -g @plugin &apos;tmux-plugins/tpm&apos;</span><br><span class="line"></span><br><span class="line">set -g @resurrect-dir &apos;~/.tmux/resurrect&apos;</span><br><span class="line"></span><br><span class="line">set -g status-right &apos;#&#123;prefix_highlight&#125; #H | %a %Y-%m-%d %H:%M&apos;</span><br><span class="line">set -g @prefix_highlight_show_copy_mode &apos;on&apos;</span><br><span class="line">set -g @prefix_highlight_copy_mode_attr &apos;fg=white,bg=blue&apos;</span><br><span class="line"></span><br><span class="line">run &apos;~/.tmux/plugins/tpm/tpm&apos;</span><br></pre></td></tr></table></figure>
+</code></pre><hr>
+<ol>
+<li><a href="https://wiki.archlinux.org/index.php/Tmux_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)" target="_blank" rel="noopener">https://wiki.archlinux.org/index.php/Tmux_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/12/15/TMUX-使用/" data-id="ck471vq0v000u32fzoraake66" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux-platform-bus-总线分析/platform" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/02/linux-platform-bus-总线分析/platform/" class="article-date">
+  <time datetime="2019-11-02T15:11:40.583Z" itemprop="datePublished">2019-11-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="平台设备和驱动"><a href="#平台设备和驱动" class="headerlink" title="平台设备和驱动"></a>平台设备和驱动</h1><pre><code>  对于平台总 （ 平台设备，平台驱动 ） 的驱动模型接口 ，你能够查看文件 &lt;linux/platform_device.h&gt; ，
+这种虚拟总线以最小的开销来连接总线上的设备 。类似于 SOC 的外部集成总线或是传统 PC 的连接方式 。
+相当于正式指定的 PCI 和 USB 。
+</code></pre><h2 id="平台设备"><a href="#平台设备" class="headerlink" title="平台设备"></a>平台设备</h2><pre><code>平台设备是在系统中通常作为自主的实体出现的设备 。 包含了传统基于端口的设备 ，外围总线的北桥 ， 集成
+进 SOC 平台的大部分控制器 。它们最大的相同处是能够通过 CPU 总线进行直接寻址 。 少量情况下 ，平台设备
+会与其他总线的一部分连接 。但是他的寄存器任然是可以直接寻址的.
+
+平台设备会用一个名称用于驱动的绑定，同样也会有其他的资源，例如地址和中断. 
+
+struct platform_device {
+const char      *name;
+u32             id;
+struct device   dev;
+u32             num_resources;
+struct resource *resource;
+};
+</code></pre><h2 id="平台驱动"><a href="#平台驱动" class="headerlink" title="平台驱动"></a>平台驱动</h2><pre><code>平台驱动遵守标准的驱动模块准则, 驱动的发现和枚举在驱动外部完成, 驱动本身提供 probe() 和 remove() 方法.
+它们使用标准协议来支持电源管理和关机通知.
+
+struct platform_driver {
+int (*probe)(struct platform_device *);
+int (*remove)(struct platform_device *);
+void (*shutdown)(struct platform_device *);
+int (*suspend)(struct platform_device *, pm_message_t state);
+int (*suspend_late)(struct platform_device *, pm_message_t state);
+int (*resume_early)(struct platform_device *);
+int (*resume)(struct platform_device *);
+struct device_driver driver;
+};
+
+probe() 应该检测指定的硬件设备的存在状态 ，某些时候平台的配置代码不能确认 ， 能够使用设备资源，包含 时钟，
+和设备的 platform_data.
+</code></pre><h3 id="平台驱动注册的普通方法"><a href="#平台驱动注册的普通方法" class="headerlink" title="平台驱动注册的普通方法:"></a>平台驱动注册的普通方法:</h3><pre><code>int platform_driver_register(struct platform_driver *drv);
+
+或者在其他普遍的情况下，当设备不能够热拔插，probe () 能够放置带初始化部分，这样会减小驱动的运动内存。
+
+int platform_driver_probe(struct platform_driver *drv,
+                          int (*probe)(struct platform_device *))
+
+
+内核模块可以由数个平台驱动组成, 平台核心提供批量注册和注销.
+
+int __platform_register_drivers(struct platform_driver * const *drivers,
+            unsigned int count, struct module *owner);
+
+void platform_unregister_drivers(struct platform_driver * const *drivers,
+         unsigned int count);
+
+如果其中一个驱动注册失败，所有已经注册的驱动会以反方向注销。下面是一个便利的宏将 THIS_MODULE 作为所有者参数传递.
+
+#define platform_register_drivers(drivers, count)
+</code></pre><h2 id="设备枚举"><a href="#设备枚举" class="headerlink" title="设备枚举"></a>设备枚举</h2><pre><code>特定于平台（通常是特定于主板）的配置代码将注册平台设备: 
+
+int platform_device_register(struct platform_device *pdev);
+
+    通常来说，只有是真实存在的设备会被注册。但在一些情况下，额外的设备也有可能被注册。举个例子，内核能够以外部的网络适配
+器工作，而适配器不是所有的板子上都会安装。或者是类似于有些板子是有一些集成控制器工作的，但没有任何外部设备挂载。
+
+    在某些情况下，引导固件会导出描述指定板的设备表。如果没有这张表，系统配置代码配置正确的设备的唯一方法是在编译内核时选择
+特定的目标板。这种板定制的内核在嵌入式和定制开发的系统中非常常见。
+
+在一些情况下，分配给平台设备的内存和中断资源可能不足以让设备的驱动工作，板载配置代码用 platform_data 数据域来提供额外的信息。
+
+    嵌入式系统通常需要一个多个时钟用于平台设备，在它们被激活前都是关闭的（省电）。但是系统仍然会给设备分配时钟，用函数 clk_get 
+(&amp;pdev-&gt;dev, clock_name) 来获取需要的时钟。
+</code></pre><h2 id="传统驱动：设备探测"><a href="#传统驱动：设备探测" class="headerlink" title="传统驱动：设备探测"></a>传统驱动：设备探测</h2><pre><code>    一些驱动没有完全转换为驱动模型，因为它扮演了非驱动角色: 驱动注册它自己的平台设备，而不是把注册的动作留给系统的基础设施。这样的
+驱动不支持热插拔和冷插拔 ，因为这些机制要求设备创建和驱动位于不同的设备组件 。
+
+    这样做的唯一理由是兼容老旧的系统设计，像老式的 IBM PC，依赖易错的　&quot;硬件探测&quot;来配置硬件。新系统基本放弃了这种模式，支持总线级别的自
+动配置 (PCI, USB) ，或者是引导固件提供的设备表 (X86 上的 PNPACPI ) 。怎么做，以及在哪做有许多冲突的选择，即使操作系统依照经验也会选择错
+误而导致麻烦 。
+
+    这种驱动风格是不被鼓励的 。如果你正在更新这样的一个驱动 ，请尝试将设备枚举放置到一个更为适合的区域 (在驱动之外)　。当驱动将有使用由 
+PNP 或者平台设备配置创建的设备节点的正常的模式后 ，这将被清除.
+
+仍然有许多 API 来支持传统的驱动 ，避免使用这些除了那些不支持热拔插的驱动　。
+
+struct platform_device *platform_device_alloc(
+                                              const char *name, int id);
+
+    你能够使用　platform_device_alloc() 来动态的分配设备 ，然后用资源和 platform_device_register ()　函数来初始化分配的设备 ，更好的解决
+方案通常是 :
+
+dynamically struct platform_device *platform_device_register_simple(
+                                                                    const char *name, int id,
+                                                                    struct resource *res, unsigned int nres);
+
+你能够用 platform_device_register_simple () 来代替分配和注册设备.
+</code></pre><h3 id="设备命名和驱动绑定"><a href="#设备命名和驱动绑定" class="headerlink" title="设备命名和驱动绑定"></a>设备命名和驱动绑定</h3><pre><code>platform_device.dev.bus_id 　是设备的标准名称, 右下面的两个部分组成:
+* platform_device.name ... 同时也用于驱动匹配
+
+* platform_device.id ...   设备的实体名　，-1 代表这只有一个
+
+
+    上面的这些是可以串联的 ，用 name/id 来表示 , &quot;serial&quot;/0　表示 &quot;serial.0&quot; , &quot;serial&quot;/3　表示　bus_id 为　&quot;serial.3&quot;　。前面的收拾使用 
+platform_device &quot;serial&quot;　，　&quot;my_rtc&quot;/-1 表示 bus_id 为 &quot;my_rtc&quot; (没有实例名)　使用的 platform_driver 叫　&quot;my_rtc&quot;
+
+    驱动核心自动执行驱动绑定绑定 ， 在发现一对匹配的驱动和设备后　，调用驱动的 probe() 。当　probe() 成功执行后 ，驱动和设备照常绑定。有
+三种不同方式来发现匹配.
+
+- 一旦设备完成注册，总线的驱动会检车匹配。平台设备会在系统启动的时候完成注册。
+
+- 当一个驱动用　platform_driver_register() 来完成注册，总线上没有绑定的设备会检查匹配。驱动通常在引导后或者模块导入中完成注册。
+
+- 用 platform_driver_probe () 注册一个驱动和使用 platform_driver_register ()相同，但是当其他设备注册的时候就不会在探测了 。(当这个接口只
+  是给一个非热拔插的设备)
+</code></pre><h2 id="早先的平台设备和驱动"><a href="#早先的平台设备和驱动" class="headerlink" title="早先的平台设备和驱动"></a>早先的平台设备和驱动</h2><pre><code>在系统启动的早期，早先的平台接口提供平台数据和平台设备驱动。该代码构建于命令行解析之上 (early_param ()), 能够在很早的执行.
+</code></pre><h3 id="1-早期的平台设备数据注册"><a href="#1-早期的平台设备数据注册" class="headerlink" title="1. 早期的平台设备数据注册"></a>1. 早期的平台设备数据注册</h3><pre><code>    架构代码使用 early_platform_add_devices () 来注册平台设备数据 . 在这总情况下串口控制台，这应该用于串口的硬件配置 。此时注册的设备稍后将
+与早期的设备驱动进行匹配。
+</code></pre><h3 id="2-解析内核命令行"><a href="#2-解析内核命令行" class="headerlink" title="2. 解析内核命令行"></a>2. 解析内核命令行</h3><pre><code>    结构代码用 parse_early_param () 来解析内核命令行 。将执行所有匹配early_param () 的回调 。用户指定的早期平台设备将会在此处被注册。对于早先
+的串口控制台的情况 ，用户能够使在内核命令行中使用 &quot;earlyprintk=serial.0&quot;指定端口. &quot;serial&quot; 是平台设备驱动的名称，0 是平台设备的设备 ID. 如果id
+为 -1 , 点和id可以省略。
+</code></pre><h3 id="3-安装属于某一类的平台设备驱动"><a href="#3-安装属于某一类的平台设备驱动" class="headerlink" title="3. 安装属于某一类的平台设备驱动"></a>3. 安装属于某一类的平台设备驱动</h3><pre><code>    架构代码能够使用 early_platform_driver_register_all () 函数来强制注册属于某一类的平台驱动。 对于这些，步骤2中用户所指定的设备有优先
+优先权。串口驱动中这一步应当被忽略，例如，除非用户在内核命令行中指定了端口，早期的串口驱动应当是关闭的。
+</code></pre><h3 id="4-早期的平台驱动注册"><a href="#4-早期的平台驱动注册" class="headerlink" title="4. 早期的平台驱动注册"></a>4. 早期的平台驱动注册</h3><pre><code>    在步骤 2 和步骤 3 中使用 early_platform_init () 来自动注册内建的的平台驱动。串口驱动的例子应当使用  early_platform_init (&quot;earlyprintk&quot;, 
+&amp;platform_driver)
+</code></pre><h3 id="5-探测属于某一类的平台驱动"><a href="#5-探测属于某一类的平台驱动" class="headerlink" title="5. 探测属于某一类的平台驱动"></a>5. 探测属于某一类的平台驱动</h3><pre><code>    架构代码调用 early_platform_driver_probe () 来匹配已经注册相关类的平台设备. 已经匹配的设备会获取到 probed()　，这一步能够在启动的早期的任意时
+刻执行 。　对于串口来说，越早越好。
+</code></pre><h3 id="6-早期平台驱动的-probe-的内部"><a href="#6-早期平台驱动的-probe-的内部" class="headerlink" title="6. 早期平台驱动的 probe () 的内部"></a>6. 早期平台驱动的 probe () 的内部</h3><pre><code>    在启动的早期，驱动代码应当注意一些特别小心，尤其是涉及到内存分配和中断注册 。probe () 的代码能够调用 is_early_platform_device () 来判断自身
+处于早期平台设备还是常规的平台设备。早期窗口驱动在此时执行  register_console () 
+</code></pre><p>在文件 &lt;linux/platform_device.h&gt; 查看更多的信息</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/11/02/linux-platform-bus-总线分析/platform/" data-id="ck471vq2i004032fz5p8wxopv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-十二章-二叉搜索树" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/02/十二章-二叉搜索树/" class="article-date">
+  <time datetime="2019-11-02T15:11:40.583Z" itemprop="datePublished">2019-11-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ReadNote/">ReadNote</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/02/十二章-二叉搜索树/">算法导论-第十二章 二叉查找树</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="算法导论十二章-二叉查找树"><a href="#算法导论十二章-二叉查找树" class="headerlink" title="算法导论十二章 二叉查找树"></a>算法导论十二章 二叉查找树</h1>
+        
+          <p class="article-more-link">
+            <a href="/2019/11/02/十二章-二叉搜索树/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/11/02/十二章-二叉搜索树/" data-id="ck471vq1m001z32fzk7u773lb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-struct/">data struct</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-SegmentationFault-Debug" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/02/SegmentationFault-Debug/" class="article-date">
+  <time datetime="2019-11-02T15:11:40.579Z" itemprop="datePublished">2019-11-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本文由 <a href="http://ksria.com/simpread/" target="_blank" rel="noopener">简悦 SimpRead</a> 转码， 原文地址 <a href="http://www.wtango.com/%E6%AE%B5%E9%94%99%E8%AF%AFsegmentation-fault%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">http://www.wtango.com/%E6%AE%B5%E9%94%99%E8%AF%AFsegmentation-fault%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/</a></p>
+</blockquote>
+<h4 id="1-什么是段错误"><a href="#1-什么是段错误" class="headerlink" title="1. 什么是段错误"></a>1. 什么是段错误<a href="#1-什么是段错误"></a></h4><p>可能每个程序员在 Linux 环境下使用 C/C++ 编程时都曾遇到过 “段错误”(Segmentation fault)，段错误是由于内存管理单元(负责支持虚拟内存的硬件) 的异常所导致，而该异常则通常是由于解除引用一个未初始化或非法的指针引起的。产生段错误的地方有可能在自己编写的代码中，也有可能出现在库函数中(传递一个非法指针给库函数)。令人很不爽的是，段错误除了只有一个简单的错误信息之外，没有任何额外的提示，并且有的段错误不是每次都会出现。</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/11/02/SegmentationFault-Debug/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/11/02/SegmentationFault-Debug/" data-id="ck471vq0t000q32fz8cr3kwjd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux-platform-bus-总线分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/19/linux-platform-bus-总线分析/" class="article-date">
+  <time datetime="2019-10-19T07:25:17.000Z" itemprop="datePublished">2019-10-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/19/linux-platform-bus-总线分析/">linux platform bus 总线分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Linux-平台总线的简介-platform-bus"><a href="#1-Linux-平台总线的简介-platform-bus" class="headerlink" title="1. Linux 平台总线的简介 (platform bus)"></a>1. Linux 平台总线的简介 (platform bus)</h1><pre><code>    关于平台总线我把 linux kernel 下的文档翻译了一遍 ，英文原版地址为 https://github.com/torvalds/linux/blob/master/
+Documentation/driver-api/driver-model/platform.rst , 翻译后的地址为 https://github.com/singledo/SortCode/blob/master/
+translater/platform.md 。哈哈 ，有啥看的别扭的 ，对照英文文档看就好了 。
+
+    对于不愿看同学 ，我简单介绍下平台总线是个什么东西 。
+
+　　平台总线是 Linux 一种类似于 I₂C 总线的虚拟设备 。虚拟设备的由来是因为平台设备并没有实际的硬件控制器与平台总线相对应 ，
+平台总线上挂载平台设备 (platform device)  和平台驱动 (platform driver) 。平台设备一般是有实际存在的硬件与之对应的 ；平台
+驱动是控制平台设备的　。
+</code></pre><h2 id="2-平台总线的初始化过程"><a href="#2-平台总线的初始化过程" class="headerlink" title="2. 平台总线的初始化过程"></a>2. 平台总线的初始化过程</h2><pre><code>    平台总线能分为三个部分 ，平台总线 BUS 的初始化 ，平台总线设备的初始化 ，平台总线驱动的初始化 。平台总线 BUS 的初始化在内核
+初始化的过程中完成 ，平台总线设备和驱动的初始化在驱动挂载的时候完成 。
+</code></pre><h3 id="2-1-平台总线-BUS-的初始化过程"><a href="#2-1-平台总线-BUS-的初始化过程" class="headerlink" title="2.1 平台总线 BUS 的初始化过程"></a>2.1 平台总线 BUS 的初始化过程</h3><pre><code>BUS 的初始化在将一些全局的变量准备好 ，以方便后面驱动的添加 。我们先对整个初始化函数有个预览 ，后面会来详细的分析 。
+
+int __init platform_bus_init(void)
+{
+  int error;
+  early_platform_cleanup();
+
+  error = device_register(&amp;platform_bus);
+  if (error) {
+    put_device(&amp;platform_bus);
+    return error;
+  }
+  error =  bus_register(&amp;platform_bus_type);
+  if (error)
+    device_unregister(&amp;platform_bus);
+  of_platform_register_reconfig_notifier();
+  return error;
+}
+
+- early_platform_cleanup ()
+  准备初始化的前期动作 ，将 early_platform_device_list 链表中的所有的 dev.devres_head 设备为空链 ，并将链表的 head 置空 。
+
+- device_register (&amp;platform_bus)
+  此步骤会现将设备结构体的各项填上正确的值或者函数 ，然后用用正确的属性来创建设备对应的链接或者是文件 。并将设备加到对应
+  的链表的末尾 。
+
+  static const struct dev_pm_ops platform_dev_pm_ops = {
+    .runtime_suspend = pm_generic_runtime_suspend,
+    .runtime_resume = pm_generic_runtime_resume,
+    USE_PLATFORM_PM_SLEEP_OPS
+  };
+
+  struct bus_type platform_bus_type = {
+    .name          = &quot;platform&quot;,
+    .dev_groups    = platform_dev_groups,
+    .match         = platform_match,
+    .uevent        = platform_uevent,
+    .dma_configure = platform_dma_configure,
+    .pm            = &amp;platform_dev_pm_ops,
+  };
+
+- 平台总线的 BUS 初始化
+</code></pre><h2 id="2-2-平台总线设备的初始化"><a href="#2-2-平台总线设备的初始化" class="headerlink" title="2.2 平台总线设备的初始化"></a>2.2 平台总线设备的初始化</h2><h2 id="2-3-平台总驱动的初始化"><a href="#2-3-平台总驱动的初始化" class="headerlink" title="2.3 平台总驱动的初始化"></a>2.3 平台总驱动的初始化</h2><hr>
+<ol>
+<li><a href="https://www.cnblogs.com/biglucky/p/4057481.html" target="_blank" rel="noopener">https://www.cnblogs.com/biglucky/p/4057481.html</a></li>
+<li><a href="https://blog.csdn.net/cc289123557/article/details/51782449" target="_blank" rel="noopener">https://blog.csdn.net/cc289123557/article/details/51782449</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/10/19/linux-platform-bus-总线分析/" data-id="ck471vq0z001032fz5uvjt5ti" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux-driver/">linux driver</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/platform-bus/">platform bus</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Linux-Kernel-启动分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/17/Linux-Kernel-启动分析/" class="article-date">
+  <time datetime="2019-10-17T08:01:02.000Z" itemprop="datePublished">2019-10-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/17/Linux-Kernel-启动分析/">Linux Kernel 启动分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="linix-kernel-的启动过程"><a href="#linix-kernel-的启动过程" class="headerlink" title="linix kernel 的启动过程"></a>linix kernel 的启动过程</h1><pre><code>我们以 arm 芯片为例子来分析 linux kernel 的启动过程. 首先我们查看 arm 的 lds 文件 (arch/arm/kernel/vmlinux.lds.S),
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">OUTPUT_ARCH(arm)</span><br><span class="line">ENTRY(stext)</span><br><span class="line">…</span><br></pre></td></tr></table></figure>
+
+  通过 lds 文件, 可以看出 kernel 的最开始的入口函数的名字叫做 stext. 下一步是找到这个 stext 在哪 ? 答案是 arch/arm64/kernel/head.S 中. 
+查看 head.S 文件, 我们看到是一段汇编文件 .
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ENTRY(stext)</span><br><span class="line">  bl    preserve_boot_args             // 保存 uboot 传入的参数</span><br><span class="line">  bl    el2_setup                      // Drop to EL1, w0=cpu_boot_mode</span><br><span class="line">  adrp  x23, __PHYS_OFFSET</span><br><span class="line">  and   x23, x23, MIN_KIMG_ALIGN - 1 // KASLR offset, defaults to 0</span><br><span class="line">  bl    set_cpu_boot_mode_flag</span><br><span class="line">  bl    __create_page_tables</span><br><span class="line">  bl    __cpu_setup                   // initialise processor</span><br><span class="line">  b     __primary_switch              // 此处跳转 __primary_switch</span><br><span class="line">ENDPROC(stext)</span><br></pre></td></tr></table></figure>
+
+__primary_switch 同样也在 arch/arm64/kernel/head.S 中. 其他的不重要，重要的下面这三句话 , 跳转到 __primary_switched
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">__primary_switch:</span><br><span class="line">// 此处会有一些宏来控制 kernel 的重映射 ， 以及 mmu 的使能 .</span><br><span class="line">…</span><br><span class="line">ldr  x8, =__primary_switched</span><br><span class="line">adrp x0, __PHYS_OFFSET</span><br><span class="line">blr  x8</span><br><span class="line">…</span><br><span class="line">ENDPROC(__primary_switch)</span><br></pre></td></tr></table></figure>
+
+__primary_switched 同样在文件  arch/arm64/kernel/head.S 中 .
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">__primary_switched:</span><br><span class="line">    adrp x4, init_thread_union</span><br><span class="line">    add  sp, x4, #THREAD_SIZE</span><br><span class="line">    adr_l  x5, init_task</span><br><span class="line">    msr  sp_el0, x5      // Save thread_info</span><br><span class="line"></span><br><span class="line">    adr_l  x8, vectors      // load VBAR_EL1 with virtual</span><br><span class="line">    msr  vbar_el1, x8      // vector table address</span><br><span class="line">    isb</span><br><span class="line"></span><br><span class="line">    stp  xzr, x30, [sp, #-16]!</span><br><span class="line">    mov  x29, sp</span><br><span class="line"></span><br><span class="line">    str_l  x21, __fdt_pointer, x5    // Save FDT pointer</span><br><span class="line"></span><br><span class="line">    ldr_l  x4, kimage_vaddr    // Save the offset between</span><br><span class="line">    sub  x4, x4, x0      // the kernel virtual and</span><br><span class="line">    str_l  x4, kimage_voffset, x5    // physical mappings</span><br><span class="line"></span><br><span class="line">    // Clear BSS</span><br><span class="line">    adr_l  x0, __bss_start</span><br><span class="line">    mov  x1, xzr</span><br><span class="line">    adr_l  x2, __bss_stop</span><br><span class="line">    sub  x2, x2, x0</span><br><span class="line">    bl  __pi_memset</span><br><span class="line">    dsb  ishst        // Make zero page visible to PTW</span><br><span class="line"></span><br><span class="line">#ifdef CONFIG_KASAN</span><br><span class="line">      bl  kasan_early_init</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#ifdef CONFIG_RANDOMIZE_BASE</span><br><span class="line">    tst  x23, ~(MIN_KIMG_ALIGN - 1)  // already running randomized?</span><br><span class="line">    b.ne  0f</span><br><span class="line">    mov  x0, x21        // pass FDT address in x0</span><br><span class="line">    bl  kaslr_early_init    // parse FDT for KASLR options</span><br><span class="line">    cbz  x0, 0f        // KASLR disabled? just proceed</span><br><span class="line">    orr  x23, x23, x0      // record KASLR offset</span><br><span class="line">    ldp  x29, x30, [sp], #16    // we must enable KASLR, return</span><br><span class="line">    ret          // to __primary_switch()</span><br><span class="line">    0:</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">    add  sp, sp, #16</span><br><span class="line">    mov  x29, #0</span><br><span class="line">    mov  x30, #0</span><br><span class="line">    b  start_kernel # 此处跳转到 c 文件中, 主要的初始化在此处.</span><br><span class="line"></span><br><span class="line">  ENDPROC(__primary_switched)</span><br></pre></td></tr></table></figure>
+<pre><code>start_kernel　函数在 init/main.c 中:
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">asmlinkage __visible void __init start_kernel(void)</span><br><span class="line">&#123;</span><br><span class="line">  // </span><br><span class="line">  …</span><br><span class="line">  arch_call_rest_init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>arch_call_rest_init 函数在 init/main.c 文件中
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void __init __weak arch_call_rest_init(void)</span><br><span class="line">&#123;</span><br><span class="line">    rest_init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>rest_init 在文件 init/main.c 中.
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">noinline void __ref rest_init(void)</span><br><span class="line">&#123;</span><br><span class="line">  struct task_struct *tsk;</span><br><span class="line">  int pid;</span><br><span class="line"></span><br><span class="line">  rcu_scheduler_starting();</span><br><span class="line">  pid = kernel_thread(kernel_init, NULL, CLONE_FS);</span><br><span class="line">  rcu_read_lock();</span><br><span class="line">  tsk = find_task_by_pid_ns(pid, &amp;init_pid_ns);</span><br><span class="line">  set_cpus_allowed_ptr(tsk, cpumask_of(smp_processor_id()));</span><br><span class="line">  rcu_read_unlock();</span><br><span class="line"></span><br><span class="line">  numa_default_policy();</span><br><span class="line">  pid = kernel_thread(kthreadd, NULL, CLONE_FS | CLONE_FILES);</span><br><span class="line">  rcu_read_lock();</span><br><span class="line">  kthreadd_task = find_task_by_pid_ns(pid, &amp;init_pid_ns);</span><br><span class="line">  rcu_read_unlock();</span><br><span class="line"></span><br><span class="line">  system_state = SYSTEM_SCHEDULING;</span><br><span class="line"></span><br><span class="line">  complete(&amp;kthreadd_done);</span><br><span class="line"></span><br><span class="line">  schedule_preempt_disabled();</span><br><span class="line">  /* Call into cpu_idle with preempt disabled */</span><br><span class="line">  cpu_startup_entry(CPUHP_ONLINE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>cpu_startup_entry 在文件 kernel/sched/idle.c 中. 等到系统的进程调度 .
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void cpu_startup_entry(enum cpuhp_state state)</span><br><span class="line">&#123;</span><br><span class="line">  arch_cpu_idle_prepare();</span><br><span class="line">  cpuhp_online_idle(state);</span><br><span class="line">  while (1)</span><br><span class="line">    do_idle();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://octopuscloud.top/2019/10/17/Linux-Kernel-启动分析/" data-id="ck471vq0r000p32fzpef82ad2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-IPv6-NDP" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/09/29/IPv6-NDP/" class="article-date">
@@ -103,92 +538,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/09/29/IPv6-NDP/" data-id="ck14nod7f0006qhfzgkxqbcnz" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/09/29/IPv6-NDP/" data-id="ck471vq0p000k32fzbu0pfpit" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IPv6/">IPv6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Neighbour-Discover-Protocol/">Neighbour Discover Protocol</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-十二章-二叉搜索树" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/11/十二章-二叉搜索树/" class="article-date">
-  <time datetime="2019-09-11T04:27:11.760Z" itemprop="datePublished">2019-09-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ReadNote/">ReadNote</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/11/十二章-二叉搜索树/">算法导论-第十二章 二叉查找树</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="算法导论十二章-二叉查找树"><a href="#算法导论十二章-二叉查找树" class="headerlink" title="算法导论十二章 二叉查找树"></a>算法导论十二章 二叉查找树</h1>
-        
-          <p class="article-more-link">
-            <a href="/2019/09/11/十二章-二叉搜索树/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/09/11/十二章-二叉搜索树/" data-id="ck14nod8l001vqhfzygbz0z2v" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-struct/">data struct</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SegmentationFault-Debug" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/11/SegmentationFault-Debug/" class="article-date">
-  <time datetime="2019-09-11T04:27:11.344Z" itemprop="datePublished">2019-09-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>本文由 <a href="http://ksria.com/simpread/" target="_blank" rel="noopener">简悦 SimpRead</a> 转码， 原文地址 <a href="http://www.wtango.com/%E6%AE%B5%E9%94%99%E8%AF%AFsegmentation-fault%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">http://www.wtango.com/%E6%AE%B5%E9%94%99%E8%AF%AFsegmentation-fault%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/</a></p>
-</blockquote>
-<h4 id="1-什么是段错误"><a href="#1-什么是段错误" class="headerlink" title="1. 什么是段错误"></a>1. 什么是段错误<a href="#1-什么是段错误"></a></h4><p>可能每个程序员在 Linux 环境下使用 C/C++ 编程时都曾遇到过 “段错误”(Segmentation fault)，段错误是由于内存管理单元(负责支持虚拟内存的硬件) 的异常所导致，而该异常则通常是由于解除引用一个未初始化或非法的指针引起的。产生段错误的地方有可能在自己编写的代码中，也有可能出现在库函数中(传递一个非法指针给库函数)。令人很不爽的是，段错误除了只有一个简单的错误信息之外，没有任何额外的提示，并且有的段错误不是每次都会出现。</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/09/11/SegmentationFault-Debug/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/09/11/SegmentationFault-Debug/" data-id="ck14nod7p000eqhfzpn1iwenw" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -222,7 +576,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/08/13/指针与数组/" data-id="ck14nod8r0026qhfzjecdwkiq" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/08/13/指针与数组/" data-id="ck471vq1t002a32fzali3kqm5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pointer-array/">pointer, array</a></li></ul>
@@ -264,7 +618,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/08/12/linux-修改库文件寻找默认路径/" data-id="ck14nod7y000tqhfzwh026jh4" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/08/12/linux-修改库文件寻找默认路径/" data-id="ck471vq12001432fz9gow3ugv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/defalt-path-for-so-file/">defalt path for so file</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
@@ -307,280 +661,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/08/12/deb-解压-修改-压缩/" data-id="ck14nod7w000oqhfzusn2hrcw" class="article-share-link">Share</a>
+      <a data-url="http://octopuscloud.top/2019/08/12/deb-解压-修改-压缩/" data-id="ck471vq0x000y32fzzajn47cw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deb/">deb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-IPV6" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/04/IPV6/" class="article-date">
-  <time datetime="2019-08-04T03:47:01.000Z" itemprop="datePublished">2019-08-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/04/IPV6/">IPV6</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="IPv6-的概述"><a href="#IPv6-的概述" class="headerlink" title="IPv6 的概述"></a>IPv6 的概述</h1><pre><code>ipv6 采用 128 bit 的地址长度　。来代替现在地址资源即将枯竭的　ipv4 。
-</code></pre><h1 id="2-IPv6-地址"><a href="#2-IPv6-地址" class="headerlink" title="2 IPv6 地址"></a>2 IPv6 地址</h1><pre><code>ipv6 采用　128 bit 的地址长度 , 格式为 
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/2019/08/04/IPV6/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/08/04/IPV6/" data-id="ck14nod7i0008qhfzh9impoeb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-IPv6 Frame Format" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/04/IPv6 Frame Format/" class="article-date">
-  <time datetime="2019-08-04T03:47:01.000Z" itemprop="datePublished">2019-08-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/04/IPv6 Frame Format/">IPV6 Frame Format</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>b - bits<br>B - bytes</p>
-<h1 id="Ether-II-数据格式"><a href="#Ether-II-数据格式" class="headerlink" title="Ether II 数据格式"></a>Ether II 数据格式</h1><pre><code>| Dest Mac   | Sou Mac    |  type  |
-+------------+------------+--------+----------+
-| 12 b       |    12 b    |  8 b   | payload  |
-+------------+------------+--------+----------+
-</code></pre><h1 id="IPv6-头格式"><a href="#IPv6-头格式" class="headerlink" title="IPv6 头格式"></a>IPv6 头格式</h1><pre><code>+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|Version|    Traffic Class      |       Flow Label              |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|     Payload Length            | Next Header  | Hop Limit      |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                                                               |
-+                                                               +
-|                                                               |
-+                   Source Address                              +
-|                                                               |
-+                                                               +
-|                                                               |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                                                               |
-+                                                               +
-|                                                               |
-+                   Destination Address                         +
-|                                                               |
-+                                                               +
-|                                                               |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</code></pre><h1 id="IPv6-扩展头格式"><a href="#IPv6-扩展头格式" class="headerlink" title="IPv6 扩展头格式"></a>IPv6 扩展头格式</h1><pre><code>+---------------+------------------------
-| IPv6 header   | TCP header + data     
-|               |
-| Next Header = |
-|      TCP      |
-+---------------+------------------------
-
-
-+---------------+----------------+------------------------
-| IPv6 header   | Routing header | TCP header + data 
-|               |                |
-| Next Header = | Next Header =  |
-|   Routing     |    TCP         |
-+---------------+----------------+------------------------
-
-+---------------+----------------+-----------------+-----------------
-| IPv6 header   | Routing header | Fragment header | fragment of TCP
-|               |                |                 | header + data 
-| Next Header = | Next Header =  | Next Header =   |
-|  Routing      |     Fragment   |  TCP            |
-+---------------+----------------+-----------------+-----------------
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/08/04/IPv6 Frame Format/" data-id="ck14nod7k000aqhfz1gs51ia7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Frame-Format/">Frame Format</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IPv6/">IPv6</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-图" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/04/图/" class="article-date">
-  <time datetime="2019-08-04T03:47:01.000Z" itemprop="datePublished">2019-08-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/04/图/">图</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-图的表示方法"><a href="#1-图的表示方法" class="headerlink" title="1. 图的表示方法"></a>1. 图的表示方法</h1><pre><code>图的数学表达式为 G=(V,E), 解释为图 G 中是一组由 |V| 个列表的数组　Adj 组成 , 其中的每一个列表对应着这个 V 中的一个节点 . 对于每一个 u ∈ V , 邻接表 Adj[u] 包含所有的满足条件 (u,v) 
-∈ E 的顶点 u (Adj[u] 中包含图 G 中所有和顶点 u 相邻的顶点). 
-
-图可以分为有向图和无向图 , 主要的区别在于连接顶点的边是否有方向的矢量特性:
-</code></pre><p><img src="/image/Selection_001.png" alt="avatar" title="有向图和无向图"> </p>
-<pre><code>表示图的方式方法有两种 , 分别为邻接表和邻接矩阵:
-a. 邻接表是由包含 |V| 个列表的数组组成，其中每个列表对应这图中的每个顶点，列表中存储着图中和当前顶点相邻的顶点 : 
-</code></pre><p><img src="/image/Selection_002.png" alt="avatar" title="邻接表"> </p>
-<pre><code>b. 邻接矩阵是存储这顶点间的相邻关系, 如果 A[i,j] == 0, 表示顶点 i 和顶点 j 不相邻 , 如果 A[i,j] == 1, 表示顶点 i 和顶点 j 相邻
-</code></pre><p><img src="/image/Selection_003.png" alt="avatar" title="邻接矩阵"> </p>
-<pre><code>关于图的基本概念:
-a. 无向图中，所有的邻接表的长度之和为 2|E| , 有向图中，　所有邻接表的长度之和为 |E| .
-b. |E| &lt;&lt; |V|^2 ,　为稀疏图 . |E| ~= |V|^2 ,  表示稠密图 . 
-c. 加权图: 顶点和顶点间的边不在为１，而是根据需求表示加权值.
-</code></pre><h2 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h2><pre><code>    广度优先搜索会始终将已发现和未发现之间的边界，沿着广度的方向向外扩展 . 意味着首先会发现距离给定原点 s 的距离为 k 的所有顶点 , 然后才会发现离 s 距离为 k+1 的其他顶点 . 在广度优先
-搜索的过程中 ， 距离给定原点 s 为 k 是距离 s 距离为 k+1 顶点的长辈节点， 祖辈关系组成广度优先树.
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">广度优先算法 - BFS                 # 算法中 π[u] 表示顶点 u 的父亲节点, color[u] 表示顶点 u 的颜色. d[u] 表示距离顶点 s 的距离</span><br><span class="line">BFS (G, s)  </span><br><span class="line">    for u in V[G]   </span><br><span class="line">        color[u] ← Withe    </span><br><span class="line">        d[u]     ← ∞        </span><br><span class="line">        π[u]     ← NIL           # 将图中所有顶点的 p[u] , color[u] , d[u] </span><br><span class="line"></span><br><span class="line">color[s] ← GRAY </span><br><span class="line">d[s] ← 0    </span><br><span class="line">π[s] ← NIL                       # 初始化顶点 s</span><br><span class="line"></span><br><span class="line">Q ← NIL </span><br><span class="line">ENQUEUE (Q, s)                   # 将顶点 s 插入队列 Q</span><br><span class="line"></span><br><span class="line">while Q != NIL                   # 结束条件为队列 Q 为空时，跳出循环</span><br><span class="line">    do u ← DEQUEUE (Q)           # 将队列 Q 出列一个顶点 u, 然后把顶点 u </span><br><span class="line">    for each v ∈ Adj[u]          # 的邻接表遍历，如果邻接数组中的顶点的颜色</span><br><span class="line">    </span><br><span class="line">        do if color[v] == White  # Withe , 设置顶点 u 为 u 邻接数组中顶点 (v)</span><br><span class="line">            then color[v] ← GRAY # 的父亲节点，则顶点 v 设置为 GRAY。并将顶点 v </span><br><span class="line">            d[v] ← d[u] + 1      # 入队列 Q</span><br><span class="line">            π[v] ← u</span><br><span class="line">            ENQUEUE (Q, v)</span><br><span class="line">    color[u] ← BLACK             # 设置顶点 u 为 BLACK</span><br></pre></td></tr></table></figure>
-</code></pre><h3 id="最短路劲"><a href="#最短路劲" class="headerlink" title="最短路劲"></a>最短路劲</h3><pre><code>  对于图 G=(V,E), 广度优先搜索算法可以得到从已知源顶点 s∈V 到每个可达顶点的距离. 顶点 s 到顶点 v 的最短距离 δ(s,v) 是从 s 到 v 的任何路劲中边数最少的路径
-如果 s 到 v 没有通路， 则 δ(s,v) = ∞ ;
-
-定理 1 : 设 G = (v, E) 是一个有向图或者无向图， s∈V 为 G 的任意一个顶点，对任意边 (u, v) ∈ V ,有
-        δ(s,v) ≤ δ(s, u) + 1
-定理 2 : 图 G = (V, E) 是一个无向图或有向图，假设算法 BFS 从 G 中某一个给定源顶点 s∈V开始执行。在终止执行时，　则有 
-        d[v] ≥ δ(s,v)
-定理 3 : 在图 G = (V ,E) 上执行 BFS 的过程中，队列 Q 中包含顶点 &lt;v₁, v₂ ..., vr&gt; , v₁为队列 Q 的头，vr 为队列 Q 的尾，则有
-        d[vr] ≤ d[v1] + 1 , 且 d[vi] ≤ d[vi+1]
-定理 4 : 在执行 BFS 过程中将顶点 vi 和 vj 插入了队列， 且 vi 先于 vj 入队，那么当 vj 入队时有, 
-        d[vi] ≤ d[vj]
-定理 5 : 在执行 BFS 从给定 G 中某一个顶点 s∈V 开始运行。那么在执行的过程中，BFS 可以发现源顶点 s 可以到达的每个顶点 v∈V开始运行。在
-        运行终止时，对所有 v∈V , 都有 d[v] = δ(s,v)
-
-广度优先搜索树是 BFS 在图 G 上运行后的 p 域组成。对于图 G = (V, E), 给定的源点 s, 可以更为形式地定义其前趋子图: Gπ = (Vπ, Eπ), 其中:
-    Vπ = {u∈V: π[u] != NIL} U {s}
-且
-    Eπ = {(π[v], v): v∈ Vπ - {s}}
-</code></pre><h2 id="深度优先搜索-DFS"><a href="#深度优先搜索-DFS" class="headerlink" title="深度优先搜索 (DFS)"></a>深度优先搜索 (DFS)</h2><pre><code>1. 深度优先搜索的过程: 给定图 G = (V,E), 从任一顶点 v 开始扫描 v 邻接表 adj[v], 顶点 u 属于 adj[v] 。则下一次扫描从顶点 u 开始 , 重复顶点 v 的搜索过程. 
-                       如果还存在为发现的顶点, 以这个顶点作为源点做 DFS.
-
-2. 深度优先森林: 在做 DFS 的过程中 , 扫描顶点 v 的邻接表 adj[v] , 顶点 u ∈ adj[v] 且是第一次被搜索. 则顶点 u 的先辈子域 π[u] = v . 由先辈子域 π[] 组成的
-                 树称为深度优先树。在 DFS 过程中会生成多颗深度优先树，多颗深度优先树组成深度优先森林。
-                G = (V, Eπ) , Eπ = ((π[v], v), v∈ V &amp; Vπ ~= NIL)
-
-3. 时间戳: 顶点 v 在第一次被发现第一次记录下第一个时间戳 d[v] , 在结束搜索时记录下第二个时间戳 f[u] . 用来推测 DFS 的进行情况 .
-
-4. DFS 的伪代码
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">DFS (G)</span><br><span class="line">for each vertex u ∈  V[G]   # 此处是初始化所有顶点的 color 和 π 域</span><br><span class="line">  color[u] ←  WHITE</span><br><span class="line">  π[u]     ←  NIL</span><br><span class="line"></span><br><span class="line">time ← 0                    # time 用来记录时间戳, 为全局变量</span><br><span class="line"></span><br><span class="line">for each vertex u ∈  V[G]   # 此处为每个顶点做 DFS </span><br><span class="line">  do if color[u] == WHITE</span><br><span class="line">    then DFS-VISIT(u)</span><br><span class="line"></span><br><span class="line">################################################################################</span><br><span class="line">DFS-VISIT (u)</span><br><span class="line">color[u] ← GRAY              # 顶点 u 第一次被搜索，将顶点 u 的 color 域置为灰色 (GRAY)</span><br><span class="line"></span><br><span class="line">time ← time + 1              # 记录下顶点 u 的开始的时间戳</span><br><span class="line">d[u] = time </span><br><span class="line"></span><br><span class="line">for each v ∈  adj[u]         # 遍历顶点 u 的邻接表 adj[u] ，如果顶点 v 的 color 域为</span><br><span class="line">  do if color[v] == WHITE    # WHITE , 则设置顶点 v 的先辈域 π[v] = u</span><br><span class="line">    then π[v] ← u</span><br><span class="line">      DFS-VISIT (v)</span><br><span class="line"></span><br><span class="line">color[u] ←  BLACK</span><br><span class="line">f[u] ← time ← time + 1      # 记录下顶点 u 的结束的时间戳</span><br></pre></td></tr></table></figure>
-
-5. 图中边的分类
-  a. 树边: 顶点 v 在探索 (v,u) 是首次被发现的，那么 (v,u) 是一条树边
-  b. 反向边: 连接到顶点 u 到他某一祖先顶点 v 的那些边。
-  c. 正向边: 连接顶点 u 到某个后裔的顶点 v 的边 .
-  d. 交叉边: 一个顶点不是另外一个顶点的祖先
-</code></pre><hr>
-<p>δ:d<em><br>∈:(-<br>∋:)-<br>π:p</em></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/08/04/图/" data-id="ck14nod8p0022qhfztgcwm7lx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Struct/">Data Struct</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图/">图</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-以太网帧-格式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/07/07/以太网帧-格式/" class="article-date">
-  <time datetime="2019-07-07T06:47:10.000Z" itemprop="datePublished">2019-07-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/RFC/">RFC</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/07/以太网帧-格式/">以太网帧的类型及其区分</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="以太网帧的数据格式"><a href="#以太网帧的数据格式" class="headerlink" title="以太网帧的数据格式"></a>以太网帧的数据格式</h1><pre><code>以太网网帧有四种类型 ，分别为 Ethernet I, Ethernet II, NoveIIEther, EtherSNAP 。  
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/2019/07/07/以太网帧-格式/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://octopuscloud.top/2019/07/07/以太网帧-格式/" data-id="ck14nod860016qhfzox0d4uts" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ethernet-II/">Ethernet II</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RFC/">RFC</a></li></ul>
 
     </footer>
   </div>
@@ -614,7 +698,7 @@ c. 加权图: 顶点和顶点间的边不在为１，而是根据需求表示加
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Struct/">Data Struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ethernet-II/">Ethernet II</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Frame-Format/">Frame Format</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C/">I2C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPv6/">IPv6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Neighbour-Discover-Protocol/">Neighbour Discover Protocol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RFC/">RFC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SNMP/">SNMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgdb/">cgdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-15/">chapter 15</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-struct/">data struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deb/">deb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defalt-path-for-so-file/">defalt path for so file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/editer/">editer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gdb-debug/">gdb debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pointer-array/">pointer, array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pseudocode/">pseudocode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rb-tree/">rb tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-key/">ssh key</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/symbol/">symbol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图/">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Struct/">Data Struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ethernet-II/">Ethernet II</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Frame-Format/">Frame Format</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C/">I2C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IPv6/">IPv6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Neighbour-Discover-Protocol/">Neighbour Discover Protocol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RFC/">RFC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SNMP/">SNMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arthmetic/">arthmetic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cgdb/">cgdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chapter-15/">chapter 15</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-struct/">data struct</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deb/">deb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/defalt-path-for-so-file/">defalt path for so file</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/editer/">editer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-system/">file system</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gdb-debug/">gdb debug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux-driver/">linux driver</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/platform-bus/">platform bus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pointer-array/">pointer, array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pseudocode/">pseudocode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rb-tree/">rb tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh-key/">ssh key</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/symbol/">symbol</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图/">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/通信协议/">通信协议</a></li></ul>
     </div>
   </div>
 
@@ -624,7 +708,7 @@ c. 加权图: 顶点和顶点间的边不在为１，而是根据需求表示加
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Data-Struct/" style="font-size: 10px;">Data Struct</a> <a href="/tags/Ethernet-II/" style="font-size: 10px;">Ethernet II</a> <a href="/tags/Frame-Format/" style="font-size: 10px;">Frame Format</a> <a href="/tags/I2C/" style="font-size: 10px;">I2C</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/Neighbour-Discover-Protocol/" style="font-size: 10px;">Neighbour Discover Protocol</a> <a href="/tags/RFC/" style="font-size: 10px;">RFC</a> <a href="/tags/SNMP/" style="font-size: 10px;">SNMP</a> <a href="/tags/arthmetic/" style="font-size: 10px;">arthmetic</a> <a href="/tags/cgdb/" style="font-size: 10px;">cgdb</a> <a href="/tags/chapter-15/" style="font-size: 10px;">chapter 15</a> <a href="/tags/data-struct/" style="font-size: 15px;">data struct</a> <a href="/tags/deb/" style="font-size: 10px;">deb</a> <a href="/tags/defalt-path-for-so-file/" style="font-size: 10px;">defalt path for so file</a> <a href="/tags/editer/" style="font-size: 10px;">editer</a> <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/gdb-debug/" style="font-size: 10px;">gdb debug</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/pointer-array/" style="font-size: 10px;">pointer, array</a> <a href="/tags/pseudocode/" style="font-size: 10px;">pseudocode</a> <a href="/tags/rb-tree/" style="font-size: 10px;">rb tree</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ssh-key/" style="font-size: 10px;">ssh key</a> <a href="/tags/symbol/" style="font-size: 10px;">symbol</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/通信协议/" style="font-size: 10px;">通信协议</a>
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Data-Struct/" style="font-size: 10px;">Data Struct</a> <a href="/tags/Ethernet-II/" style="font-size: 10px;">Ethernet II</a> <a href="/tags/Frame-Format/" style="font-size: 10px;">Frame Format</a> <a href="/tags/I2C/" style="font-size: 10px;">I2C</a> <a href="/tags/IPv6/" style="font-size: 15px;">IPv6</a> <a href="/tags/Neighbour-Discover-Protocol/" style="font-size: 10px;">Neighbour Discover Protocol</a> <a href="/tags/RFC/" style="font-size: 10px;">RFC</a> <a href="/tags/SNMP/" style="font-size: 10px;">SNMP</a> <a href="/tags/arthmetic/" style="font-size: 10px;">arthmetic</a> <a href="/tags/cgdb/" style="font-size: 10px;">cgdb</a> <a href="/tags/chapter-15/" style="font-size: 10px;">chapter 15</a> <a href="/tags/data-struct/" style="font-size: 15px;">data struct</a> <a href="/tags/deb/" style="font-size: 10px;">deb</a> <a href="/tags/defalt-path-for-so-file/" style="font-size: 10px;">defalt path for so file</a> <a href="/tags/editer/" style="font-size: 10px;">editer</a> <a href="/tags/file-system/" style="font-size: 10px;">file system</a> <a href="/tags/gdb-debug/" style="font-size: 10px;">gdb debug</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/linux-driver/" style="font-size: 10px;">linux driver</a> <a href="/tags/platform-bus/" style="font-size: 10px;">platform bus</a> <a href="/tags/pointer-array/" style="font-size: 10px;">pointer, array</a> <a href="/tags/pseudocode/" style="font-size: 10px;">pseudocode</a> <a href="/tags/rb-tree/" style="font-size: 10px;">rb tree</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ssh-key/" style="font-size: 10px;">ssh key</a> <a href="/tags/symbol/" style="font-size: 10px;">symbol</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/tools/" style="font-size: 10px;">tools</a> <a href="/tags/图/" style="font-size: 10px;">图</a> <a href="/tags/通信协议/" style="font-size: 10px;">通信协议</a>
     </div>
   </div>
 
@@ -633,7 +717,7 @@ c. 加权图: 顶点和顶点间的边不在为１，而是根据需求表示加
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -646,23 +730,23 @@ c. 加权图: 顶点和顶点间的边不在为１，而是根据需求表示加
       <ul>
         
           <li>
-            <a href="/2019/09/29/IPv6-NDP/">IPv6 NDP</a>
+            <a href="/2019/12/15/TMUX-使用/">TMUX-使用</a>
           </li>
         
           <li>
-            <a href="/2019/09/11/十二章-二叉搜索树/">算法导论-第十二章 二叉查找树</a>
+            <a href="/2019/11/02/linux-platform-bus-总线分析/platform/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2019/09/11/SegmentationFault-Debug/">(no title)</a>
+            <a href="/2019/11/02/十二章-二叉搜索树/">算法导论-第十二章 二叉查找树</a>
           </li>
         
           <li>
-            <a href="/2019/08/13/指针与数组/">指针与数组</a>
+            <a href="/2019/11/02/SegmentationFault-Debug/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2019/08/12/linux-修改库文件寻找默认路径/">linux 修改库文件寻找默认路径</a>
+            <a href="/2019/10/19/linux-platform-bus-总线分析/">linux platform bus 总线分析</a>
           </li>
         
       </ul>
